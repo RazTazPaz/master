@@ -353,11 +353,11 @@ client.setInterval(messageupdate, 55000);
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
 		var n = 1;
-		for (let i = 0; i < 23; ++n, ++i){ //set to 24!!!!!!!
+		for (let i = 0; i < 5; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (k < player[i].score){
-		k = player[i].score;
-		players = player[i].name;
+		if (l < player[i].score){
+		l = player[i].score;
+		k = player[i].name;
 		}
 		}
 		message.channel.send({embed});
@@ -370,6 +370,8 @@ client.setInterval(messageupdate, 55000);
 		//FUNCTION 2
 		//LOWER CHART
 		function msg2() {
+			var m = 0;
+			var d = 0;
 		const embed = new Discord.RichEmbed()
 		setTimeout(function(){
 		embed.setColor(0x006B8B)
@@ -378,18 +380,25 @@ client.setInterval(messageupdate, 55000);
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
-		var n = 24;
-		for (let i = 23; i < prf; ++n, ++i){ //set to 24!!!!!!!
+		var n = 6;
+		for (let i = 5; i < prf; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (k < player[i].score){
-		k = player[i].score;
-		players = player[i].name;
+		if (m < player[i].score){
+		 m = player[i].score;
+		d = player[i].name;
 		}
 		}
-		
+		if(m < l){
+			player1 = k;
+			score1 = l
+		}
+		else{
+		player1 = d; return;
+		score1 =m;   return;
+		}
 		message.channel.send({embed});
 		},1500); }
-		
+				
 		function moon(){
 			var datum2 = new Date();
 			var zeit2 = datum2.getHours();
@@ -399,6 +408,21 @@ client.setInterval(messageupdate, 55000);
 			if(zeit2 == zeitt){
 				if(min2 == mint){
 					var x = 0;
+					if(score1 == 0){
+						const embed = new Discord.RichEmbed()
+						embed.setTitle("Leaderboard of the: " + tag + ". " + monname )
+						embed.setAuthor("Exile Altis Leaderboard", "https://www2.pic-upload.de/img/36599350/discordexile.png")
+						embed.setColor(0xEED524)
+						embed.setDescription("__**Congratulations!**__")
+						embed.setFooter("Tanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
+						embed.setImage("https://www2.pic-upload.de/img/36503627/4.jpg")
+						embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+						embed.setTimestamp()
+						embed.setURL("https://www.gogsworld.com/")
+						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
+						client.channels.get("649270099647266840").send({embed});
+					}
+					else{
 					if(score1 < 15){
 					x = "15000 PopTabs";
 					}else {if(score1 < 20){
@@ -431,16 +455,22 @@ client.setInterval(messageupdate, 55000);
 				embed.addField("In Order to get the Reward of " + x +", please notify an Online Admin!", "Make sure that your __Bank__ is not __FULL__!")
 				client.channels.get("649270099647266840").send({embed});
 				score1 = 0;
-				player1 =0;		
-		}
-		}
+				player1 =0;
+				}
+			
+		}}
 		msg1();
 		msg2();
 		moon();
-		colsole.log(player1);
-		colsole.log(zeit2);
-		colsole.log(min2);
+			
 		}catch(error) { console.log('caught', error.message); };
+	}
+	//closes else for more than 25 players
+	
+	  }
+	  
+	});
+   }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 	//closes else for more than 25 players
 	
