@@ -551,7 +551,7 @@ client.setInterval(activityupdate,30000);
 		}else{if(restarth < 24){
 			xrestarth = 24 - restarth;
 			xrestartm = (59 - restartm)+1;
-		}}}}}}}}}
+		}}}}}}}}
         if (player == 0) {
 			try {
           client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart in: " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
