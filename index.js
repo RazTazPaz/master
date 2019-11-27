@@ -379,7 +379,7 @@ client.setInterval(messageupdate, 55000);
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
-		var n = 23;
+		var n = 24;
 		for (let i = 23; i < prf; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		if (m < player[i].score){
