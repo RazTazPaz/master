@@ -176,7 +176,6 @@ client.on('message', message => {
 						
 	
 
-
 client.setInterval(messageupdate, 55000);
 /*
 =======================================================
@@ -241,7 +240,7 @@ client.setInterval(messageupdate, 55000);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
 	const prf = num2;
-	if (num2 <= 24){
+	if (num2 <= 4){
 		const embed = new Discord.RichEmbed()
 		//var lng = player[i].length;
 		embed.setTitle("List of Players Online:")
@@ -268,7 +267,7 @@ client.setInterval(messageupdate, 55000);
 					}
 		}
 		*/}//CLOSES FOR TO NUM2
-		moon();
+		moon(player1, score1);
 		message.channel.send({embed});
 		function moon(){
 			var datum2 = new Date();
@@ -353,36 +352,6 @@ client.setInterval(messageupdate, 55000);
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
 		var n = 1;
-		for (let i = 0; i < 23; ++n, ++i){ //set to 24!!!!!!!
-		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (k < player[i].score){
-		k = player[i].score;
-		players = player[i].name;
-		}
-		}
-		message.channel.send({embed});
-		}
-/*
-	===============================
-	=========2. Nachricht==========
-	===============================
-*/	
-	else{
-		var k = 0;
-		var l = 0;
-		var players = 0;
-		try {
-		//TOP CHART WITH NAME ICON AND HEADER
-		function msg1(){
-		const embed = new Discord.RichEmbed()
-		embed.setTitle("List of Players Online:")
-		embed.setAuthor("GoG´s Exile Altis", "https://www2.pic-upload.de/img/36599350/discordexile.png")
-		embed.setColor(0x006B8B)
-		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
-		embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
-		embed.setURL("https://www.gogsworld.com/")
-		var player = data.players;
-		var n = 1;
 		for (let i = 0; i < 5; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		if (l < player[i].score){
@@ -450,7 +419,7 @@ client.setInterval(messageupdate, 55000);
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
 						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
-						client.channels.get("649270099647266840").send({embed});
+						client.channels.get("648965421470318623").send({embed});
 					}
 					else{
 					if(score1 < 15){
@@ -483,7 +452,7 @@ client.setInterval(messageupdate, 55000);
 				//	embed.addField(player2 + "\n" + "Won also with a Score of" + "\n" + score2)
 				//	}
 				embed.addField("In Order to get the Reward of " + x +", please notify an Online Admin!", "Make sure that your __Bank__ is not __FULL__!")
-				client.channels.get("649270099647266840").send({embed});
+				client.channels.get("648965421470318623").send({embed});
 				score1 = 0;
 				player1 =0;
 				}
