@@ -274,8 +274,8 @@ client.setInterval(messageupdate, 55000);
 			var datum2 = new Date();
 			var zeit2 = datum2.getHours();
 			var min2 = datum2.getMinutes();
-			const zeitt = 19;
-			const mint = 0;
+			const zeitt = 23;
+			const mint = 59;
 			if(zeit2 == zeitt){
 				if(min2 == mint){
 					var x = 0;
@@ -394,8 +394,8 @@ client.setInterval(messageupdate, 55000);
 			var datum2 = new Date();
 			var zeit2 = datum2.getHours();
 			var min2 = datum2.getMinutes();
-			const zeitt = 19;
-			const mint = 0;
+			const zeitt = 23;
+			const mint = 59;
 			if(zeit2 == zeitt){
 				if(min2 == mint){
 					var x = 0;
