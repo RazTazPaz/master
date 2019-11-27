@@ -1,0 +1,35 @@
+{
+  "name": "armabot",
+  "version": "0.1.0",
+  "description": "Discord ArmA3 Stats Bot",
+  "main": "index.js",
+  "dependencies": {
+    "@discordjs/uws": "^10.149.0",
+    "discord.js": "^11.2.0",
+    "gamedig": "^1.0.37"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "echo": "echo \"Error: no Run specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "engines": {
+  "node": "13.1.0",
+  "npm": "6.12.1"
+},
+  "repository": {
+    "type": "git",
+    "url": "git://www.github.com/nrpatten/ArmaBot.git"
+  },
+  "author": "RazTazPaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RazTazPaz/raztazpazaltis/blob/master/Procfile"
+  },
+  "homepage": "https://github.com/RazTazPaz/raztazpazaltis/blob/master/Procfile",
+  "keywords": [
+    "arma",
+    "discord",
+    "stats"
+  ]
+}
