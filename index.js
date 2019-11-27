@@ -352,7 +352,7 @@ client.setInterval(messageupdate, 55000);
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
 		var n = 1;
-		for (let i = 0; i < 5; ++n, ++i){ //set to 24!!!!!!!
+		for (let i = 0; i < 23; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		if (l < player[i].score){
 		l = player[i].score;
@@ -379,8 +379,8 @@ client.setInterval(messageupdate, 55000);
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
-		var n = 6;
-		for (let i = 5; i < prf; ++n, ++i){ //set to 24!!!!!!!
+		var n = 23;
+		for (let i = 23; i < prf; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		if (m < player[i].score){
 		 m = player[i].score;
