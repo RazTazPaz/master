@@ -529,28 +529,28 @@ client.setInterval(activityupdate,30000);
 		var xrestarth = 0;
 		var xrestartm = 0;
 		if(restarth < 3){
-			xrestarth = 3 - (restarth + 1);
+			xrestarth = (3 - restarth) + 1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 6){
-			xrestarth = 6 - (restarth + 1);
+			xrestarth = (6 - restarth) + 1
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 9){
-			xrestarth = 9 - (restarth + 1);
+			xrestarth = (9 - restarth) + 1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 12){
-			xrestarth = 12 - (restarth + 1);
+			xrestarth = (12 - restarth) + 1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 15){
-			xrestarth = 15 - (restarth + 1);
+			xrestarth = (15 - restarth) + 1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 18){
-			xrestarth = 18- (restarth + 1);
+			xrestarth = (18 - restarth) + 1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 21){
-			xrestarth = 21 - (restarth + 1);
+			xrestarth = (21 - restarth) + 1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 24){
-			xrestarth = 24 - (restarth + 1);
+			xrestarth = (24 - restarth) + 1;
 			xrestartm = (59 - restartm)+1;
 		}}}}}}}}
 		if(xrestarth == 1){
