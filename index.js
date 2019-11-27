@@ -536,19 +536,19 @@ client.setInterval(activityupdate,30000);
 		}else{if(restarth < 9){
 			xrestarth = 9 - restarth;
 			xrestartm = (59 - restartm)+1;
-			else{if(restarth < 12){
+		}else{if(restarth < 12){
 			xrestarth = 12 - restarth;
 			xrestartm = (59 - restartm)+1;
-			}else{if(restarth < 15){
+		}else{if(restarth < 15){
 			xrestarth = 15 - restarth;
 			xrestartm = (59 - restartm)+1;
-			}else{if(restarth < 18){
+		}else{if(restarth < 18){
 			xrestarth = 18 - restarth;
 			xrestartm = (59 - restartm)+1;
-			}else{if(restarth < 21){
+		}else{if(restarth < 21){
 			xrestarth = 21 - restarth;
 			xrestartm = (59 - restartm)+1;
-			}else{if(restarth < 24){
+		}else{if(restarth < 24){
 			xrestarth = 24 - restarth;
 			xrestartm = (59 - restartm)+1;
 		}}}}}}}}}
