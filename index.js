@@ -273,7 +273,7 @@ client.setInterval(messageupdate, 55000);
 			var datum2 = new Date();
 			var zeit2 = datum2.getHours();
 			var min2 = datum2.getMinutes();
-			const zeitt = 23;
+			const zeitt = 22;
 			const mint = 59;
 			if(zeit2 == zeitt){
 				if(min2 == mint){
@@ -402,7 +402,7 @@ client.setInterval(messageupdate, 55000);
 			var datum2 = new Date();
 			var zeit2 = datum2.getHours();
 			var min2 = datum2.getMinutes();
-			const zeitt = 23;
+			const zeitt = 22;
 			const mint = 59;
 			if(zeit2 == zeitt){
 				if(min2 == mint){
@@ -562,7 +562,7 @@ client.setInterval(activityupdate,30000);
 		}	
 			else {
 				try {
-          client.user.setActivity('Exile Altis' + t + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart in: " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
+          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|**Restart:** " + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
       }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 			}
