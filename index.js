@@ -524,32 +524,33 @@ client.setInterval(activityupdate,30000);
         var player = data.numplayers;
 		var restart = new Date();
 		var restarth = restart.getHours();
-		var restartm = restart.getMinutes();		
+		var restartm = restart.getMinutes();
+		var t = restarth;
 		var xrestarth = 0;
 		var xrestartm = 0;
 		if(restarth < 3){
-			xrestarth = 3 - restarth;
+			xrestarth = (3 - restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 6){
-			xrestarth = 6 - restarth;
+			xrestarth = (6 - restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 9){
-			xrestarth = 9 - restarth;
+			xrestarth = (9 - restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 12){
-			xrestarth = 12 - restarth;
+			xrestarth = (12 - restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 15){
-			xrestarth = 15 - restarth;
+			xrestarth = (15 - restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 18){
-			xrestarth = 18 - restarth;
+			xrestarth = (18- restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 21){
-			xrestarth = 21 - restarth;
+			xrestarth = (21 - restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}else{if(restarth < 24){
-			xrestarth = 24 - restarth;
+			xrestarth = (24 - restarth)+1;
 			xrestartm = (59 - restartm)+1;
 		}}}}}}}}
         if (player == 0) {
@@ -561,7 +562,7 @@ client.setInterval(activityupdate,30000);
 		}	
 			else {
 				try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart in: " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
+          client.user.setActivity('Exile Altis' + t + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart in: " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
       }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 			}
