@@ -290,7 +290,7 @@ client.setInterval(messageupdate, 55000);
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
 						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
-						client.channels.get("648965421470318623").send({embed});
+						client.channels.get("649270099647266840").send({embed});
 					}
 					else{
 					if(score1 < 15){
@@ -419,7 +419,7 @@ client.setInterval(messageupdate, 55000);
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
 						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
-						client.channels.get("648965421470318623").send({embed});
+						client.channels.get("649270099647266840").send({embed});
 					}
 					else{
 					if(score1 < 15){
@@ -452,7 +452,7 @@ client.setInterval(messageupdate, 55000);
 				//	embed.addField(player2 + "\n" + "Won also with a Score of" + "\n" + score2)
 				//	}
 				embed.addField("In Order to get the Reward of " + x +", please notify an Online Admin!", "Make sure that your __Bank__ is not __FULL__!")
-				client.channels.get("648965421470318623").send({embed});
+				client.channels.get("649270099647266840").send({embed});
 				score1 = 0;
 				player1 =0;
 				}
