@@ -562,7 +562,7 @@ client.setInterval(activityupdate,30000);
 		}	
 			else {
 				try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|**Restart:** " + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
+          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:" + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
       }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 			}
