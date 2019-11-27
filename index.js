@@ -523,8 +523,8 @@ client.setInterval(activityupdate,30000);
 	  }
         var player = data.numplayers;
 		var restart = new Date();
-		var restarth = datum2.getHours();
-		var restartm = datum2.getMinutes();		
+		var restarth = restart.getHours();
+		var restartm = restart.getMinutes();		
 		var xrestarth = 0;
 		var xrestartm = 0;
 		if(restarth < 3){
