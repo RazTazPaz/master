@@ -404,7 +404,7 @@ client.setInterval(messageupdate, 55000);
 			var zeituk = datum2.getHours();
 			var min2 = datum2.getMinutes();
 			var zeit2 = zeituk + 1;
-			const zeitt = 22;
+			const zeitt = 23;
 			const mint = 59;
 			if(zeit2 == zeitt){
 				if(min2 == mint){
