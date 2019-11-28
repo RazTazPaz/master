@@ -240,7 +240,7 @@ client.setInterval(messageupdate, 55000);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
 	const prf = num2;
-	if (num2 < 24){
+	if (num2 <= 4){
 		const embed = new Discord.RichEmbed()
 		//var lng = player[i].length;
 		embed.setTitle("List of Players Online:")
@@ -273,7 +273,7 @@ client.setInterval(messageupdate, 55000);
 			var datum2 = new Date();
 			var zeit2 = datum2.getHours();
 			var min2 = datum2.getMinutes();
-			const zeitt = 22;
+			const zeitt = 23;
 			const mint = 59;
 			if(zeit2 == zeitt){
 				if(min2 == mint){
@@ -290,7 +290,7 @@ client.setInterval(messageupdate, 55000);
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
 						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
-						client.channels.get("649270099647266840").send({embed});
+						client.channels.get("648965421470318623").send({embed});
 					}
 					else{
 					if(score1 < 15){
@@ -352,7 +352,7 @@ client.setInterval(messageupdate, 55000);
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
 		var n = 1;
-		for (let i = 0; i < 24; ++n, ++i){ //set to 24!!!!!!!
+		for (let i = 0; i < 23; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		if (l < player[i].score){
 		l = player[i].score;
@@ -379,8 +379,8 @@ client.setInterval(messageupdate, 55000);
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
-		var n = 25;
-		for (let i = 24; i < prf; ++n, ++i){ //set to 24!!!!!!!
+		var n = 24;
+		for (let i = 23; i < prf; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		if (m < player[i].score){
 		 m = player[i].score;
@@ -402,7 +402,7 @@ client.setInterval(messageupdate, 55000);
 			var datum2 = new Date();
 			var zeit2 = datum2.getHours();
 			var min2 = datum2.getMinutes();
-			const zeitt = 22;
+			const zeitt = 23;
 			const mint = 59;
 			if(zeit2 == zeitt){
 				if(min2 == mint){
@@ -419,7 +419,7 @@ client.setInterval(messageupdate, 55000);
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
 						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
-						client.channels.get("649270099647266840").send({embed});
+						client.channels.get("648965421470318623").send({embed});
 					}
 					else{
 					if(score1 < 15){
@@ -452,7 +452,7 @@ client.setInterval(messageupdate, 55000);
 				//	embed.addField(player2 + "\n" + "Won also with a Score of" + "\n" + score2)
 				//	}
 				embed.addField("In Order to get the Reward of " + x +", please notify an Online Admin!", "Make sure that your __Bank__ is not __FULL__!")
-				client.channels.get("649270099647266840").send({embed});
+				client.channels.get("648965421470318623").send({embed});
 				score1 = 0;
 				player1 =0;
 				}
@@ -522,53 +522,16 @@ client.setInterval(activityupdate,30000);
 		}
 	  }
         var player = data.numplayers;
-		var restart = new Date();
-		var restarth = restart.getHours();
-		var restartm = restart.getMinutes();
-		var t = 0;
-		var xrestarth = 0;
-		var xrestartm = 0;
-		if(restarth < 3){
-			xrestarth = (3 - restarth) + 1;
-			xrestartm = (59 - restartm)+1;
-		}else{if(restarth < 6){
-			xrestarth = (6 - restarth) + 1
-			xrestartm = (59 - restartm)+1;
-		}else{if(restarth < 9){
-			xrestarth = (9 - restarth) + 1;
-			xrestartm = (59 - restartm)+1;
-		}else{if(restarth < 12){
-			xrestarth = (12 - restarth) + 1;
-			xrestartm = (59 - restartm)+1;
-		}else{if(restarth < 15){
-			xrestarth = (15 - restarth) + 1;
-			xrestartm = (59 - restartm)+1;
-		}else{if(restarth < 18){
-			xrestarth = (18 - restarth) + 1;
-			xrestartm = (59 - restartm)+1;
-		}else{if(restarth < 21){
-			xrestarth = (21 - restarth) + 1;
-			xrestartm = (59 - restartm)+1;
-		}else{if(restarth < 24){
-			xrestarth = (24 - restarth) + 1;
-			xrestartm = (59 - restartm)+1;
-		}}}}}}}}
-		if(xrestarth == 1){
-			try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
-      }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
-	}
-		}
         if (player == 0) {
 			try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarthg + "h :" + xrestartm + "min", {type: 'PLAYING' } );
+          client.user.setActivity('GoG´s Exile Altis ' + '[ ' + data.raw.numplayers +'/'+ data.maxplayers + ' ]' + ' Online', {type: 'PLAYING' } );
        
 			}catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 		}	
 			else {
 				try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
+          client.user.setActivity('GoG´s Exile Altis ' + '[ ' + data.raw.numplayers +'/'+ data.maxplayers + ' ]' + ' Online', {type: 'PLAYING' } );
       }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 			}
