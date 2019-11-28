@@ -532,28 +532,28 @@ client.setInterval(activityupdate,30000);
 		var xrestartm = 0;
 		if(restarth < 3){
 			xrestarth = 3 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}else{if(restarth < 6){
 			xrestarth = 6 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}else{if(restarth < 9){
 			xrestarth = 9 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}else{if(restarth < 12){
 			xrestarth = 12 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}else{if(restarth < 15){
 			xrestarth = 15 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}else{if(restarth < 18){
 			xrestarth = 18 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}else{if(restarth < 21){
 			xrestarth = 21 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}else{if(restarth < 24){
 			xrestarth = 24 - restarth;
-			xrestartm = (59 - restartm)+1;
+			xrestartm = (59 - restartm);
 		}}}}}}}}
 		if(xrestarth == 1){
           client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
