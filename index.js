@@ -176,7 +176,7 @@ client.on('message', message => {
 						
 	
 
-client.setInterval(messageupdate, 55000);
+client.setInterval(messageupdate, 60000);
 /*
 =======================================================
 ====================INTERVAL===========================
@@ -495,7 +495,7 @@ client.setInterval(messageupdate, 55000);
 		}
 		//message.delete(35000); 
 		}//else für COMMAND START
-		else{ message.delete(55000);
+		else{ message.delete(60000);
 		}
  }
 else{
