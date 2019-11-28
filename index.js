@@ -556,14 +556,17 @@ client.setInterval(activityupdate,30000);
 			xrestartm = (59 - restartm)+1;
 		}}}}}}}}
 		if(xrestarth == 1){
-			try {
           client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
-      }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
-	}
-		}
+		}else{
+			if(xrestarth == 3){
+				xrestarth = 2;
+			}else{if(xrestarth == 2){
+				xrestarth = 1;
+			}
+			}
         if (player == 0) {
 			try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarthg + "h :" + xrestartm + "min", {type: 'PLAYING' } );
+          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
        
 			}catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
@@ -575,6 +578,6 @@ client.setInterval(activityupdate,30000);
 	}
 			}
 		
-    });
+		}});
  }
 client.login(clientID);
