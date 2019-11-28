@@ -527,6 +527,9 @@ client.setInterval(activityupdate,30000);
 		var restart = new Date();
 		var restartuk = restart.getHours();
 		var restarth = restartuk + 1;
+		if(restarth ==  24){
+			restarth = 0;
+		}
 		var restartm = restart.getMinutes();
 		var xrestarth = 0;
 		var xrestartm = 0;
