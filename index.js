@@ -522,7 +522,6 @@ client.setInterval(activityupdate,30000);
  async function activityupdate(){
 	 void InitDiscord()
 	{
-    DiscordEventHandlers handlers;
     memset(&handlers, 0, sizeof(handlers));
     handlers.ready = handleDiscordReady;
     handlers.errored = handleDiscordError;
