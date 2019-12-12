@@ -580,7 +580,7 @@ client.setInterval(activityupdate,30000);
 			
 			
 			DiscordRichPresence = new discordPresence;
-			memset(&discordPresence, 0, sizeof(discordPresence));
+			memset(discordPresence, 0, sizeof(discordPresence));
 			discordPresence.state = "GoG´s Exile";
 			discordPresence.details = "Map: Altis";
 			discordPresence.largeImageText = "GoG´s Exile Altis";
