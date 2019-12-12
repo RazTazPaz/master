@@ -520,17 +520,6 @@ Playing Online Update
 
 client.setInterval(activityupdate,30000);
  async function activityupdate(){
-	 void InitDiscord()
-	{
-    memset(&handlers, 0, sizeof(handlers));
-    handlers.ready = handleDiscordReady;
-    handlers.errored = handleDiscordError;
-    handlers.disconnected = handleDiscordDisconnected;
-    handlers.joinGame = handleDiscordJoinGame;
-    handlers.spectateGame = handleDiscordSpectateGame;
-    // Discord_Initialize(const char* applicationId, DiscordEventHandlers* handlers, int autoRegister, const char* optionalSteamId)
-    Discord_Initialize("647097248240631819", &handlers, 1, "107410" );
-	}
       Gamedig.query({
       type: game,
       host: host,
@@ -591,7 +580,7 @@ client.setInterval(activityupdate,30000);
 			
 			static void UpdatePresence()
 			{
-			DiscordRichPresence discordPresence;
+			DiscordRichPresence = new discordPresence;
 			memset(&discordPresence, 0, sizeof(discordPresence));
 			discordPresence.state = "GoG´s Exile";
 			discordPresence.details = "Map: Altis";
