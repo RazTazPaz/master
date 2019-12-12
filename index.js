@@ -488,10 +488,7 @@ client.setInterval(messageupdate, 60000);
 				message.delete(25000);
 			
 		}
-			}
-		else { //else für kein bot
-		message.delete(35000);
-			}
+		
 		}//schliesst if Channel bedingung
 		else{
 			const embed = new Discord.RichEmbed()
