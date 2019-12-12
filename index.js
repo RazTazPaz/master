@@ -151,7 +151,7 @@ client.on('message', message => {
  if(message.channel === client.channels.find("name", "altis-online")){
 	if(command === 'start'){
 		if(message.channel === client.channels.find("name", "altis-online")){
-			if (message.author == client.user || message.member.roles.find("name", "Admin")){) {
+			if (message.author == client.user || message.member.roles.find("name", "Admin")) {
 
 					
 					//message.delete(25000);	
