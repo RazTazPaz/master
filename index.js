@@ -569,16 +569,6 @@ client.setInterval(activityupdate,30000);
 			xrestartm = (59 - restartm);
 		}}}}}}}}
 		if(xrestarth == 1){
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
-		}else{
-			if(xrestarth == 3){
-				xrestarth = 2;
-			}else{if(xrestarth == 2){
-				xrestarth = 1;
-			}
-			}
-			
-			
 			DiscordRichPresence = new discordPresence;
 			memset(discordPresence, 0, sizeof(discordPresence));
 			discordPresence.state = "GoG´s Exile";
@@ -586,22 +576,49 @@ client.setInterval(activityupdate,30000);
 			discordPresence.largeImageText = "GoG´s Exile Altis";
 			discordPresence.smallImageText = "Rogue - Level 100";
 			discordPresence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
-			discordPresence.partySize = 1;
-			discordPresence.partyMax = 5;
+			discordPresence.partySize = data.raw.numplayers;
+			discordPresence.partyMax = data.maxplayers;
 			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
 			Discord_UpdatePresence(discordPresence);
-			
-			
+          //client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
+		}else{
+			if(xrestarth == 3){
+				xrestarth = 2;
+			}else{if(xrestarth == 2){
+				xrestarth = 1;
+			}
+			}	
         if (player == 0) {
 			try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
-       
+          //client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
+			DiscordRichPresence = new discordPresence;
+			memset(discordPresence, 0, sizeof(discordPresence));
+			discordPresence.state = "GoG´s Exile";
+			discordPresence.details = "Map: Altis";
+			discordPresence.largeImageText = "GoG´s Exile Altis";
+			discordPresence.smallImageText = "Rogue - Level 100";
+			discordPresence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
+			discordPresence.partySize = data.raw.numplayers;
+			discordPresence.partyMax = data.maxplayers;
+			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
+			Discord_UpdatePresence(discordPresence);
 			}catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 		}	
 			else {
 				try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
+          //client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
+		  	DiscordRichPresence = new discordPresence;
+			memset(discordPresence, 0, sizeof(discordPresence));
+			discordPresence.state = "GoG´s Exile";
+			discordPresence.details = "Map: Altis";
+			discordPresence.largeImageText = "GoG´s Exile Altis";
+			discordPresence.smallImageText = "Rogue - Level 100";
+			discordPresence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
+			discordPresence.partySize = data.raw.numplayers;
+			discordPresence.partyMax = data.maxplayers;
+			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
+			Discord_UpdatePresence(discordPresence);
       }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
 			}
