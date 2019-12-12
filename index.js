@@ -520,6 +520,18 @@ Playing Online Update
 
 client.setInterval(activityupdate,30000);
  async function activityupdate(){
+	 void InitDiscord()
+	{
+    DiscordEventHandlers handlers;
+    memset(&handlers, 0, sizeof(handlers));
+    handlers.ready = handleDiscordReady;
+    handlers.errored = handleDiscordError;
+    handlers.disconnected = handleDiscordDisconnected;
+    handlers.joinGame = handleDiscordJoinGame;
+    handlers.spectateGame = handleDiscordSpectateGame;
+    // Discord_Initialize(const char* applicationId, DiscordEventHandlers* handlers, int autoRegister, const char* optionalSteamId)
+    Discord_Initialize("647097248240631819", &handlers, 1, "107410" );
+	}
       Gamedig.query({
       type: game,
       host: host,
@@ -577,6 +589,22 @@ client.setInterval(activityupdate,30000);
 				xrestarth = 1;
 			}
 			}
+			
+			static void UpdatePresence()
+			{
+			DiscordRichPresence discordPresence;
+			memset(&discordPresence, 0, sizeof(discordPresence));
+			discordPresence.state = "GoG´s Exile";
+			discordPresence.details = "Map: Altis";
+			discordPresence.largeImageText = "GoG´s Exile Altis";
+			discordPresence.smallImageText = "Rogue - Level 100";
+			discordPresence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
+			discordPresence.partySize = 1;
+			discordPresence.partyMax = 5;
+			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
+			Discord_UpdatePresence(&discordPresence);
+			}
+			
         if (player == 0) {
 			try {
           client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
