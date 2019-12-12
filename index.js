@@ -578,7 +578,7 @@ client.setInterval(activityupdate,30000);
 			}
 			}
 			
-			static void UpdatePresence()
+			static UpdatePresence()
 			{
 			DiscordRichPresence = new discordPresence;
 			memset(&discordPresence, 0, sizeof(discordPresence));
