@@ -5,8 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
+    "discord-rich-presence": "0.0.8",
     "discord.js": "^11.2.0",
-    "gamedig": "^1.0.37"
+    "gamedig": "^1.0.37",
+    "register-scheme": "github:devsnek/node-register-scheme"
   },
   "devDependencies": {},
   "scripts": {
@@ -14,9 +16,9 @@
     "start": "node index.js"
   },
   "engines": {
-  "node": "13.1.0",
-  "npm": "6.12.1"
-},
+    "node": "13.1.0",
+    "npm": "6.12.1"
+  },
   "repository": {
     "type": "git",
     "url": "git://www.github.com/nrpatten/ArmaBot.git"
