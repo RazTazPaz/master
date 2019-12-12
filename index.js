@@ -589,7 +589,7 @@ client.setInterval(activityupdate,30000);
 			discordPresence.partySize = 1;
 			discordPresence.partyMax = 5;
 			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
-			Discord_UpdatePresence(&discordPresence);
+			Discord_UpdatePresence(discordPresence);
 			
 			
         if (player == 0) {
