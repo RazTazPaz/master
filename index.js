@@ -578,8 +578,7 @@ client.setInterval(activityupdate,30000);
 			}
 			}
 			
-			static UpdatePresence()
-			{
+			
 			DiscordRichPresence = new discordPresence;
 			memset(&discordPresence, 0, sizeof(discordPresence));
 			discordPresence.state = "GoG´s Exile";
@@ -591,7 +590,7 @@ client.setInterval(activityupdate,30000);
 			discordPresence.partyMax = 5;
 			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
 			Discord_UpdatePresence(&discordPresence);
-			}
+			
 			
         if (player == 0) {
 			try {
