@@ -577,21 +577,6 @@ client.setInterval(activityupdate,30000);
 				xrestarth = 1;
 			}
 			}
-			
-			
-			DiscordRichPresence = new discordPresence;
-			memset(discordPresence, 0, sizeof(discordPresence));
-			discordPresence.state = "GoG´s Exile";
-			discordPresence.details = "Map: Altis";
-			discordPresence.largeImageText = "GoG´s Exile Altis";
-			discordPresence.smallImageText = "Rogue - Level 100";
-			discordPresence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
-			discordPresence.partySize = 1;
-			discordPresence.partyMax = 5;
-			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
-			Discord_UpdatePresence(discordPresence);
-			
-			
         if (player == 0) {
 			try {
           client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
