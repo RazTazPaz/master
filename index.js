@@ -636,7 +636,7 @@ client.setInterval(activityupdate,30000);
 		
 		}});
  } */
- const client = require('discord-rich-presence')('180984871685062656');
+ const client = require('discord-rich-presence')('647097248240631819');
  
 client.updatePresence({
   state: 'slithering',
