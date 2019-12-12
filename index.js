@@ -647,4 +647,5 @@ client.updatePresence({
   smallImageKey: 'snek_small',
   instance: true,
 });
+}
 client.login(clientID);
