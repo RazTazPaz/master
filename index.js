@@ -151,22 +151,11 @@ client.on('message', message => {
  if(message.channel === client.channels.find("name", "altis-online")){
 	if(command === 'start'){
 		if(message.channel === client.channels.find("name", "altis-online")){
-			if (message.author !== client.user) {
-				if(!message.member.roles.find("name", "Admin")){
-					const embed = new Discord.RichEmbed()
-					embed.setTitle("Missing Permission to Run the Bot Leaderboard!")
-					embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
-					embed.setColor(0x006B8B)
-					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-					embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
-					embed.setTimestamp()
-					embed.setURL("https://www.gogsworld.com/")
-					embed.setDescription("Sorry, you  cant Run the Bot... \n Use __!altisonline__ instead!  \n Dont Worry, this window is going to Delete itself in 25 seconds! ")
-					message.channel.send({embed});
-					message.delete(25000);
-					}
+			if (message.author == client.user || message.member.roles.find("name", "Admin")){) {
+
+					
 					//message.delete(25000);	
-						else{	//else für client master bedingung 
+							//else für client master bedingung 
 							const embed = new Discord.RichEmbed()
 							embed.setTitle("Bot Playerlist is about To Start:")
 							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
@@ -483,6 +472,21 @@ client.setInterval(messageupdate, 60000);
    }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
  }
+		}
+		else{
+			
+				const embed = new Discord.RichEmbed()
+				embed.setTitle("Missing Permission to Run the Bot Leaderboard!")
+				embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+				embed.setColor(0x006B8B)
+				embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
+				embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+				embed.setTimestamp()
+				embed.setURL("https://www.gogsworld.com/")
+				embed.setDescription("Sorry, you  cant Run the Bot... \n Use __!altisonline__ instead!  \n Dont Worry, this window is going to Delete itself in 25 seconds! ")
+				message.channel.send({embed});
+				message.delete(25000);
+			
 		}
 			}
 		else { //else für kein bot
