@@ -528,7 +528,18 @@ client.setInterval(activityupdate,30000);
   async  function(err, data) {
       if (err) {
 		try {
-        client.user.setActivity('Server is currently Restarting!', {type: 'PLAYING'});
+        //client.user.setActivity('Server is currently Restarting!', {type: 'PLAYING'});
+			DiscordRichPresence = new discordPresence;
+			memset(discordPresence, 0, sizeof(discordPresence));
+			discordPresence.state = "GoG´s Exile";
+			discordPresence.details = "Map: Altis";
+			discordPresence.largeImageText = "GoG´s Exile Altis";
+			discordPresence.smallImageText = "Rogue - Level 100";
+			discordPresence.partyId = "ae488379-351d-4a4f-ad32-2b9b01c91657";
+			discordPresence.partySize = data.raw.numplayers;
+			discordPresence.partyMax = data.maxplayers;
+			discordPresence.joinSecret = "MTI4NzM0OjFpMmhuZToxMjMxMjM= ";
+			Discord_UpdatePresence(discordPresence);
 		
 		}catch(UnhandledPromiseRejectionWarning) {t = 'ERR'
 		}
