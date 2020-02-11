@@ -239,7 +239,6 @@ client.setInterval(messageupdate, 60000);
 */	
 
 	else{
-		try {
 		//TOP CHART WITH NAME ICON AND HEADER
 		function msg1(){
 		const embed = new Discord.RichEmbed()
@@ -280,9 +279,7 @@ client.setInterval(messageupdate, 60000);
 		}catch(error) { console.log('caught', error.message); };
 	}
 	//closes else for more than 25 players
-	
-	  }
-	  
+		  
 	});
    }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
