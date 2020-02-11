@@ -35,7 +35,7 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
 		const fetched = 100;
-	message.channel.bulkDelete(100);
+	message.channel.bulkDelete(30);
 	  
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("Deleted:")
