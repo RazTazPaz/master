@@ -132,7 +132,6 @@ client.on('ready' , message => {
 //channel = client.channels.get("649274133162491945");
 //wait channel.send('!start');
   var channel = client.channels.get('649270782366580756');
-  message.channel.bulkDelete(10);
   channel.send("!start");
 })
 
@@ -164,6 +163,7 @@ client.on('message', message => {
   }}}
  if(message.channel === client.channels.find("name", "altis-online")){
 	if(command === 'start'){
+		message.channel.bulkDelete(10);
 		if(message.channel === client.channels.find("name", "altis-online")){
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {
 
