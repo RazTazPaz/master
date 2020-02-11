@@ -39,7 +39,7 @@ client.on('message', message => {
 	  
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("Deleted:")
-	embed.setAuthor("GoG´s Exile Altis", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
+	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	message.channel.send({embed});
   
   };
@@ -49,15 +49,15 @@ client.on('message', message => {
 	  
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("List of Commands Available:")
-	embed.setAuthor("GoG´s Exile Altis", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
+	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
   /*
    * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
    */
 	embed.setColor(0x006B8B)
 	embed.setDescription("__**Hello**__, \n Thanks for Using our Help!" + "\n" + "Below you can see a List of Commands you can Use!" + "\n" + "<<<============================>>>")
-	embed.setFooter("Thanks for using our Bot to see a List of Commands for the GoG´s Exile Altis Server! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
+	embed.setFooter("Thanks for using our Bot to see a List of Commands for the GoG´s Exile Altis Server! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	embed.setImage("hhttps://www2.pic-upload.de/img/36601434/altisbild.jpg")
-	embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
   /*
    * Takes a Date object, defaults to current date.
    */
@@ -101,15 +101,15 @@ else {
 	}
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("List of Players Online:")
-	embed.setAuthor("GoG´s Exile Altis", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
+	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
   /*
    * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
    */
 	embed.setColor(0x006B8B)
 	embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
-	embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-	embed.setImage("https://www2.pic-upload.de/img/36601434/altisbild.jpg")
-	embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+	embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+	embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+	embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
   /*
    * Takes a Date object, defaults to current date.
    */
@@ -154,8 +154,8 @@ client.on('message', message => {
   					embed.setTitle("ERROR!")
 					embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
 					embed.setColor(0x006B8B)
-					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-					embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 					embed.setTimestamp()
 					embed.setURL("https://www.gogsworld.com/")
 					embed.setDescription("Sorry, you can only run that Command in #altis-online \n Dont Worry, this window is going to Delete itself in 25 seconds! ")
@@ -174,8 +174,8 @@ client.on('message', message => {
 							embed.setTitle("Bot Playerlist is about To Start:")
 							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
 							embed.setColor(0x006B8B)
-							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-							embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 							embed.setTimestamp()
 							embed.setURL("https://www.gogsworld.com/")
 							embed.setDescription("The Bot is Loading the Scoreboard... \n Please be Patient \n t- 30 seconds... \n Dont Worry, this window is going to Delete itself! ")
@@ -266,12 +266,12 @@ client.setInterval(messageupdate, 60000);
 		const embed = new Discord.RichEmbed()
 		//var lng = player[i].length;
 		embed.setTitle("List of Players Online:")
-		embed.setAuthor("GoG´s Exile Altis", "https://www2.pic-upload.de/img/36599350/discordexile.png")
+		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
 		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
-		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-		embed.setImage("https://www2.pic-upload.de/img/36601434/altisbild.jpg")
-		embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
@@ -304,12 +304,12 @@ client.setInterval(messageupdate, 60000);
 					if(score1 == 0){
 						const embed = new Discord.RichEmbed()
 						embed.setTitle("Leaderboard of the: " + tag + ". " + monname )
-						embed.setAuthor("Exile Altis Leaderboard", "https://www2.pic-upload.de/img/36599350/discordexile.png")
+						embed.setAuthor("Exile Altis Leaderboard", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 						embed.setColor(0xEED524)
 						embed.setDescription("__**Congratulations!**__")
-						embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-						embed.setImage("https://www2.pic-upload.de/img/36601434/altisbild.jpg")
-						embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+						embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+						embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+						embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
 						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
@@ -335,12 +335,12 @@ client.setInterval(messageupdate, 60000);
 					}}}}}}}}}
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("Leaderboard of the: " + tag + ". " + monname )
-				embed.setAuthor("Exile Altis Leaderboard", "https://www2.pic-upload.de/img/36599350/discordexile.png")
+				embed.setAuthor("Exile Altis Leaderboard", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				embed.setColor(0xEED524)
 				embed.setDescription("__**Congratulations!**__")
-				embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-				embed.setImage("https://www2.pic-upload.de/img/36601434/altisbild.jpg")
-				embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+				embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
 				embed.addField("***First Place:   ***", player1 + "\n" + "**With a Score of:   **" + score1, true)
@@ -370,10 +370,10 @@ client.setInterval(messageupdate, 60000);
 		function msg1(){
 		const embed = new Discord.RichEmbed()
 		embed.setTitle("List of Players Online:")
-		embed.setAuthor("GoG´s Exile Altis", "https://www2.pic-upload.de/img/36599350/discordexile.png")
+		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
 		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
-		embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
 		var n = 1;
@@ -399,8 +399,8 @@ client.setInterval(messageupdate, 60000);
 		const embed = new Discord.RichEmbed()
 		setTimeout(function(){
 		embed.setColor(0x006B8B)
-		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-		embed.setImage("https://www2.pic-upload.de/img/36601434/altisbild.jpg")
+		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
@@ -436,12 +436,12 @@ client.setInterval(messageupdate, 60000);
 					if(score1 == 0){
 						const embed = new Discord.RichEmbed()
 						embed.setTitle("Leaderboard of the: " + tag + ". " + monname )
-						embed.setAuthor("Exile Altis Leaderboard", "https://www2.pic-upload.de/img/36599350/discordexile.png")
+						embed.setAuthor("Exile Altis Leaderboard", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 						embed.setColor(0xEED524)
 						embed.setDescription("__**Congratulations!**__")
-						embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-						embed.setImage("https://www2.pic-upload.de/img/36601434/altisbild.jpg")
-						embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+						embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+						embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+						embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
 						embed.addField("***Noone Socred Points, your bad guys...   ***", true)
@@ -467,12 +467,12 @@ client.setInterval(messageupdate, 60000);
 					}}}}}}}}}
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("Leaderboard of the: " + tag + ". " + monname )
-				embed.setAuthor("Exile Altis Leaderboard", "https://www2.pic-upload.de/img/36599350/discordexile.png")
+				embed.setAuthor("Exile Altis Leaderboard", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				embed.setColor(0xEED524)
 				embed.setDescription("__**Congratulations!**__")
-				embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-				embed.setImage("https://www2.pic-upload.de/img/36601434/altisbild.jpg")
-				embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+				embed.setFooter("Thanks for using our Bot to see the Leaderboard of GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
 				embed.addField("***First Place:   ***", player1 + "\n" + "**With a Score of:   **" + score1, true)
@@ -507,8 +507,8 @@ client.setInterval(messageupdate, 60000);
 				embed.setTitle("Missing Permission to Run the Bot Leaderboard!")
 				embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
 				embed.setColor(0x006B8B)
-				embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-				embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+				embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
 				embed.setDescription("Sorry, you  cant Run the Bot... \n Use __!altisonline__ instead!  \n Dont Worry, this window is going to Delete itself in 25 seconds! ")
@@ -523,8 +523,8 @@ client.setInterval(messageupdate, 60000);
 					embed.setTitle("ERROR!")
 					embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
 					embed.setColor(0x006B8B)
-					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
-					embed.setThumbnail("https://www2.pic-upload.de/img/36596997/gogsicon.png")
+					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 					embed.setTimestamp()
 					embed.setURL("https://www.gogsworld.com/")
 					embed.setDescription("Sorry, you cant Run the Bot in Altis-Online", "Dont Worry, this window is going to Delete itself in 25 seconds! ")
