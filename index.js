@@ -230,7 +230,6 @@ client.setInterval(messageupdate, 60000);
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		
 		}	
-		}
 		}		//clost IF ARRAY LENGTH
 /*
 ==================================================
@@ -280,11 +279,12 @@ client.setInterval(messageupdate, 60000);
 	}
 	//closes else for more than 25 players
 		  
-	});
+ }
+ })
    }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
 	}
  }
-		}
+			}
 		else{
 			
 				const embed = new Discord.RichEmbed()
