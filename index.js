@@ -135,6 +135,7 @@ client.on('message', message => {
   var chan = client.channels.get("647829408932954113");
   const mychan = "<#647829408932954113>";
   if(command === 'start'){
+
   if(client.channels.find("name", "altis-online") != message.channel){
 	  if (message.author !== client.user) {
 			const embed = new Discord.RichEmbed();
@@ -168,7 +169,22 @@ client.on('message', message => {
 							message.channel.send({embed})
 							message.delete(30000);
 						
-	
+/*
+====================================================================================
+Message-Deleter
+====================================================================================
+*/
+
+		message.channel.bulkDelete(100).then(() => {
+		message.channel.send("Deleted 100 messages.").then(msg => msg.delete(3000));
+});
+
+
+/*
+=====================================
+======Message Deleter Ende===========
+=====================================
+*/	
 
 client.setInterval(messageupdate, 60000);
 /*
@@ -227,7 +243,7 @@ client.setInterval(messageupdate, 60000);
       if (err) {
         message.channel.send({embed: {
 		color: 3447003,
-		descriptoion: "Server is offline or restarting!"}});
+		descriptoion: "Failed to Fetch Data! Update in 60s. If error keeps appearing please notice RazTazPaz!"}});
 	  }	
 	else {
 	var num2 = parseInt(data.raw.numplayers);
@@ -518,7 +534,7 @@ Playing Online Update
 ====================================
 */
 
-client.setInterval(activityupdate,30000);
+client.setInterval(activityupdate,10000);
  async function activityupdate(){
       Gamedig.query({
       type: game,
@@ -528,7 +544,7 @@ client.setInterval(activityupdate,30000);
   async  function(err, data) {
       if (err) {
 		try {
-        client.user.setActivity('Server is currently Restarting!', {type: 'PLAYING'});
+        client.user.setActivity('Failed to Fetch Data! If the Error keeps appearing please notice RazTazPaz!', {type: 'PLAYING'});
 		
 		}catch(UnhandledPromiseRejectionWarning) {t = 'ERR'
 		}
