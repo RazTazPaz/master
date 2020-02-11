@@ -173,12 +173,12 @@ client.on('message', message => {
 ====================================================================================
 Message-Deleter
 ====================================================================================
-*/
+
 
 		message.channels.find("name", "altis-online").bulkDelete(100).then(() => {
 		message.channel.send("Deleted 100 messages.").then(msg => msg.delete(3000));
 		});
-
+*/
 /*
 =====================================
 ======Message Deleter Ende===========
