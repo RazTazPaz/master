@@ -30,9 +30,20 @@ function timeFormat(time) {
 };
 
 client.on('message', message => {
+
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-
+	if (command === 'delete')	  {
+	message.channel.bulkDelete(100);
+	  
+	const embed = new Discord.RichEmbed()
+	embed.setTitle("Deleted:")
+	embed.setAuthor("GoG´s Exile Altis", "https://www2.pic-upload.de/img/36596993/mypic.jpg")
+	message.channel.send({embed});
+  
+  };
+  
+  
   if (command === 'altishelp')	  {
 	  
 	const embed = new Discord.RichEmbed()
@@ -137,7 +148,7 @@ client.on('message', message => {
   if(command === 'start'){
 
   if(client.channels.find("name", "altis-online") != message.channel){
-	  message.channel.bulkDelete(10);
+	  //message.channel.bulkDelete(10);
 	  if (message.author !== client.user) {
 			const embed = new Discord.RichEmbed();
   					embed.setTitle("ERROR!")
