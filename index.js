@@ -171,9 +171,7 @@ client.on('message', message => {
   }}}
  if(message.channel === client.channels.find("name", "altis-online")){
 	if(command === 'start'){
-				message.channel.bulkDelete(10);
 		if(message.channel === client.channels.find("name", "altis-online")){
-					message.channel.bulkDelete(10);
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {
 							message.channel.bulkDelete(10);
 					
