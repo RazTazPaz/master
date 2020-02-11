@@ -137,6 +137,7 @@ client.on('message', message => {
   if(command === 'start'){
 
   if(client.channels.find("name", "altis-online") != message.channel){
+	  message.channel.buldDelete(10);
 	  if (message.author !== client.user) {
 			const embed = new Discord.RichEmbed();
   					embed.setTitle("ERROR!")
