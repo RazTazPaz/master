@@ -33,16 +33,20 @@ client.on('message', message => {
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-	/*if (command === 'delete')	  {
+	if (command === 'delete')	  {
+	 if(message.channel === client.channels.find("name", "altis-online")){
 		if (message.member.roles.find("name", "Admin")){
-		const fetched = 100;
-	message.channel.bulkDelete(10);
+			
+		const fetched = 10;
+		message.channel.bulkDelete(10);
 	  
 	const embed = new Discord.RichEmbed()
-	embed.setTitle("Deleted:")
+	a = message.channel.author;
+	embed.setTitle("Deleted by:" + a)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	message.channel.send({embed});
 		}
+	 }
 		else 
 		{
 				const embed = new Discord.RichEmbed()
@@ -50,7 +54,7 @@ client.on('message', message => {
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 				message.channel.send({embed});
 		}
-  };*/
+  };
   
   
   if (command === 'altishelp')	  {
