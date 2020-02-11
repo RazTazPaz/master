@@ -42,6 +42,7 @@ client.on('message', message => {
 	  
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("Deleted by:" + message.author.username);
+	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	message.channel.send({embed});
 		}
@@ -49,6 +50,7 @@ client.on('message', message => {
 		{
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("Missing Permission!")
+				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 				message.channel.send({embed});
 		}
@@ -57,6 +59,7 @@ client.on('message', message => {
 		{
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("You can Only use that in Altis-Online!")
+				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 				message.channel.send({embed});
 		}
