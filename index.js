@@ -41,7 +41,7 @@ client.on('message', message => {
 		message.channel.bulkDelete(10);
 	  
 	const embed = new Discord.RichEmbed()
-	a = message.getauthor;
+	a = message.channel.name.find();
 	embed.setTitle("Deleted by:" + a)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	message.channel.send({embed});
