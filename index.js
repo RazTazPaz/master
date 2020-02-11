@@ -155,7 +155,7 @@ client.on('message', message => {
   var chan = client.channels.get("647829408932954113");
   const mychan = "<#647829408932954113>";
   if(command === 'start'){
-
+	message.channel.bulkDelete(10);
   if(client.channels.find("name", "altis-online") != message.channel){
 	  if (message.author !== client.user) {
 			const embed = new Discord.RichEmbed();
@@ -170,6 +170,7 @@ client.on('message', message => {
 					message.channel.send({embed});
   }}}
  if(message.channel === client.channels.find("name", "altis-online")){
+	 message.channel.bulkDelete(10);
 	if(command === 'start'){
 		if(message.channel === client.channels.find("name", "altis-online")){
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {
