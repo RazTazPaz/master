@@ -159,14 +159,15 @@ client.on('ready' , message => {
 //channel = client.channels.get("649274133162491945");
 //wait channel.send('!start');
   var channel = client.channels.get('649270782366580756');
+  var logstart = client.channels.get('649270099647266840');
   channel.send("!start");
-  /*
+  
   	const embed = new Discord.RichEmbed()
 	embed.setTitle("Bot Restarted Succsessfully!");
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-	message.channels.get("649270099647266840").send({embed});
-*/
+	log.send({embed});
+
 })
 
 /*
