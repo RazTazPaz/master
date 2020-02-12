@@ -33,7 +33,7 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
-	var log = client.channels.get('649270099647266840');
+	var log = client.channels.get('526342702032224256');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 				message.channel.bulkDelete(10);
@@ -153,7 +153,7 @@ else {
 
 client.on('ready' , message => {
   var channel = client.channels.get('677151384931663882');  //online channel
-  var logstart = client.channels.get('649270099647266840'); //bot spam
+  var logstart = client.channels.get('526342702032224256'); //bot spam
   channel.send("!start");
   
   	const embed = new Discord.RichEmbed()
