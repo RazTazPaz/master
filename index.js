@@ -166,7 +166,7 @@ client.on('ready' , message => {
 	embed.setTitle("Bot Restarted Succsessfully!");
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-	log.send({embed});
+	logstart.send({embed});
 
 })
 
