@@ -33,13 +33,12 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
+		delete();
+		async function delete{
 	var log = client.channels.get('649270099647266840');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 			message.channel.bulkDelete(10);
-			message.channel.bulkDelete(5);
-			message.channel.bulkDelete(5);
-	  
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("Messages in exile_altis_online Deleted by:" + message.author.username);
 	embed.setColor(0xb34141)
@@ -67,7 +66,8 @@ client.on('message', message => {
 				log.send({embed});
 		
 		 }
-	 }		 
+	 }
+		}	 
   };
   
   
@@ -195,8 +195,7 @@ client.on('message', message => {
 	 message.channel.bulkDelete(10);
 	if(command === 'start'){
 		if(message.channel === client.channels.find("name", "exile_altis_online")){
-			if (message.author == client.user || message.member.roles.find("name", "Admin")) {
-							message.channel.bulkDelete(10);				
+			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
 				//message.delete(25000);	
 							//else für client master bedingung 
 							const embed = new Discord.RichEmbed()
