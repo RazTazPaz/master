@@ -73,8 +73,8 @@ client.on('message', message => {
   };
   
   
-  if (command === 'altishelp')	  {
-	  
+  if (command === 'help')	  {
+	  	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("List of Commands Available:")
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
@@ -94,7 +94,7 @@ client.on('message', message => {
 	embed.addField("__**Command: **__" + 1, "\n" + "Use __!altisonline__" + "\n" + "To get a List with **Server** and **Player** Information!" + "\n" + "If you have more Questions, __**Admins**__ are always up to help you!" + "\n" + "<<<============================>>>" + "\n" + "**Have Fun on The GoG´s Wolrd!**")
 	embed.addBlankField(true)
   message.channel.send({embed});
-  
+		 }
   };
    if (command === 'altisonline') {
     Gamedig.query({
@@ -157,10 +157,8 @@ else {
 });
 
 client.on('ready' , message => {
-//channel = client.channels.get("649274133162491945");
-//wait channel.send('!start');
-  var channel = client.channels.get('649270782366580756');
-  var logstart = client.channels.get('526342702032224256');
+  var channel = client.channels.get('677151384931663882');  //online channel
+  var logstart = client.channels.get('526342702032224256'); //bot spam
   channel.send("!start");
   
   	const embed = new Discord.RichEmbed()
