@@ -45,16 +45,16 @@ client.on('message', message => {
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("Messages in exile_altis_online Deleted by:" + message.author.username);
 	embed.setColor(0xb34141)
-	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 	log.send({embed});
 		}
 		else 
 		{
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("Missing Permission!")
-				embed.setDescription(message.author.username + "Tried to Use Delete!")
+				embed.setDescription(message.author.username + " Tried to Use Delete!")
 				embed.setColor(0xb34141)
-				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				log.send({embed});
 		}
 	 }
@@ -65,7 +65,7 @@ client.on('message', message => {
 				embed.setTitle("You can Only use that in Altis-Online!")
 				embed.setDescription(message.author.username + "tried to use Delete")
 				embed.setColor(0xb34141)
-				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				log.send({embed});
 		
 		 }
