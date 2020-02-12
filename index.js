@@ -35,7 +35,7 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
 		message.delete();
-	var log = client.channels.get('526342702032224256');
+	var log = client.channels.get('649270099647266840');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 			
