@@ -44,7 +44,7 @@ client.on('message', message => {
 	embed.setTitle("Messages in exile_altis_online Deleted by:" + message.author.username);
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-	message.channels.get("526342702032224256").send({embed});
+	message.channels.get("649270099647266840").send({embed});
 		}
 		else 
 		{
@@ -53,7 +53,7 @@ client.on('message', message => {
 				embed.setDescription(message.author.username + "Tried to Use Delete!")
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-				message.channels.get("526342702032224256").send({embed});
+				message.channels.get("649270099647266840").send({embed});
 		}
 	 }
 	 else {
@@ -64,7 +64,7 @@ client.on('message', message => {
 				embed.setDescription(message.author.username + "tried to use Delete")
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-				message.channels.get("526342702032224256").send({embed});
+				message.channels.get("649270099647266840").send({embed});
 		
 		 }
 	 }		 
