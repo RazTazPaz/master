@@ -35,7 +35,7 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
 		message.delete();
-	var log = client.channels.get('649270099647266840');
+	var log = client.channels.get('526342702032224256');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 			
@@ -160,7 +160,7 @@ client.on('ready' , message => {
 //channel = client.channels.get("649274133162491945");
 //wait channel.send('!start');
   var channel = client.channels.get('649270782366580756');
-  var logstart = client.channels.get('649270099647266840');
+  var logstart = client.channels.get('526342702032224256');
   channel.send("!start");
   
   	const embed = new Discord.RichEmbed()
