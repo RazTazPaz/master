@@ -34,6 +34,7 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
+	var log = client.channels.get('649270099647266840');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 			
@@ -44,7 +45,7 @@ client.on('message', message => {
 	embed.setTitle("Messages in exile_altis_online Deleted by:" + message.author.username);
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-	message.channels.get("649270099647266840").send({embed});
+	log.send({embed});
 		}
 		else 
 		{
@@ -53,7 +54,7 @@ client.on('message', message => {
 				embed.setDescription(message.author.username + "Tried to Use Delete!")
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-				message.channels.get("649270099647266840").send({embed});
+				log.send({embed});
 		}
 	 }
 	 else {
@@ -64,7 +65,7 @@ client.on('message', message => {
 				embed.setDescription(message.author.username + "tried to use Delete")
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-				message.channels.get("649270099647266840").send({embed});
+				log.send({embed});
 		
 		 }
 	 }		 
