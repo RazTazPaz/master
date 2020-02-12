@@ -37,7 +37,7 @@ client.on('message', message => {
 	var log = client.channels.get('649270099647266840');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
-		channel.bulkDelete(5);
+		message.channel.bulkDelete(5);
 	  
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("Messages in exile_altis_online Deleted by:" + message.author.username);
@@ -164,7 +164,7 @@ client.on('ready' , message => {
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	logstart.send({embed});
-    spamdel.bulkDelete(10);
+    message.spamdel.bulkDelete(10);
 })
 
 /*
@@ -289,7 +289,6 @@ client.setInterval(messageupdate, 60000);
 		descriptoion: "Failed to Fetch Data! Update in 60s. If error keeps appearing please notice RazTazPaz!"}});
 	  }	
 	else {
-		 message.channel.bulkDelete(10);
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
