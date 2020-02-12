@@ -39,10 +39,7 @@ client.on('message', message => {
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 		message.delete();
-		message.channel.bulkDelete(10);
-		message.channel.bulkDelete(10);
-		message.channel.bulkDelete(10);
-		message.channel.bulkDelete(10);
+		message.channel.bulkDelete(5);
 	  
 	const embed = new Discord.RichEmbed()
 	embed.setTitle("Messages in exile_altis_online Deleted by:" + message.author.username);
@@ -183,7 +180,7 @@ client.on('message', message => {
   var chan = client.channels.get("647829408932954113");
   const mychan = "<#647829408932954113>";
   if(command === 'start'){
-	message.channel.bulkDelete(10);
+	message.channel.bulkDelete(5);
   if(client.channels.find("name", "exile_altis_online") != message.channel){
 	  if (message.author !== client.user) {
 			const embed = new Discord.RichEmbed();
@@ -198,17 +195,12 @@ client.on('message', message => {
 					message.channel.send({embed});
   }}}
  if(message.channel === client.channels.find("name", "exile_altis_online")){
-	 message.channel.bulkDelete(10);
+	 message.channel.bulkDelete(5);
 	if(command === 'start'){
 		if(message.channel === client.channels.find("name", "exile_altis_online")){
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {
-							message.channel.bulkDelete(10);
-							message.channel.bulkDelete(10);
-							message.channel.bulkDelete(10);
-							 message.channel.bulkDelete(10);
-							  message.channel.bulkDelete(10);
-					
-					//message.delete(25000);	
+							message.channel.bulkDelete(10);				
+				//message.delete(25000);	
 							//else für client master bedingung 
 							const embed = new Discord.RichEmbed()
 							embed.setTitle("Bot Playerlist is about To Start:")
@@ -299,9 +291,6 @@ client.setInterval(messageupdate, 60000);
 	  }	
 	else {
 		 message.channel.bulkDelete(10);
-		  message.channel.bulkDelete(10);
-		   message.channel.bulkDelete(10);
-		message.channel.bulkDelete(10);
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
