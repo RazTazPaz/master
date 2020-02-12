@@ -34,7 +34,7 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
-	 if(message.channel === client.channels.find("name", "altis-online")){
+	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 			
 		const fetched = 10;
