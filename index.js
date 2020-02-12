@@ -154,6 +154,7 @@ else {
 });
 
 client.on('ready' , message => {
+  var spamdel = client.channels.get('677151384931663882');
   var channel = client.channels.get('677151384931663882');  //online channel
   var logstart = client.channels.get('649270099647266840'); //bot spam
   channel.send("!start");
@@ -163,7 +164,7 @@ client.on('ready' , message => {
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	logstart.send({embed});
-
+    spamdel.bulkDelete(10);
 })
 
 /*
