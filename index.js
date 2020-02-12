@@ -55,7 +55,15 @@ client.on('message', message => {
 				message.channel.send({embed});
 		}
 	 }
-	 else 	
+	 else 
+		{
+				const embed = new Discord.RichEmbed()
+				embed.setTitle("You can Only use that in Altis-Online!")
+				embed.setColor(0xb34141)
+				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+				message.channel.send({embed});
+		}
+		
   };
   
   
@@ -158,6 +166,8 @@ client.on('ready' , message => {
 client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
+  var chan = client.channels.get("647829408932954113");
+  const mychan = "<#647829408932954113>";
   if(command === 'start'){
 	message.channel.bulkDelete(10);
   if(client.channels.find("name", "exile_altis_online") != message.channel){
@@ -272,7 +282,7 @@ client.setInterval(messageupdate, 60000);
 		descriptoion: "Failed to Fetch Data! Update in 60s. If error keeps appearing please notice RazTazPaz!"}});
 	  }	
 	else {
-	message.channel.bulkDelete(10);
+		message.channel.bulkDelete(10);
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
