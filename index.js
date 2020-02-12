@@ -154,7 +154,6 @@ else {
 });
 
 client.on('ready' , message => {
-  var spam = client.channels.get('677151384931663882');
   var channel = client.channels.get('677151384931663882');  //online channel
   var logstart = client.channels.get('649270099647266840'); //bot spam
   channel.send("!start");
@@ -164,7 +163,6 @@ client.on('ready' , message => {
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	logstart.send({embed});
-    message.client.channels.get('677151384931663882').bulkDelete(10);
 })
 
 /*
@@ -179,7 +177,6 @@ client.on('message', message => {
   var chan = client.channels.get("647829408932954113");
   const mychan = "<#647829408932954113>";
   if(command === 'start'){
-	message.channel.bulkDelete(5);
   if(client.channels.find("name", "exile_altis_online") != message.channel){
 	  if (message.author !== client.user) {
 			const embed = new Discord.RichEmbed();
@@ -194,7 +191,7 @@ client.on('message', message => {
 					message.channel.send({embed});
   }}}
  if(message.channel === client.channels.find("name", "exile_altis_online")){
-	 message.channel.bulkDelete(5);
+	 message.channel.bulkDelete(10);
 	if(command === 'start'){
 		if(message.channel === client.channels.find("name", "exile_altis_online")){
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {
