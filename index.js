@@ -66,7 +66,7 @@ client.on('message', message => {
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 				message.channels.get("526342702032224256").send({embed});
 		}
-		
+		 }	
   };
   
   
