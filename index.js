@@ -38,8 +38,10 @@ client.on('message', message => {
 	var log = client.channels.get('649270099647266840');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
-			
-		const fetched = 10;
+		message.delete();
+		message.channel.bulkDelete(10);
+		message.channel.bulkDelete(10);
+		message.channel.bulkDelete(10);
 		message.channel.bulkDelete(10);
 	  
 	const embed = new Discord.RichEmbed()
