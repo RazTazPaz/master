@@ -191,10 +191,10 @@ client.on('message', message => {
 					message.channel.send({embed});
   }}}
  if(message.channel === client.channels.find("name", "exile_altis_online")){
-	 message.channel.bulkDelete(10);
 	if(command === 'start'){
 		if(message.channel === client.channels.find("name", "exile_altis_online")){
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
+				message.channel.bulkDelete(10);
 				//message.delete(25000);	
 							//else für client master bedingung 
 							const embed = new Discord.RichEmbed()
