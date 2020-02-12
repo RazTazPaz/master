@@ -164,7 +164,7 @@ client.on('ready' , message => {
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	logstart.send({embed});
-    message.spam.bulkDelete(10);
+    message.client.channels.get('677151384931663882').bulkDelete(10);
 })
 
 /*
