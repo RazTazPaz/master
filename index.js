@@ -160,7 +160,7 @@ else {
 
 client.on('ready' , message => {
   var channel = client.channels.get('677151384931663882');  //online channel
-  var logstart = client.channels.get('526342702032224256'); //bot spam
+  var logstart = client.channels.get('649270099647266840'); //bot spam
   channel.send("!start");
   
   	const embed = new Discord.RichEmbed()
