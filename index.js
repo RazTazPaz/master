@@ -41,27 +41,30 @@ client.on('message', message => {
 		message.channel.bulkDelete(10);
 	  
 	const embed = new Discord.RichEmbed()
-	embed.setTitle("Deleted by:" + message.author.username);
+	embed.setTitle("Messages in exile_altis_online Deleted by:" + message.author.username);
 	embed.setColor(0xb34141)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-	message.channel.send({embed});
+	message.channels.get("526342702032224256").send({embed});
 		}
 		else 
 		{
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("Missing Permission!")
+				embed.setDescription(message.author.username + "Tried to Use Delete!")
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-				message.channel.send({embed});
+				message.channels.get("526342702032224256").send({embed});
 		}
 	 }
 	 else 
+		 if (message.channel != client.channels.find("name", "exile_altis_online") || message.channel != client.channels.find("name", "exile_tanoa_online") || message.channel != client.channels.find("name", "epoch_altis_online") || message.channel != client.channels.find("name", "epoch_chernarus_online")){
 		{
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("You can Only use that in Altis-Online!")
+				embed.setDescription(message.author.username + "tried to use Delete")
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-				message.channel.send({embed});
+				message.channels.get("526342702032224256").send({embed});
 		}
 		
   };
@@ -155,6 +158,12 @@ client.on('ready' , message => {
 //wait channel.send('!start');
   var channel = client.channels.get('649270782366580756');
   channel.send("!start");
+  
+  	const embed = new Discord.RichEmbed()
+	embed.setTitle("Bot Restarted Succsessfully!");
+	embed.setColor(0xb34141)
+	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+	message.channels.get("649270099647266840").send({embed});
 })
 
 /*
