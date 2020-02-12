@@ -33,7 +33,6 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 	if (command === 'delete')	  {
-		delete();
 		async function delete{
 	var log = client.channels.get('649270099647266840');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
