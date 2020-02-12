@@ -205,6 +205,8 @@ client.on('message', message => {
 							message.channel.bulkDelete(10);
 							message.channel.bulkDelete(10);
 							message.channel.bulkDelete(10);
+							 message.channel.bulkDelete(10);
+							  message.channel.bulkDelete(10);
 					
 					//message.delete(25000);	
 							//else für client master bedingung 
@@ -296,6 +298,9 @@ client.setInterval(messageupdate, 60000);
 		descriptoion: "Failed to Fetch Data! Update in 60s. If error keeps appearing please notice RazTazPaz!"}});
 	  }	
 	else {
+		 message.channel.bulkDelete(10);
+		  message.channel.bulkDelete(10);
+		   message.channel.bulkDelete(10);
 		message.channel.bulkDelete(10);
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
