@@ -76,25 +76,6 @@ Message-Deleter
 =====================================================
 ===============DELETE LOGGER=========================
 =====================================================
-*//*
-client.on("messageDelete", (messageDelete) => {
-					var dellog = client.channels.get('677587804158558236'); //bot spam
- 
-					let delembed = new Discord.RichEmbed();
-  					delembed.setTitle("Message Deleted!")
-					delembed.setAuthor("GoG´s Exile Mod", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
-					delembed.setColor(0xb34141)
-					delembed.addField("Author", messageDelete.author.tag, true)
-					delembed.addField("Channel", messageDelete.channel, true)
-					delembed.addField("Message", messageDelete.content)
-					delembed.addField(`Message ID: ${messageDelete.id} | Author ID: ${messageDelete.author.id}`);
-					delembed.setFooter("Thanks for using our Bot! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-					delembed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
-					delembed.setTimestamp()
-					delembed.setURL("https://www.gogsworld.com/")
-					delembed.setDescription("User: " + messageDelete.author.username + " tried to use !start in " + messageDelete.channel )
-					dellog.send({delembed});
-});
 */
 client.on("messageDelete", (messageDelete) => {
 	var dellog = client.channels.get('677587804158558236'); //bot spam
@@ -159,23 +140,26 @@ client.on('message', message => {
   //logging var for online interval
   var onlinelog = client.channels.get('677587804158558236');
   const mychan = "<#647829408932954113>";
-  if(client.channels.find("name", "exile_altis_online") != message.channel){
-		
-		if(command === 'start'){
+  if(client.channels.find("name", "exile_altis_online")!= message.channel && client.channels.find("name", "exile_tanoa_online")!= message.channel && client.channels.find("name", "epoch_altis_online")!= message.channel && client.channels.find("name", "dayz_epoch_online")  != message.channel){
+
+			if(command === 'start'){
     
-			if (message.author !== client.user) {
-				const embed = new Discord.RichEmbed();
-  					embed.setTitle("ERROR!")
-					embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
-					embed.setColor(0xb34141)
-					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
-					embed.setTimestamp()
-					embed.setURL("https://www.gogsworld.com/")
-					embed.setDescription("User: " + message.author.username + " tried to use !start in " + message.channel )
-					onlinelog.send({embed});
-  }}}
- if(message.channel === client.channels.find("name", "exile_altis_online")){
+					if (message.author !== client.user) {
+						
+						const embed = new Discord.RichEmbed();
+						embed.setTitle("ERROR!")
+						embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+						embed.setColor(0xb34141)
+						embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+						embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+						embed.setTimestamp()
+						embed.setURL("https://www.gogsworld.com/")
+						embed.setDescription("User: " + message.author.username + " tried to use !start in " + message.channel )
+						onlinelog.send({embed});
+}}}
+
+
+ if(client.channels.find("name", "exile_altis_online") === message.channel){
 	 
 	if (message.author != client.user){
 		
@@ -566,8 +550,8 @@ client.setInterval(messageupdate, 60000);
 		else{ message.delete(60000);
 		}
  }
-else{
-	//WAS SOLL PASSIEREN WENN NACHRICHT NICHT IN TANOA ONLINE?
+	else{
+	//WAS SOLL PASSIEREN WENN NACHRICHT NICHT IN Altis ONLINE?
 } 
 });
 /*
