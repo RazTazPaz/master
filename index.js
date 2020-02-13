@@ -43,7 +43,7 @@ Message-Deleter
 		if (message.member.roles.find("name", "Admin")){
 				message.channel.bulkDelete(10);
 					const embed = new Discord.RichEmbed()
-					embed.setTitle("Messages in " + message.channel +" Deleted by: " + messageDelete.author.tag);
+					embed.setTitle("Messages in " + message.channel +" Deleted by: " + message.author.tag);
 					embed.setColor(0xb34141)
 					embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 					log.send({embed});
@@ -52,7 +52,7 @@ Message-Deleter
 		{
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("Missing Permission!")
-				embed.setDescription(messageDelete.author.tag + " Tried to Use Delete in: "+ message.channel)
+				embed.setDescription(message.author.tag + " Tried to Use Delete in: "+ message.channel)
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				log.send({embed});
@@ -63,7 +63,7 @@ Message-Deleter
 		
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("You can Only use that in Altis-Online!")
-				embed.setDescription(messageDelete.author.tag + " tried to use Delete-Command in: " + message.channel)
+				embed.setDescription(message.author.tag + " tried to use Delete-Command in: " + message.channel)
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				log.send({embed});
@@ -155,7 +155,7 @@ client.on('message', message => {
 						embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 						embed.setTimestamp()
 						embed.setURL("https://www.gogsworld.com/")
-						embed.setDescription("User: " + messageDelete.author.tag + " tried to use !start in " + message.channel )
+						embed.setDescription("User: " + message.author.tag + " tried to use !start in " + message.channel )
 						onlinelog.send({embed});
 }}}
 
@@ -172,7 +172,7 @@ client.on('message', message => {
 							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 							embed.setTimestamp()
 							embed.setURL("https://www.gogsworld.com/")
-							embed.setDescription("User: " + messageDelete.author.tag + " sent a Message in: " + message.channel + "\n Message is: \n " +message )
+							embed.setDescription("User: " + message.author.tag + " sent a Message in: " + message.channel + "\n Message is: \n " +message )
 							onlinelog.send({embed})
 		 message.delete();
 	 }
@@ -192,7 +192,7 @@ client.on('message', message => {
 							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 							embed.setTimestamp()
 							embed.setURL("https://www.gogsworld.com/")
-							embed.setDescription("The Bot is Loading the Scoreboard...\n" + "User: " + messageDelete.author.tag + "started the scoreboard in: " + message.channel +"\n Please wait a few Seconds! ")
+							embed.setDescription("The Bot is Loading the Scoreboard...\n" + "User: " + message.author.tag + "started the scoreboard in: " + message.channel +"\n Please wait a few Seconds! ")
 							onlinelog.send({embed})
 							
 							setTimeout(log1, 60000);
@@ -205,7 +205,7 @@ client.on('message', message => {
 							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 							embed.setTimestamp()
 							embed.setURL("https://www.gogsworld.com/")
-							embed.setDescription("User: " + messageDelete.author.tag + " posted the first onlinelist of the day in: " + message.channel)
+							embed.setDescription("User: " + message.author.tag + " posted the first onlinelist of the day in: " + message.channel)
 							onlinelog.send({embed})
 							}
 
@@ -528,7 +528,7 @@ client.setInterval(messageupdate, 60000);
 				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
-				embed.setDescription("User: " + messageDelete.author.tag + " tried to start the scoreboard in: " + message.channel +" without the needed Permissons!")
+				embed.setDescription("User: " + message.author.tag + " tried to start the scoreboard in: " + message.channel +" without the needed Permissons!")
 				onlinelog.send({embed});
 			
 		}
@@ -543,7 +543,7 @@ client.setInterval(messageupdate, 60000);
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 					embed.setTimestamp()
 					embed.setURL("https://www.gogsworld.com/")
-					embed.setDescription("User: " + messageDelete.author.tag + " tried to start the Scoreboard in: " + message.channel +" !!")
+					embed.setDescription("User: " + message.author.tag + " tried to start the Scoreboard in: " + message.channel +" !!")
 					onlinelog.send({embed});
 		}
 		//message.delete(35000); 
