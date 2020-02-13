@@ -164,7 +164,7 @@ client.on('message', message => {
 	if (message.author != client.user){
 		
 							const embed = new Discord.RichEmbed()
-							embed.setTitle("Someone tired to Send a Message:")
+							embed.setTitle("Someone tried to Send a Message:")
 							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
 							embed.setColor(0xb34141)
 							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
