@@ -97,8 +97,11 @@ client.on("messageDelete", (messageDelete) => {
 });
 */
 client.on("messageDelete", (messageDelete) => {
+	var dellog = client.channels.get('677587804158558236'); //bot spam
+	var str = messageDelete.content;
 if (messageDelete.author != client.user){
-  var dellog = client.channels.get('677587804158558236'); //bot spam
+	if(Boolean(str)){
+  
   let DeleteEmbed = new Discord.RichEmbed()
   .setTitle("**DELETED MESSAGE**")
   .setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
@@ -112,6 +115,22 @@ if (messageDelete.author != client.user){
   .setURL("https://www.gogsworld.com/")
   dellog.send(DeleteEmbed);
 	}
+	//wenn nachricht = BILD
+	else {
+		let DeleteEmbed = new Discord.RichEmbed()
+		.setTitle("**DELETED PICTURE**")
+		.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+		.setColor("#fc3c3c")
+		DeleteEmbed.addField("Author", messageDelete.author.tag, true)
+		DeleteEmbed.addField("Channel", messageDelete.channel, true)
+		DeleteEmbed.addField("Message", "Deleted Message was a Picture!")
+		DeleteEmbed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+		.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+		.setTimestamp()
+		.setURL("https://www.gogsworld.com/")
+		dellog.send(DeleteEmbed);
+	}
+}
 });
 
 
