@@ -81,7 +81,8 @@ client.on("messageDelete", (messageDelete) => {
 	var dellog = client.channels.get('677587804158558236'); //bot spam
 	var str = messageDelete.content;
 if (messageDelete.author != client.user){
-	if(Boolean(str)){
+	if(client.channels.find("name", "exile_altis_online")!= messageDelete.channel && client.channels.find("name", "exile_tanoa_online")!= messageDelete.channel && client.channels.find("name", "epoch_altis_online")!= messageDelete.channel && client.channels.find("name", "dayz_epoch_online")  != messageDelete.channel){
+		if(Boolean(str)){
   
   let DeleteEmbed = new Discord.RichEmbed()
   .setTitle("**DELETED MESSAGE**")
@@ -111,7 +112,7 @@ if (messageDelete.author != client.user){
 		.setURL("https://www.gogsworld.com/")
 		dellog.send(DeleteEmbed);
 	}
-}
+}}
 });
 
 
