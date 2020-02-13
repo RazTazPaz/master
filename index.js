@@ -32,8 +32,13 @@ function timeFormat(time) {
 client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
+/*
+====================================================================================
+Message-Deleter
+====================================================================================
+*/
 	if (command === 'delete')	  {
-	var log = client.channels.get('526342702032224256');
+	var log = client.channels.get('677587804158558236');
 	 if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 				message.channel.bulkDelete(10);
@@ -66,99 +71,58 @@ client.on('message', message => {
 		 }
 	 }
   };
-  
-  
-  if (command === 'help')	  {
-	  	 if(message.channel === client.channels.find("name", "exile_altis_online")){
-	const embed = new Discord.RichEmbed()
-	embed.setTitle("List of Commands Available:")
-	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-  /*
-   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-   */
-	embed.setColor(0x006B8B)
-	embed.setDescription("__**Hello**__, \n Thanks for Using our Help!" + "\n" + "Below you can see a List of Commands you can Use!" + "\n" + "<<<============================>>>")
-	embed.setFooter("Thanks for using our Bot to see a List of Commands for the GoG´s Exile Altis Server! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-	embed.setImage("hhttps://www2.pic-upload.de/img/36601434/altisbild.jpg")
-	embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
-  /*
-   * Takes a Date object, defaults to current date.
-   */
-	embed.setTimestamp()
-	embed.setURL("https://www.gogsworld.com/")
-	embed.addField("__**Command: **__" + 1, "\n" + "Use __!altisonline__" + "\n" + "To get a List with **Server** and **Player** Information!" + "\n" + "If you have more Questions, __**Admins**__ are always up to help you!" + "\n" + "<<<============================>>>" + "\n" + "**Have Fun on The GoG´s Wolrd!**")
-	embed.addBlankField(true)
-  message.channel.send({embed});
-		 }
-  };
-   if (command === 'altisonline') {
-    Gamedig.query({
-      type: game,
-      host: host,
-      port: port
-    },
-  async  function(err, data) {
-      if (err) {
-        message.channel.send({embed: {
-		color: 3447003,
-		descriptoion: "Server is offline or restarting!"}});
-	  }	
-    /*  else {
-        message.channel.send({embed: {
-		color: 02550,
-		description: ("Server Name:"  + data.name + "\n" + "Map: " + data.map + '\n' + 'Players Online: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + 'Server Ip/Port: ' + data.query.host + ':' + data.query.port)}}); 
-			var player = data.players;
-			for (var i in player) {
-			message.channel.send({embed: {
-				color: 3447003,
-			description: "Player: " + player[i].name + ' - Score: ' + player[i].score + ' - Time In Game: ' + timeFormat(player[i].time)}});
-	  }
-	  }
-	});
-   }
+});
+/*
+=====================================================
+===============DELETE LOGGER=========================
+=====================================================
+*//*
+client.on("messageDelete", (messageDelete) => {
+					var dellog = client.channels.get('677587804158558236'); //bot spam
+ 
+					let delembed = new Discord.RichEmbed();
+  					delembed.setTitle("Message Deleted!")
+					delembed.setAuthor("GoG´s Exile Mod", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+					delembed.setColor(0xb34141)
+					delembed.addField("Author", messageDelete.author.tag, true)
+					delembed.addField("Channel", messageDelete.channel, true)
+					delembed.addField("Message", messageDelete.content)
+					delembed.addField(`Message ID: ${messageDelete.id} | Author ID: ${messageDelete.author.id}`);
+					delembed.setFooter("Thanks for using our Bot! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+					delembed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+					delembed.setTimestamp()
+					delembed.setURL("https://www.gogsworld.com/")
+					delembed.setDescription("User: " + messageDelete.author.username + " tried to use !start in " + messageDelete.channel )
+					dellog.send({delembed});
 });
 */
-else {
-	try {
-	} catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
+client.on("messageDelete", (messageDelete) => {
+if (messageDelete.author != client.user){
+  var dellog = client.channels.get('677587804158558236'); //bot spam
+  let DeleteEmbed = new Discord.RichEmbed()
+  .setTitle("**DELETED MESSAGE**")
+  .setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+  .setColor("#fc3c3c")
+  DeleteEmbed.addField("Author", messageDelete.author.tag, true)
+  DeleteEmbed.addField("Channel", messageDelete.channel, true)
+  DeleteEmbed.addField("Message", messageDelete.content)
+  DeleteEmbed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+  .setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+  .setTimestamp()
+  .setURL("https://www.gogsworld.com/")
+  dellog.send(DeleteEmbed);
 	}
-	const embed = new Discord.RichEmbed()
-	embed.setTitle("List of Players Online:")
-	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-  /*
-   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-   */
-	embed.setColor(0x006B8B)
-	embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
-	embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
-	embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
-	embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
-  /*
-   * Takes a Date object, defaults to current date.
-   */
-	embed.setTimestamp()
-	embed.setURL("https://www.gogsworld.com/")
-	var player = data.players;
-	for (var i in player) {
-	embed.addField("__**Player: **__" + i, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-	}
-	embed.addBlankField(true)
- 
-  message.channel.send({embed});
-
-	  }
-	});
-   }
 });
+
 
 client.on('ready' , message => {
   var channel = client.channels.get('677151384931663882');  //online channel
-  var logstart = client.channels.get('526342702032224256'); //bot spam
+  var logstart = client.channels.get('677587804158558236'); //bot spam
   channel.send("!start");
   
   	const embed = new Discord.RichEmbed()
 	embed.setTitle("Bot Restarted Succsessfully!");
-	embed.setColor(0xb34141)
+	embed.setColor(0x086C34)
 	embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 	logstart.send({embed});
 })
@@ -173,27 +137,48 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   var chan = client.channels.get("647829408932954113");
+  //logging var for online interval
+  var onlinelog = client.channels.get('677587804158558236');
   const mychan = "<#647829408932954113>";
-  if(command === 'start'){
   if(client.channels.find("name", "exile_altis_online") != message.channel){
-	  if (message.author !== client.user) {
-			const embed = new Discord.RichEmbed();
+		
+		if(command === 'start'){
+    
+			if (message.author !== client.user) {
+				const embed = new Discord.RichEmbed();
   					embed.setTitle("ERROR!")
 					embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
-					embed.setColor(0x006B8B)
+					embed.setColor(0xb34141)
 					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 					embed.setTimestamp()
 					embed.setURL("https://www.gogsworld.com/")
-					embed.setDescription("Sorry, you can only run that Command in #altis-online \n Dont Worry, this window is going to Delete itself in 25 seconds! ")
-					message.channel.send({embed});
+					embed.setDescription("User: " + message.author.username + " tried to use !start in " + message.channel )
+					onlinelog.send({embed});
   }}}
  if(message.channel === client.channels.find("name", "exile_altis_online")){
+	 
+	if (message.author != client.user){
+		
+							const embed = new Discord.RichEmbed()
+							embed.setTitle("Someone tired to Send a Message:")
+							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+							embed.setColor(0xb34141)
+							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+							embed.setTimestamp()
+							embed.setURL("https://www.gogsworld.com/")
+							embed.setDescription("User: " + message.author.username + " sent a Message in: " + message.channel + "\n Message is: \n " +message )
+							onlinelog.send({embed})
+		 message.delete();
+	 }
 	if(command === 'start'){
+		
 		if(message.channel === client.channels.find("name", "exile_altis_online")){
+			
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
-				message.channel.bulkDelete(10);
-				//message.delete(25000);	
+
+				message.channel.bulkDelete(10);	
 							//else für client master bedingung 
 							const embed = new Discord.RichEmbed()
 							embed.setTitle("Bot Playerlist is about To Start:")
@@ -203,20 +188,23 @@ client.on('message', message => {
 							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 							embed.setTimestamp()
 							embed.setURL("https://www.gogsworld.com/")
-							embed.setDescription("The Bot is Loading the Scoreboard... \n Please be Patient \n t- 30 seconds... \n Dont Worry, this window is going to Delete itself! ")
-							message.channel.send({embed})
-							message.delete(30000);
-						
-/*
-====================================================================================
-Message-Deleter
-====================================================================================
+							embed.setDescription("The Bot is Loading the Scoreboard...\n" + "User: " + message.author.username + "started the scoreboard in: " + message.channel +"\n Please wait a few Seconds! ")
+							onlinelog.send({embed})
+							
+							setTimeout(log1, 60000);
+							function log1(){ 
+							const embed = new Discord.RichEmbed()
+							embed.setTitle("First Online List of the Day Successfully Sent!")
+							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+							embed.setColor(0x086C34)
+							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", "https://cdn.discordapp.com/attachments/572416781428326410/676899352660410368/mypic.jpg")
+							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+							embed.setTimestamp()
+							embed.setURL("https://www.gogsworld.com/")
+							embed.setDescription("User: " + message.author.username + " posted the first onlinelist of the day in: " + message.channel)
+							onlinelog.send({embed})
+							}
 
-
-		message.channels.find("name", "altis-online").bulkDelete(100).then(() => {
-		message.channel.send("Deleted 100 messages.").then(msg => msg.delete(3000));
-		});
-*/
 /*
 =====================================
 ======Message Deleter Ende===========
@@ -536,9 +524,8 @@ client.setInterval(messageupdate, 60000);
 				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
-				embed.setDescription("Sorry, you  cant Run the Bot... \n Use __!altisonline__ instead!  \n Dont Worry, this window is going to Delete itself in 25 seconds! ")
-				message.channel.send({embed});
-				message.delete(25000);
+				embed.setDescription("User: " + message.author.username + " tried to start the scoreboard in: " + message.channel +" without the needed Permissons!")
+				onlinelog.send({embed});
 			
 		}
 		
@@ -552,9 +539,8 @@ client.setInterval(messageupdate, 60000);
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 					embed.setTimestamp()
 					embed.setURL("https://www.gogsworld.com/")
-					embed.setDescription("Sorry, you cant Run the Bot in Altis-Online", "Dont Worry, this window is going to Delete itself in 25 seconds! ")
-					message.channel.send({embed});
-					message.delete(25000);	
+					embed.setDescription("User: " + message.author.username + " tried to start the Scoreboard in: " + message.channel +" !!")
+					onlinelog.send({embed});
 		}
 		//message.delete(35000); 
 		}//else für COMMAND START
