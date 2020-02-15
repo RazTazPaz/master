@@ -690,24 +690,22 @@ client.setInterval(messageupdate, 60000);
 			xrestarth = 24 - restarth;
 			xrestartm = (59 - restartm);
 		}}}}}}}}
-		
-		
+		if(xrestarth === 1){
+		let a = "**Restart in:** "
+		}else{
+			if(xrestarth === 3){
+				xrestarth = 2;
+			let	a = "**Restart in:** 2 Hours "
+			}else{
+				if(xrestarth === 2){
+			let	a = "**Restart in:** 1 Hour "
+			}
+		}}
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
 	const prf = num2;
 	if (num2 < 25){
-		if(xrestarth == 1){
-		let a = "**Restart in:** "
-		}else{
-			if(xrestarth == 3){
-				xrestarth = 2;
-			let	a = "**Restart in:** 2 Hours "
-			}else{
-				if(xrestarth == 2){
-			let	a = "**Restart in:** 1 Hour "
-			}
-		}}
 		const embed = new Discord.RichEmbed()
 		//var lng = player[i].length;
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
