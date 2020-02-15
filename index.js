@@ -691,6 +691,23 @@ client.setInterval(messageupdate, 60000);
 			xrestartm = (59 - restartm);
 		}}}}}}}}
 		
+		
+	var num2 = parseInt(data.raw.numplayers);
+	//NUM2 GIVES THE PLAYERCOUNT AS STRING
+	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
+	const prf = num2;
+	if(xrestarth == 1){
+		let a = "**Restart in:** "
+		}else{
+			if(xrestarth == 3){
+				xrestarth = 2;
+			let	a = "**Restart in:** 2 Hours "
+			}else{
+				if(xrestarth == 2){
+			let	a = "**Restart in:** 1 Hour "
+			}
+		}}
+	if (num2 < 25){
 		if(xrestarth == 1){
 		let a = "**Restart in:** "
 		}else{
@@ -702,11 +719,6 @@ client.setInterval(messageupdate, 60000);
 			let	a = "**Restart in:** 1 Hour "
 			}
 		}}
-	var num2 = parseInt(data.raw.numplayers);
-	//NUM2 GIVES THE PLAYERCOUNT AS STRING
-	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
-	const prf = num2;
-	if (num2 < 25){
 		const embed = new Discord.RichEmbed()
 		//var lng = player[i].length;
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
@@ -812,6 +824,7 @@ client.setInterval(messageupdate, 60000);
 		try {
 		//TOP CHART WITH NAME ICON AND HEADER
 		function msg1(a){
+			
 		const embed = new Discord.RichEmbed()
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
