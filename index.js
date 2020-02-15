@@ -692,14 +692,14 @@ client.setInterval(messageupdate, 60000);
 		}}}}}}}}
 		
 		if(xrestarth == 1){
-		let a = "**Restart in:** ";
+		let a = "**Restart in:** "
 		}else{
 			if(xrestarth == 3){
 				xrestarth = 2;
-			let	a = "**Restart in:** 2 Hours ";
+			let	a = "**Restart in:** 2 Hours "
 			}else{
 				if(xrestarth == 2){
-			let	a = "**Restart in:** 1 Hour ";
+			let	a = "**Restart in:** 1 Hour "
 			}
 		}}
 	var num2 = parseInt(data.raw.numplayers);
