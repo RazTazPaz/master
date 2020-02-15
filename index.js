@@ -653,54 +653,6 @@ client.setInterval(messageupdate, 60000);
 		descriptoion: "Failed to Fetch Data! Update in 60s. If error keeps appearing please notice RazTazPaz!"}});
 	  }	
 	else {
-		/*
-		RESTART IN:
-		*/
-		var restart = new Date();
-		var restartuk = restart.getHours();
-		var restarth = restartuk + 1;
-		if(restarth ==  24){
-			restarth = 0;
-		}
-		var restartm = restart.getMinutes();
-		var xrestarth = 0;
-		var xrestartm = 0;
-		if(restarth < 3){
-			xrestarth = 3 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 6){
-			xrestarth = 6 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 9){
-			xrestarth = 9 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 12){
-			xrestarth = 12 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 15){
-			xrestarth = 15 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 18){
-			xrestarth = 18 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 21){
-			xrestarth = 21 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 24){
-			xrestarth = 24 - restarth;
-			xrestartm = (59 - restartm);
-		}}}}}}}}
-		if(xrestarth === 1){
-		let a = "**Restart in:** "
-		}else{
-			if(xrestarth === 3){
-				xrestarth = 2;
-			let	a = "**Restart in:** 2 Hours "
-			}else{
-				if(xrestarth === 2){
-			let	a = "**Restart in:** 1 Hour "
-			}
-		}}
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
@@ -711,7 +663,7 @@ client.setInterval(messageupdate, 60000);
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
-		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + "\n" +  a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
+		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
 		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
@@ -810,57 +762,12 @@ client.setInterval(messageupdate, 60000);
 		var players = 0;
 		try {
 		//TOP CHART WITH NAME ICON AND HEADER
-		function msg1(a){
-			var restart = new Date();
-		var restartuk = restart.getHours();
-		var restarth = restartuk + 1;
-		if(restarth ==  24){
-			restarth = 0;
-		}
-		var restartm = restart.getMinutes();
-		var xrestarth = 0;
-		var xrestartm = 0;
-		if(restarth < 3){
-			xrestarth = 3 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 6){
-			xrestarth = 6 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 9){
-			xrestarth = 9 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 12){
-			xrestarth = 12 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 15){
-			xrestarth = 15 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 18){
-			xrestarth = 18 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 21){
-			xrestarth = 21 - restarth;
-			xrestartm = (59 - restartm);
-		}else{if(restarth < 24){
-			xrestarth = 24 - restarth;
-			xrestartm = (59 - restartm);
-		}}}}}}}}
-			if(xrestarth == 1){
-		let a = "**Restart in:** "
-		}else{
-			if(xrestarth == 3){
-				xrestarth = 2;
-			let	a = "**Restart in:** 2 Hours "
-			}else{
-				if(xrestarth == 2){
-			let	a = "**Restart in:** 1 Hour "
-			}
-		}}
+		function msg1(){
 		const embed = new Discord.RichEmbed()
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
-		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + '\n' +  a + xrestartm + " Minutes!" + "\n" + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
+		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + "\n" + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server Ip/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
