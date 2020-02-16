@@ -676,7 +676,7 @@ client.setInterval(messageupdate, 60000);
 	  }	
 	 
 	else { 
-	if(xrestarth != 3){
+	if(xrestarth != 1){
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
