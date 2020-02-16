@@ -709,6 +709,7 @@ client.setInterval(messageupdate, 60000);
 		}
 		*/}//CLOSES FOR TO NUM2
 		message.channel.send({embed});
+		message.delete(60000);
 		}		//clost IF ARRAY LENGTH
 /*
 ==================================================
@@ -740,6 +741,7 @@ client.setInterval(messageupdate, 60000);
 		}
 		}
 		message.channel.send({embed});
+		message.delete(60000);
 		}
 /*
 	===============================
@@ -776,6 +778,7 @@ client.setInterval(messageupdate, 60000);
 		score1 = m;   return;
 		}
 		message.channel.send({embed});
+		message.delete(60000);
 		},1500); }
 		msg1();
 		msg2();
@@ -810,6 +813,7 @@ client.setInterval(messageupdate, 60000);
 		
 }
 		client.channels.get("677151384931663882").send(embed);
+		message.delete(60000);
 	}
 	else{
 		var k = 0;
@@ -835,6 +839,7 @@ client.setInterval(messageupdate, 60000);
 		}
 		}
 		message.channel.send({embed});
+		message.delete(60000);
 		}
 /*
 	===============================
@@ -871,6 +876,7 @@ client.setInterval(messageupdate, 60000);
 		score1 = m;   return;
 		}
 		message.channel.send({embed});
+		message.delete(60000);
 		},1500); }
 		msg1();
 		msg2();
@@ -892,6 +898,7 @@ client.setInterval(messageupdate, 60000);
 				embed.setURL("https://www.gogsworld.com/")
 				embed.addField("The Server Restarts in: " + xrestartm + "!")
 				client.channels.get("677151384931663882").send({embed});
+				message.delete(60000);
 	}
 	//closed else
 	  }
@@ -930,7 +937,7 @@ client.setInterval(messageupdate, 60000);
 		}
 		//message.delete(35000); 
 		}//else für COMMAND START
-		else{ message.delete(60000);
+		else{
 		}
  }
 	else{
