@@ -786,7 +786,6 @@ client.setInterval(messageupdate, 60000);
 		}catch(error) { console.log('caught', error.message); };
 	}
 	//closes else for more than 25 players
-	
 	}
 	// WAS WENN ZEIT BIS RESTART NICHT = X=?
 	else{
@@ -888,7 +887,7 @@ client.setInterval(messageupdate, 60000);
 	{
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("**THE SERVER IS ABOUT TO RESTART!**")
-				embed.setAuthor("Exile Altis Leaderboard", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+				embed.setAuthor("Exile Altis Online List", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				embed.setColor(0xEED524)
 				embed.setDescription("__**You can see the Online List again in a few Minutes!**__")
 				embed.setFooter("Thanks for using our Bot to see the Online List of GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
