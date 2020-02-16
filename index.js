@@ -709,7 +709,6 @@ client.setInterval(messageupdate, 60000);
 		}
 		*/}//CLOSES FOR TO NUM2
 		message.channel.send({embed});
-		message.delete(60000);
 		}		//clost IF ARRAY LENGTH
 /*
 ==================================================
@@ -741,7 +740,6 @@ client.setInterval(messageupdate, 60000);
 		}
 		}
 		message.channel.send({embed});
-		message.delete(60000);
 		}
 /*
 	===============================
@@ -778,7 +776,6 @@ client.setInterval(messageupdate, 60000);
 		score1 = m;   return;
 		}
 		message.channel.send({embed});
-		message.delete(60000);
 		},1500); }
 		msg1();
 		msg2();
@@ -812,7 +809,6 @@ client.setInterval(messageupdate, 60000);
 		
 }
 		client.channels.get("677151384931663882").send(embed);
-		message.delete(60000);
 	}
 	else{
 		var k = 0;
@@ -838,7 +834,6 @@ client.setInterval(messageupdate, 60000);
 		}
 		}
 		message.channel.send({embed});
-		message.delete(60000);
 		}
 /*
 	===============================
@@ -875,7 +870,6 @@ client.setInterval(messageupdate, 60000);
 		score1 = m;   return;
 		}
 		message.channel.send({embed});
-		message.delete(60000);
 		},1500); }
 		msg1();
 		msg2();
@@ -895,9 +889,8 @@ client.setInterval(messageupdate, 60000);
 				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
-				embed.addField("The Server Restarts in: " + xrestartm + "!")
+				embed.addField("The Server is about to Restart in: " ,  xrestartm + " Minutes!")
 				client.channels.get("677151384931663882").send({embed});
-				message.delete(60000);
 	}
 	//closed else
 	  }
@@ -937,6 +930,7 @@ client.setInterval(messageupdate, 60000);
 		//message.delete(35000); 
 		}//else für COMMAND START
 		else{
+			message.delete(60000);
 		}
  }
 	else{
