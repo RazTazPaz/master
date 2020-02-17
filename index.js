@@ -352,6 +352,69 @@ else{
 }
 			}
 }
+
+if(command === "go"){
+	var restart = new Date();	
+    Gamedig.query({
+      type: game,
+      host: host,
+      port: port
+    },
+    function(err, data) {
+      if (err) {
+        message.channel.send({embed: {
+		color: 3447003,
+		descriptoion: "Failed to Fetch Data! Update in 60s. If error keeps appearing please notice RazTazPaz!"}});
+	  }	
+	 
+	else {
+	var num2 = parseInt(data.raw.numplayers);
+	//NUM2 GIVES THE PLAYERCOUNT AS STRING
+	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
+		const embed = new Discord.RichEmbed()
+		//var lng = player[i].length;
+		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
+		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+		embed.setColor(0x006B8B)
+var player = data.players;
+var j = [];
+var result = [];
+for(let k = 0; k < num2; ++k){
+	j.push(k);
+}
+for (let z = 0; z < num2 ; ++z){
+  result.push([player[z].score, j[z]])
+		}
+var ID_COLUMN=0
+var URL_COLUMN=1
+
+findings.sort(compareByColumnIndex(0))
+
+function compareByColumnIndex(index) {
+  return function(result, j){
+    if (result[index] === j[index]) {
+        return 0;
+    }
+    else {
+        return (result[index] < j[index]) ? -1 : 1;
+    }
+  }
+}
+		var n = 1;
+		for (let i = 0; i < num2;++n, ++i){
+			var m = result.j[i];
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[m].name + "\n" + '**Score **: ' + player[m].score + "\n" + '**Time In Game: **' + timeFormat(player[m].time))
+		//embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
+		}//CLOSES FOR TO NUM2
+		
+		
+		message.channel.send({embed});
+}
+
+	})}
+	
+		//clost IF ARRAY LENGTH
+
 //closes command
 //CLOST MY AVATAR FETCH
 	})
@@ -469,53 +532,9 @@ if (messageDelete.author != client.user){
 });
 });
 
-client.on('ready' , message => {
-	client.fetchUser("305734474308517898").then(myUser => {
-  var channel = client.channels.get('677151384931663882');  //online channel
-  var logstart = client.channels.get('677587804158558236'); //bot spam
-  channel.send("!start");
-  
-  	const embed = new Discord.RichEmbed()
-	embed.setTitle("Bot Restarted Succsessfully!");
-	embed.setColor(0x086C34)
-	embed.setAuthor("GoG´s Exile Altis", myUser.displayAvatarURL)
-	logstart.send({embed});
-	})
-})
-
-/*
-=================================================================================================================
-=====000000000000000000000000000000000000===Online List===0000000000000000000000000000000000000000000000000======
-=================================================================================================================
-*/	
-
-client.on('message', message => {
-	client.fetchUser("305734474308517898").then(myUser => {
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  var chan = client.channels.get("647829408932954113");
-  //logging var for online interval
-  var onlinelog = client.channels.get('677587804158558236');
-  const mychan = "<#647829408932954113>";
-  if(client.channels.find("name", "exile_altis_online")!= message.channel && client.channels.find("name", "exile_tanoa_online")!= message.channel && client.channels.find("name", "epoch_altis_online")!= message.channel && client.channels.find("name", "dayz_epoch_online")  != message.channel){
-
-			if(command === 'start'){
-    
-					if (message.author !== client.user) {
-						
-						const embed = new Discord.RichEmbed();
-						embed.setTitle("ERROR!")
-						embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
-						embed.setColor(0xb34141)
-						embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
-						embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
-						embed.setTimestamp()
-						embed.setURL("https://www.gogsworld.com/")
-						embed.setDescription("User: " + message.author.tag + " tried to use !start in " + message.channel )
-						onlinelog.send({embed});
-}}}
 
 
+<<<<<<< HEAD
  if(client.channels.find("name", "exile_altis_online") === message.channel){
 	 
 	if (message.author != client.user){
@@ -957,6 +976,9 @@ client.setInterval(messageupdate, 60000);
 });
 
 
+=======
+
+>>>>>>> c809df7e2c96355a7330ac0a7782406f75be03c8
 /*
 ====================================
 =====Playing Online Update==========
@@ -1011,15 +1033,35 @@ client.setInterval(activityupdate,10000);
 			xrestartm = (59 - restartm);
 		}}}}}}}}
 		
+<<<<<<< HEAD
 		if(xrestarth === 1){
 			if(xrestartm < 6){
 			client.user.setStatus("dnd");
 			client.user.setActivity("SERVER IS RESTARTING! SERVER LOCKED!" , {type: 'WATCHING' } );
+=======
+		if(xrestarth == 1{
+			if(xrestartm < 6){
+		client.user.setStatus("online");
+		client.user.setActivity("THE SERVER IS ABOUT TO RESTART! SERVER LOCKED!" , {type: 'WATCHING' } );
+			}
+			else {
+			client.user.setStatus("dnd");
+			client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "min", {type: 'PLAYING' } );
+			}
+			}
+		else{
+			if(xrestarth == 3){
+				xrestarth = 2;
+			}else{if(xrestarth == 2){
+				xrestarth = 1;
+			}
+>>>>>>> c809df7e2c96355a7330ac0a7782406f75be03c8
 			}
 			else {
 			client.user.setStatus("online");
 			client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
 			}
+<<<<<<< HEAD
 			}
 		else{
 			if(xrestarth === 3){
@@ -1048,5 +1090,9 @@ client.setInterval(activityupdate,10000);
   }
   }
   );
+=======
+		
+  }}});
+>>>>>>> c809df7e2c96355a7330ac0a7782406f75be03c8
  }
 client.login(clientID);
