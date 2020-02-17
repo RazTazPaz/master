@@ -371,39 +371,43 @@ if(command === "go"){
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
 	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
-	const prf = num2;
 		const embed = new Discord.RichEmbed()
 		//var lng = player[i].length;
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
-
-
-function sortByCol(arr, colIndex){
-    arr.sort(sortFunction);
-    function sortFunction(a, b) {
-        a = a[colIndex];
-        b = b[colIndex];
-       return isNaN(a-b) ? (a === b) ? 0 : (a < b) ? -1 : 1 : a-b  ;  // test if text string - ie cannot be coerced to numbers.
-       }
-}
-// Usage
 var player = data.players;
-var j = 0;
-for (let z = 0; z < num2 ; ++z, ++ j){
-var a = [ [player[z].score, j] ]
+var j = [];
+var result = [];
+for(let k = 0; k < num2; ++k){
+	j.push(k);
+}
+for (let z = 0; z < num2 ; ++z){
+  result.push([player[z].score, j[z]])
 		}
-		
-    var arr1 = a.map(function (z){return z;}).sort();  // use map to ensure tests are not corrupted by a sort in-place.
+var ID_COLUMN=0
+var URL_COLUMN=1
 
-    sortByCol(payer[z].score, 0);
-	
+findings.sort(compareByColumnIndex(0))
+
+function compareByColumnIndex(index) {
+  return function(result, j){
+    if (result[index] === j[index]) {
+        return 0;
+    }
+    else {
+        return (result[index] < j[index]) ? -1 : 1;
+    }
+  }
+}
 		var n = 1;
 		for (let i = 0; i < num2;++n, ++i){
-			let zahl = arr1[i] 
-		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[zahl].name + "\n" + '**Score **: ' + player[zahl].score + "\n" + '**Time In Game: **' + timeFormat(player[zahl].time))
+			var m = result.j[i];
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[m].name + "\n" + '**Score **: ' + player[m].score + "\n" + '**Time In Game: **' + timeFormat(player[m].time))
 		//embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		}//CLOSES FOR TO NUM2
+		
+		
 		message.channel.send({embed});
 }
 
@@ -527,4 +531,95 @@ if (messageDelete.author != client.user){
 }}
 });
 });
+
+
+
+
+/*
+====================================
+=====Playing Online Update==========
+====================================
+*/
+
+client.setInterval(activityupdate,10000);
+ async function activityupdate(){
+      Gamedig.query({
+      type: game,
+      host: host,
+      port: port
+	  },
+  async  function(err, data) {
+      if (err) {
+        client.user.setActivity('Failed to Fetch Data! If the Error keeps appearing please notice RazTazPaz!', {type: 'PLAYING'});
+	  }
+	  else{
+        var player = data.numplayers;
+		var restart = new Date();
+		var restartuk = restart.getHours();
+		var restarth = restartuk + 1;
+		if(restarth ==  24){
+			restarth = 0;
+		}
+		var restartm = restart.getMinutes();
+		var xrestarth = 0;
+		var xrestartm = 0;
+		if(restarth < 3){
+			xrestarth = 3 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 6){
+			xrestarth = 6 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 9){
+			xrestarth = 9 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 12){
+			xrestarth = 12 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 15){
+			xrestarth = 15 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 18){
+			xrestarth = 18 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 21){
+			xrestarth = 21 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 24){
+			xrestarth = 24 - restarth;
+			xrestartm = (59 - restartm);
+		}}}}}}}}
+		
+		if(xrestarth == 1{
+			if(xrestartm < 6){
+		client.user.setStatus("online");
+		client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "min", {type: 'PLAYING' } );
+			}
+			else {
+			client.user.setStatus("dnd");
+			client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "min", {type: 'WATCHTING' } );
+			}
+			}
+		else{
+			if(xrestarth == 3){
+				xrestarth = 2;
+			}else{if(xrestarth == 2){
+				xrestarth = 1;
+			}
+			}
+        if (player == 0) {
+			try {
+          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
+       
+			}catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
+	}
+		}	
+			else {
+				try {
+          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
+      }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
+	}
+			}
+		
+  }}});
+ }
 client.login(clientID);
