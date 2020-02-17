@@ -592,11 +592,11 @@ client.setInterval(activityupdate,10000);
 		if(xrestarth == 1{
 			if(xrestartm < 6){
 		client.user.setStatus("online");
-		client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "min", {type: 'PLAYING' } );
+		client.user.setActivity("THE SERVER IS ABOUT TO RESTART! SERVER LOCKED!" , {type: 'WATCHING' } );
 			}
 			else {
 			client.user.setStatus("dnd");
-			client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "min", {type: 'WATCHTING' } );
+			client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "min", {type: 'PLAYING' } );
 			}
 			}
 		else{
