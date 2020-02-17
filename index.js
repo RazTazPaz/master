@@ -684,7 +684,7 @@ client.setInterval(messageupdate, 60000);
 				embed.setColor(0x800080)
 				embed.setDescription("__**You can see the Online List again in a few Minutes!**__")
 				embed.setFooter("Thanks for using our Bot to see the Online List of GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
-				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
@@ -705,7 +705,7 @@ client.setInterval(messageupdate, 60000);
 		embed.setColor(0x006B8B)
 		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map +  "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
-		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
@@ -771,7 +771,7 @@ client.setInterval(messageupdate, 60000);
 		setTimeout(function(){
 		embed.setColor(0x006B8B)
 		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
-		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
@@ -814,7 +814,7 @@ client.setInterval(messageupdate, 60000);
 		embed.setColor(0x006B8B)
 		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
-		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
@@ -865,7 +865,7 @@ client.setInterval(messageupdate, 60000);
 		setTimeout(function(){
 		embed.setColor(0x006B8B)
 		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
-		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
@@ -901,7 +901,7 @@ client.setInterval(messageupdate, 60000);
 				embed.setColor(0x800080)
 				embed.setDescription("__**You can see the Online List again in a few Minutes!**__")
 				embed.setFooter("Thanks for using our Bot to see the Online List of GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
-				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
