@@ -369,7 +369,7 @@ client.on("messageUpdate", (newmessage, oldmessage) => {
 	var str = newmessage.content;
 	var str2 = oldmessage.content;
 if (newmessage.author != client.user){
-	if(client.channels.find("name", "exile_altis_online")!= newmessage.channel && client.channels.find("name", "exile_tanoa_online")!= newmessage.channel && client.channels.find("name", "epoch_altis_online")!= newmessage.channel && client.channels.find("name", "dayz_epoch_online")  != newmessage.channel){
+	if(client.channels.find("name", "bot-logs")!= newmessage.channel && client.channels.find("name", "exile_altis_online")!= newmessage.channel && client.channels.find("name", "exile_tanoa_online")!= newmessage.channel && client.channels.find("name", "epoch_altis_online")!= newmessage.channel && client.channels.find("name", "dayz_epoch_online")  != newmessage.channel){
 		if(Boolean(str) && Boolean(str2)){
   function oldmsg(){
   let UpdateEmbed = new Discord.RichEmbed()
@@ -676,6 +676,22 @@ client.setInterval(messageupdate, 60000);
 	  }	
 	 
 	else { 
+	if(xrestarth === 3 && xrestartm > 54){
+		min = xrestartm - 54;
+			const embed = new Discord.RichEmbed()
+				embed.setTitle("**THE SERVER HAS JUST RESTARTED!**")
+				embed.setAuthor("Exile Altis Online List", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+				embed.setColor(0x800080)
+				embed.setDescription("__**You can see the Online List again in a few Minutes!**__")
+				embed.setFooter("Thanks for using our Bot to see the Online List of GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
+				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+				embed.setTimestamp()
+				embed.setURL("https://www.gogsworld.com/")
+				embed.addField("The Server has just Restarted! Please wait while the Online List is about to Load", "List will be available in:" + min + "! Thanks for your Patience!" )
+				message.channel.send({embed});
+	}
+	else{
 	if(xrestarth != 1){
 	var num2 = parseInt(data.raw.numplayers);
 	//NUM2 GIVES THE PLAYERCOUNT AS STRING
@@ -808,7 +824,7 @@ client.setInterval(messageupdate, 60000);
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		
 }
-		client.channels.get("677151384931663882").send(embed);
+		message.channel.send(embed);
 	}
 	else{
 		var k = 0;
@@ -882,7 +898,7 @@ client.setInterval(messageupdate, 60000);
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("**THE SERVER IS ABOUT TO RESTART!**")
 				embed.setAuthor("Exile Altis Online List", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
-				embed.setColor(0xEED524)
+				embed.setColor(0x800080)
 				embed.setDescription("__**You can see the Online List again in a few Minutes!**__")
 				embed.setFooter("Thanks for using our Bot to see the Online List of GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
 				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/676899143079428106/altis_bild.jpg")
@@ -890,10 +906,11 @@ client.setInterval(messageupdate, 60000);
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
 				embed.addField("The Server is about to Restart in: " ,  xrestartm + " Minutes!")
-				client.channels.get("677151384931663882").send({embed});
+				message.channel.send({embed});
 	}
 	//closed else
-	  }
+	}
+	}
 	}
 	});
 	
@@ -938,9 +955,11 @@ client.setInterval(messageupdate, 60000);
 } 
  });
 });
+
+
 /*
 ====================================
-Playing Online Update
+=====Playing Online Update==========
 ====================================
 */
 
@@ -953,12 +972,9 @@ client.setInterval(activityupdate,10000);
 	  },
   async  function(err, data) {
       if (err) {
-		try {
         client.user.setActivity('Failed to Fetch Data! If the Error keeps appearing please notice RazTazPaz!', {type: 'PLAYING'});
-		
-		}catch(UnhandledPromiseRejectionWarning) {t = 'ERR'
-		}
 	  }
+	  else{
         var player = data.numplayers;
 		var restart = new Date();
 		var restartuk = restart.getHours();
@@ -994,29 +1010,43 @@ client.setInterval(activityupdate,10000);
 			xrestarth = 24 - restarth;
 			xrestartm = (59 - restartm);
 		}}}}}}}}
-		if(xrestarth == 1){
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
-		}else{
-			if(xrestarth == 3){
-				xrestarth = 2;
-			}else{if(xrestarth == 2){
-				xrestarth = 1;
-			}
-			}
-        if (player == 0) {
-			try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestarth + "h :" + xrestartm + "min", {type: 'PLAYING' } );
-       
-			}catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
-	}
-		}	
-			else {
-				try {
-          client.user.setActivity('Exile Altis' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + " | Restart:  " + xrestarth + "h :" + xrestartm + "m", {type: 'PLAYING' } );
-      }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
-	}
-			}
 		
-		}});
+		if(xrestarth === 1){
+			if(xrestartm < 6){
+			client.user.setStatus("dnd");
+			client.user.setActivity("SERVER IS RESTARTING! SERVER LOCKED!" , {type: 'WATCHING' } );
+			}
+			else {
+			client.user.setStatus("online");
+			client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
+			}
+			}
+		else{
+			if(xrestarth === 3){
+				let xreh = 2
+				if(xrestartm > 54){
+					client.user.setStatus("idle");
+					client.user.setActivity("THE SERVER JUST RESTARTED!", {type: 'WATCHING' } );
+				}
+				else
+				{
+			client.user.setStatus("online");
+			client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  "+ xreh +"h: "  + xrestartm + "m", {type: 'PLAYING' } );
+			}
+			}
+			else
+			{
+				if(xrestarth === 2){
+				client.user.setStatus("online");
+				client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  "+ xreh +"h: "  + xrestartm + "m", {type: 'PLAYING' } );
+			}
+			}
+
+
+	
+  }
+  }
+  }
+  );
  }
 client.login(clientID);
