@@ -1037,6 +1037,7 @@ client.setInterval(activityupdate,10000);
 			else
 			{
 				if(xrestarth === 2){
+					let xreh = 1
 				client.user.setStatus("online");
 				client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  "+ xreh +"h: "  + xrestartm + "m", {type: 'PLAYING' } );
 			}
