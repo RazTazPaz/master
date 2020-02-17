@@ -40,7 +40,7 @@ Message-Deleter
 */
 	if (command === 'delete')	  {
 	var log = client.channels.get('677587804158558236');
-	 if(message.channel === client.channels.find("name", "exile_altis_online")){
+	if(message.channel === client.channels.find("name", "exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 				message.channel.bulkDelete(10);
 					const embed = new Discord.RichEmbed()
@@ -60,7 +60,7 @@ Message-Deleter
 		}
 	 }
 	 else {
-		 if (message.channel != client.channels.find("name", "exile_altis_online") || message.channel != client.channels.find("name", "exile_tanoa_online") || message.channel != client.channels.find("name", "epoch_altis_online") || message.channel != client.channels.find("name", "epoch_chernarus_online")){
+		 if (message.channel != client.channels.find("name", "exile_altis_online") || message.channel != client.channels.find("name", "exile_tanoa_online") || message.channel != client.channels.find("name", "epoch_altis_online") || message.channel != client.channels.find("name", "dayz_epoch_online")){
 		
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("You can Only use that in Altis-Online!")
@@ -688,7 +688,7 @@ client.setInterval(messageupdate, 60000);
 				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 				embed.setTimestamp()
 				embed.setURL("https://www.gogsworld.com/")
-				embed.addField("The Server has just Restarted! Please wait while the Online List is about to Load", "List will be available in:" + min + "! Thanks for your Patience!" )
+				embed.addField("The Server has just Restarted! Please wait while the Online List is about to Load", "List will be available in: " + min + " Minutes! Thanks for your Patience!" )
 				message.channel.send({embed});
 	}
 	else{
