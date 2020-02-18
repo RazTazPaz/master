@@ -670,12 +670,24 @@ client.setInterval(messageupdate, 60000);
     },
     function(err, data) {
       if (err) {
-        message.channel.send({embed: {
-		color: 3447003,
-		descriptoion: "Failed to Fetch Data! Update in 60s. If error keeps appearing please notice RazTazPaz!"}});
+		  //IF ERROR? 
+		    var logstart = client.channels.get('677587804158558236'); //bot spam
+			const embed = new Discord.RichEmbed()
+			embed.setTitle("WARNING, BOT COULDNT FETCH ONLINE LIST!");
+			embed.setColor(0x086C34)
+			embed.setAuthor("GoG´s Exile Altis", myUser.displayAvatarURL)
+			logstart.send({embed});
 	  }	
 	 
 	else { 
+	//add all vars!!
+	var num2 = parseInt(data.raw.numplayers);
+	var servername = data.name;
+	var servermap = data.map;
+	var player = data.players;
+	var players = data.raw.numplayers;
+	var maxplayers = data.maxplayers;
+	}
 	if(xrestarth === 3 && xrestartm > 54){
 		min = xrestartm - 54;
 			const embed = new Discord.RichEmbed()
@@ -693,37 +705,22 @@ client.setInterval(messageupdate, 60000);
 	}
 	else{
 	if(xrestarth != 1){
-	var num2 = parseInt(data.raw.numplayers);
-	//NUM2 GIVES THE PLAYERCOUNT AS STRING
-	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
-	const prf = num2;
 	if (num2 < 25){
 		const embed = new Discord.RichEmbed()
-		//var lng = player[i].length;
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
-		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map +  "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap +  "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
 		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
-		var player = data.players;
+		
 		var n = 1;
 		for (let i = 0; i < num2;++n, ++i){
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (score1 < player[i].score){
-		score1 = player[i].score;
-		player1 = player[i].name;
-		}
-		/*else {if(score1 == player[i].score){
-					if(player1 != player[i].name){
-						let score2 = player[i].score;
-						let player2 = player[i].name;
-					}
-		}
-		*/}//CLOSES FOR TO NUM2
+		}//CLOSES FOR TO NUM2
 		message.channel.send({embed});
 		}		//clost IF ARRAY LENGTH
 /*
@@ -733,9 +730,7 @@ client.setInterval(messageupdate, 60000);
 */	
 
 	else{
-		var k = 0;
-		var l = 0;
-		var players = 0;
+
 		try {
 		//TOP CHART WITH NAME ICON AND HEADER
 		function msg1(){
@@ -743,17 +738,13 @@ client.setInterval(messageupdate, 60000);
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
-		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map +  "\n" + a + xrestartm + " Minutes!" +  "\n" + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap +  "\n" + a + xrestartm + " Minutes!" +  "\n" + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
 		var n = 1;
 		for (let i = 0; i < 24; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (l < player[i].score){
-		l = player[i].score;
-		k = player[i].name;
-		}
 		}
 		message.channel.send({embed});
 		}
@@ -765,8 +756,6 @@ client.setInterval(messageupdate, 60000);
 		//FUNCTION 2
 		//LOWER CHART
 		function msg2() {
-			var m = 0;
-			var d = 0;
 		const embed = new Discord.RichEmbed()
 		setTimeout(function(){
 		embed.setColor(0x006B8B)
@@ -776,20 +765,8 @@ client.setInterval(messageupdate, 60000);
 		embed.setURL("https://www.gogsworld.com/")
 		var player = data.players;
 		var n = 25;
-		for (let i = 24; i < prf; ++n, ++i){ //set to 24!!!!!!!
+		for (let i = 24; i < num2; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (m < player[i].score){
-		 m = player[i].score;
-		d = player[i].name;
-		}
-		}
-		if(m < l){
-			player1 = k;
-			score1 = l
-		}
-		else{
-		player1 = d; return;
-		score1 = m;   return;
 		}
 		message.channel.send({embed});
 		},1500); }
@@ -803,26 +780,20 @@ client.setInterval(messageupdate, 60000);
 	// WAS WENN ZEIT BIS RESTART NICHT = X=?
 	else{
 			if(xrestartm > 5){
-		var num2 = parseInt(data.raw.numplayers);
-	//NUM2 GIVES THE PLAYERCOUNT AS STRING
-	//PRF = NUMBER OF PLAYERS ONLINE AT ALL
-	const prf = num2;
 	if (num2 < 25){
 		const embed = new Discord.RichEmbed()
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
-		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map + "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap + "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
 		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
-		var player = data.players;
 		var n = 1;
 		for (let i = 0; i < num2;++n, ++i){
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		
 }
 		message.channel.send(embed);
 	}
@@ -837,17 +808,12 @@ client.setInterval(messageupdate, 60000);
 		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
 		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 		embed.setColor(0x006B8B)
-		embed.setDescription("**Server Name: **"  + data.name + "\n" + "**Map: **" + data.map +  "\n" + a + xrestartm + " Minutes!" +  "\n" + '**Players Online**: ' + data.raw.numplayers + '/' + data.maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap +  "\n" + a + xrestartm + " Minutes!" +  "\n" + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setURL("https://www.gogsworld.com/")
-		var player = data.players;
 		var n = 1;
 		for (let i = 0; i < 24; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (l < player[i].score){
-		l = player[i].score;
-		k = player[i].name;
-		}
 		}
 		message.channel.send({embed});
 		}
@@ -872,18 +838,6 @@ client.setInterval(messageupdate, 60000);
 		var n = 25;
 		for (let i = 24; i < prf; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
-		if (m < player[i].score){
-		 m = player[i].score;
-		d = player[i].name;
-		}
-		}
-		if(m < l){
-			player1 = k;
-			score1 = l
-		}
-		else{
-		player1 = d; return;
-		score1 = m;   return;
 		}
 		message.channel.send({embed});
 		},1500); }
@@ -909,7 +863,6 @@ client.setInterval(messageupdate, 60000);
 				message.channel.send({embed});
 	}
 	//closed else
-	}
 	}
 	}
 	});
@@ -972,10 +925,18 @@ client.setInterval(activityupdate,10000);
 	  },
   async  function(err, data) {
       if (err) {
-        client.user.setActivity('Failed to Fetch Data! If the Error keeps appearing please notice RazTazPaz!', {type: 'PLAYING'});
+        var logstart = client.channels.get('677587804158558236'); //bot spam
+			const embed = new Discord.RichEmbed()
+			embed.setTitle("WARNING, BOT COULDNT FETCH ONLINE STATUS!");
+			embed.setColor(0x086C34)
+			embed.setAuthor("GoG´s Exile Altis", myUser.displayAvatarURL)
+			logstart.send({embed});
 	  }
 	  else{
         var player = data.numplayers;
+		var rnon = data.raw.numplayers;
+		var maxon = data.maxplayers;
+	  }
 		var restart = new Date();
 		var restartuk = restart.getHours();
 		var restarth = restartuk + 1;
@@ -1018,7 +979,7 @@ client.setInterval(activityupdate,10000);
 			}
 			else {
 			client.user.setStatus("online");
-			client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
+			client.user.setActivity('Exile Altis ' + '[' + rnon +'/'+ maxon + ']' + 'Online' + "|Restart:  " + xrestartm + "m", {type: 'PLAYING' } );
 			}
 			}
 		else{
@@ -1031,7 +992,7 @@ client.setInterval(activityupdate,10000);
 				else
 				{
 			client.user.setStatus("online");
-			client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  "+ xreh +"h: "  + xrestartm + "m", {type: 'PLAYING' } );
+			client.user.setActivity('Exile Altis ' + '[' + rnon +'/'+ maxon + ']' + 'Online' + "|Restart:  "+ xreh +"h: "  + xrestartm + "m", {type: 'PLAYING' } );
 			}
 			}
 			else
@@ -1039,7 +1000,7 @@ client.setInterval(activityupdate,10000);
 				if(xrestarth === 2){
 					let xreh = 1
 				client.user.setStatus("online");
-				client.user.setActivity('Exile Altis ' + '[' + data.raw.numplayers +'/'+ data.maxplayers + ']' + 'Online' + "|Restart:  "+ xreh +"h: "  + xrestartm + "m", {type: 'PLAYING' } );
+				client.user.setActivity('Exile Altis ' + '[' + rnon +'/'+ maxon + ']' + 'Online' + "|Restart:  "+ xreh +"h: "  + xrestartm + "m", {type: 'PLAYING' } );
 			}
 			}
 
@@ -1047,7 +1008,6 @@ client.setInterval(activityupdate,10000);
 	
   }
   }
-  }
-  );
- }
+  )
+ };
 client.login(clientID);
