@@ -424,6 +424,7 @@ else{
 if(command === "event"){
 	if (message.member.roles.find("name", "Admin")){
 if(message.channel === client.channels.get("487701432670224394") || message.channel === client.channels.get("677587804158558236")){
+	message.delete();
 	  var logp = client.channels.get('677587804158558236');
 	  var chann = message.channel;
 	  var cut = message.content.slice(prefix.length).split(" / ");
@@ -464,7 +465,8 @@ if(message.channel === client.channels.get("487701432670224394") || message.chan
 				embed.addField("**The EVENT will take Place around: ** ", part7 )
 				embed.addField("Info 1: ", "Everyone who wants to Join is Invited to. If youre not Online or Ready before it starts, it could happen that you aren´t allowed to Join!")
 				embed.addField("Info 2: ", "The Actual Rewards may vary or could also contain Respect!")
-				embed.addField("Info 3: ", "The Event Moderator will be" + part8 + "! Please Listen to his Commands:")
+				embed.addField("Info 3: ", "The Event Moderator will be" + part8 + "! Please Listen to his Commands!")
+				embed.addField("Info 4: ", "Plase Notice, that " + part8 + "will only start the Event when enough Players Joined it!")
 				embed.setColor(0x086C34)
 				embed.setFooter("Thanks for using our Bot! Code by RazTazPaz", myUser.displayAvatarURL)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
