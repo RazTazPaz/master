@@ -716,7 +716,6 @@ client.setInterval(messageupdate, 60000);
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
-		
 		var n = 1;
 		for (let i = 0; i < num2;++n, ++i){
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
@@ -741,7 +740,6 @@ client.setInterval(messageupdate, 60000);
 		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap +  "\n" + a + xrestartm + " Minutes!" +  "\n" + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + data.query.host + ':' + data.query.port + "\n" + "<<<============================>>>")
 		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
 		embed.setURL("https://www.gogsworld.com/")
-		var player = data.players;
 		var n = 1;
 		for (let i = 0; i < 24; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
@@ -763,7 +761,6 @@ client.setInterval(messageupdate, 60000);
 		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
-		var player = data.players;
 		var n = 25;
 		for (let i = 24; i < num2; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
@@ -798,9 +795,6 @@ client.setInterval(messageupdate, 60000);
 		message.channel.send(embed);
 	}
 	else{
-		var k = 0;
-		var l = 0;
-		var players = 0;
 		try {
 		//TOP CHART WITH NAME ICON AND HEADER
 		function msg1(){
@@ -825,8 +819,6 @@ client.setInterval(messageupdate, 60000);
 		//FUNCTION 2
 		//LOWER CHART
 		function msg2() {
-			var m = 0;
-			var d = 0;
 		const embed = new Discord.RichEmbed()
 		setTimeout(function(){
 		embed.setColor(0x006B8B)
@@ -834,9 +826,8 @@ client.setInterval(messageupdate, 60000);
 		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
 		embed.setTimestamp()
 		embed.setURL("https://www.gogsworld.com/")
-		var player = data.players;
 		var n = 25;
-		for (let i = 24; i < prf; ++n, ++i){ //set to 24!!!!!!!
+		for (let i = 24; i < num2; ++n, ++i){ //set to 24!!!!!!!
 		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
 		}
 		message.channel.send({embed});
