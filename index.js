@@ -837,7 +837,7 @@ client.on('message', message => {
 			
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
 
-				//message.channel.bulkDelete(10);	
+				message.channel.bulkDelete(10);	
 							//else für client master bedingung 
 							const embed = new Discord.RichEmbed()
 							embed.setTitle("Bot Playerlist is about To Start:")
