@@ -212,13 +212,24 @@ else{
 	var coffee3 = client.channels.get('496912427510661131');
   if (message.member.roles.find("name", "Admin")){
    if(message.channel === client.channels.get("360722269393387521") || message.channel === client.channels.get("360721823748456448") || message.channel === client.channels.get("677587804158558236") || message.channel === client.channels.get("360718915791224842") || message.channel === client.channels.get("360706974221860865")){
-	 //deleted command message!
+		  var cut = message.content.slice(prefix.length).split(" ");
+		  var part1 = cut.slice();
+		  tagd = part1.length;
+		  tags = tagd - 1;
+		  var z = 1;
+	//deleted command message!
 		//message.delete();
 				const embed = new Discord.RichEmbed()
 				embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
-				embed.setTitle("**This is a HELP Channel!!**")
-				embed.addField("We have set Other Channels for that sort of Discussion!", "Visit: " + coffee + "\n" + "or:    " + coffee2 + "\n" + "or:    " + coffee3 )
-				embed.addField("**KEEP THIS CHANNEL CLEAN**", "If you´re not stopping this Discussion in here you´re about to Risk a Kick!")
+				embed.setTitle("**This is a HELP/SUGGESTION Channel!!**")
+				let part = cut.slice(1);
+				for (let k = 0; k < tags;++z, ++k){
+					
+					embed.addField("User " + z +": ", part[k] + "!")
+					
+				}
+				embed.addField("**We have set Other Channels for that sort of Discussion!**", "Visit: " + coffee + "\n" + "or:    " + coffee2 + "\n" + "or:    " + coffee3 )
+				embed.addField("**KEEP THIS CHANNEL CLEAN**", "If you´re not stopping this Discussion in here you´re might to Risk a Kick!")
 				embed.setColor(0x8B008B)
 				embed.setFooter("Thanks for using our Bot! Code by RazTazPaz", myUser.displayAvatarURL)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
@@ -314,13 +325,17 @@ if (command ===  "format"){
 	var helped = client.channels.get('360706974221860865');
   if (message.member.roles.find("name", "Admin")){
    if(message.channel === client.channels.get("360722269393387521") || message.channel === client.channels.get("360721823748456448") || message.channel === client.channels.get("677587804158558236") || message.channel === client.channels.get("360718915791224842") || message.channel === client.channels.get("360706974221860865")){
+	 	  var cut = message.content.slice(prefix.length).split(" ");
+		  var part1 = cut.slice(1)
 	 //deleted command message!
 		//message.delete();
 			const embed = new Discord.RichEmbed()
 				embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
-				embed.setTitle("**This is A HELP Channel!!**", "__PLEASE KEEP IT CLEAN AND GIVE US ANY INFORMATION NEEDED__!")
+				embed.setTitle("**This is A HELP Channel!!** ")
+				embed.addField("__PLEASE KEEP IT CLEAN AND GIVE US ANY INFORMATION NEEDED__!",  "Thanks for asking" + part1 + ", but to Help you we need Further Information!") 
 				embed.addField("We Try to Help you as much as we can in Here!", "To make that Possible Please Stick to the following Format!")
-				embed.addField("__**When Asking for Help make sure to Mention:**__" , "Your In Game Name:" + "\n" + "When did it Happen(if Needed):" +   "\n" + "What´s your actual Issue:" +"\n" + "Needed Video/Screen Proof(if Needed):" + "\n" + "__If you don´t stick to this Format your Request might not get answerd!__" )
+				embed.addField("__**When Asking for Help make sure to Mention:**__" , "Your In Game Name:" + "\n" + "When did it Happen(if Needed):" + "\n" + "What´s your actual Issue:" + "\n" + "Tell us the Basename if a Territory is involved:" + "\n" + "If known and needed: Whats your opponets IGN?"+"\n"+"Video or clear Screens as Proof(if Needed):")
+				embed.addField("__If you don´t stick to this Format your Request might not get answerd!__", "The Admin" + "<@" + message.author.id + "> requested this Message!")
 				embed.setColor(0x8B0000)
 				embed.setFooter("Thanks for using our Bot! Code by RazTazPaz", myUser.displayAvatarURL)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
@@ -353,6 +368,61 @@ else{
 			}
 }
 
+
+if (command ===  "advice"){
+  if(message.channel != client.channels.get("244379737290440704") && message.channel != client.channels.get("360712752286924805") && message.channel != client.channels.get("360711629698236417") && message.channel != client.channels.get("360722269393387521") && message.channel != client.channels.get("360721823748456448") && message.channel != client.channels.get("360718915791224842") && message.channel != client.channels.get("360706974221860865")){
+	 //deleted command message!
+		//message.delete();
+		advices = ["Did you know that Altis is called Lemnos in Real Life?", "You can´t Build higher than 30m" , "You can use !building to get a List with our Building Rules" , "There are 5 Different Rocketlaunchers in Exile" , "You can use !ping as bot command" , "You can use !punishments to get a list with the Serverrules and Punishments", "Did you know that we have 19 different custom Missions on GoG´s world?" , "Did you know that GoG´s world is already existing for 6 Years?" , "Looting isn´t always that boring!" , "The best Way to get Money is farming Vehicles or doing Missions", "There are 5 different Attack Choppers on Exile!" , "Black Markets sell Special guns, but are often Camped or Mined!" , "Claimed Vehicles Despawn after 5 days of Inactivity!", "You have to Pay your Base every 10 Days" , "You can Build up to 300 Parts in your Territory" , "Upgrading a Base to the Max. Level Costs 275K Poptabs" , "That we Love to get new Ideas via Suggestions?"] 
+			var leng = advices.length;
+			var chann = message.channel;
+			var logch = client.channels.get('677587804158558236');
+			function getRandomInt(max) {
+			return Math.floor(Math.random() * Math.floor(max));
+			}
+			message.delete();
+			let adv = getRandomInt(leng)
+			const embed = new Discord.RichEmbed()
+				embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+				embed.setTitle("**SENDING ADVICE!**")
+				embed.addField("__Here is something for you__!",  "Thanks for asking" + "<@" + message.author.id + "> !") 
+				embed.addField("The Advice of the Day is:", advices[adv] + "...")
+				embed.addField("__If you know other cool things suggest them and they will be added!__")
+				embed.setColor(0x8B0000)
+				embed.setFooter("Thanks for using our Bot! Code by RazTazPaz", myUser.displayAvatarURL)
+				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+				embed.setTimestamp()
+				embed.setURL("https://www.gogsworld.com/")
+				chann.send({embed});
+			
+					function logging(){
+					const embed = new Discord.RichEmbed()
+						embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+						embed.setTitle("**Advice Order Sent**")
+						embed.setColor(0x8B008B)
+						embed.setFooter("Thanks for using our Bot! Code by RazTazPaz", myUser.displayAvatarURL)
+						embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+						embed.setTimestamp()
+						embed.setURL("https://www.gogsworld.com/")
+						logch.send({embed});
+					}
+logging();
+				}
+else{
+			const embed = new Discord.RichEmbed()
+				embed.setTitle("Format Command Not Executed!")
+				embed.setTitle("Command needs to get Executed in Help Channels!")
+				embed.addField("Someone tried to Use !Format" ,"In: " + message.channel + " From: " + message.author)
+				embed.setColor(0xb34141)
+				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+				logch.send({embed});
+}
+			}
+
+
+
+
+
 /*
 =====================================================
 =================BUILDING RULES======================
@@ -370,10 +440,13 @@ if (command === 'building')	  {
 				embed.setColor(0xb34141)
 				embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
 				logp.send({embed});
-				
+				//S"<@"+messageDelete.author.id+">"
 				function buildingrules(){
 				const embed = new Discord.RichEmbed()
-				embed.setTitle("**Hello, " + message.author.tag + " HERE ARE OUR BUILDINGRULES!**")
+				var cut = message.content.slice(prefix.length).split(" ");
+				var part1 = cut.slice(1)
+				embed.setTitle("**HELLO, HERE ARE OUR BUILDINGRULES!**")
+				embed.addField("Thanks for asking!" , part1 + " Below is a List with the Buildingrules!");
 				embed.addField("===============================================", "===================**ROADS**====================")
 				embed.addField("**RULE 1: ** ", "No Building on Roads", false)
 				embed.addField("**DEFINITION**", "No Building on Roads", true)
@@ -423,7 +496,7 @@ else{
 */	
 if(command === "event"){
 	if (message.member.roles.find("name", "Admin")){
-if(message.channel === client.channels.get("487701432670224394") || message.channel === client.channels.get("677587804158558236")){
+	if(message.channel === client.channels.get("487701432670224394") || message.channel === client.channels.get("677587804158558236")){
 	message.delete();
 	  var logp = client.channels.get('677587804158558236');
 	  var chann = message.channel;
@@ -764,7 +837,7 @@ client.on('message', message => {
 			
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
 
-				message.channel.bulkDelete(10);	
+				//message.channel.bulkDelete(10);	
 							//else für client master bedingung 
 							const embed = new Discord.RichEmbed()
 							embed.setTitle("Bot Playerlist is about To Start:")
@@ -1117,10 +1190,11 @@ async function activitycontent(){
 	  },
   async  function(err, data) {
       if (err) {
-        var logstart = client.channels.get('677587804158558236'); //bot spam
+        var logstart = client.channels.get('679866674052333616'); //bot spam
 			const embed = new Discord.RichEmbed()
 			embed.setTitle("WARNING, BOT COULDNT FETCH ONLINE STATUS!");
 			embed.addField(num2 + "and" + servername + "and" + servermap + "and" + players + "and" + maxplayers + "and" + sip + "and" + sport +"and" + rnon + "and" + maxon)
+			embed.addField("These Datas will be used in the following Update if the Error keeps appearing!" , "Thanks for using the Bot");
 			embed.setColor(0x086C34)
 			embed.setAuthor("GoG´s Exile Altis", myUser.displayAvatarURL)
 			logstart.send({embed});
