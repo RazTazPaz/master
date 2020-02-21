@@ -40,7 +40,7 @@ Message-Deleter
 */
 	if (command === 'delete')	  {
 	var log = client.channels.get('677587804158558236');
-	if(message.channel === client.channels.find("name", "exile_altis_online")){
+	if(message.channel === client.channels.find("name", ":video_game:exile_altis_online")){
 		if (message.member.roles.find("name", "Admin")){
 				message.channel.bulkDelete(10);
 					const embed = new Discord.RichEmbed()
@@ -616,7 +616,7 @@ client.on("messageUpdate", (newmessage, oldmessage) => {
 	var str = newmessage.content;
 	var str2 = oldmessage.content;
 if (newmessage.author != client.user){
-	if(client.channels.find("name", "bot-logs")!= newmessage.channel && client.channels.find("name", "exile_altis_online")!= newmessage.channel && client.channels.find("name", "exile_tanoa_online")!= newmessage.channel && client.channels.find("name", "epoch_altis_online")!= newmessage.channel && client.channels.find("name", "dayz_epoch_online")  != newmessage.channel){
+	if(client.channels.find("name", "bot-logs")!= newmessage.channel && client.channels.find("name", ":video_game:exile_altis_online")!= newmessage.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= newmessage.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= newmessage.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != newmessage.channel){
 		if(Boolean(str) && Boolean(str2)){
   function oldmsg(){
   let UpdateEmbed = new Discord.RichEmbed()
@@ -796,7 +796,7 @@ client.on('message', message => {
   //logging var for online interval
   var onlinelog = client.channels.get('677587804158558236');
   const mychan = "<#647829408932954113>";
-  if(client.channels.find("name", "exile_altis_online")!= message.channel && client.channels.find("name", "exile_tanoa_online")!= message.channel && client.channels.find("name", "epoch_altis_online")!= message.channel && client.channels.find("name", "dayz_epoch_online")  != message.channel){
+  if(client.channels.find("name", ":video_game:exile_altis_online")!= message.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= message.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= message.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != message.channel){
 
 			if(command === 'start'){
     
@@ -815,7 +815,7 @@ client.on('message', message => {
 }}}
 
 
- if(client.channels.find("name", "exile_altis_online") === message.channel){
+ if(client.channels.find("name", ":video_game:exile_altis_online") === message.channel){
 	 
 	if (message.author != client.user){
 		
@@ -833,7 +833,7 @@ client.on('message', message => {
 	 }
 	if(command === 'start'){
 		
-		if(message.channel === client.channels.find("name", "exile_altis_online")){
+		if(message.channel === client.channels.find("name", ":video_game:exile_altis_online")){
 			
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
 
