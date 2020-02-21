@@ -37,7 +37,7 @@ client.on('message', message => {
 ====================================================================================
 Message-Deleter
 ====================================================================================
-*/🎮exile_altis_online
+*/
 	if (command === 'delete')	  {
 	var log = client.channels.get('677587804158558236');
 	if(message.channel === client.channels.get("677151384931663882")){
@@ -796,7 +796,7 @@ client.on('message', message => {
   //logging var for online interval
   var onlinelog = client.channels.get('677587804158558236');
   const mychan = "<#647829408932954113>";
-  client.channels.get("677151384931663882")!= message.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= message.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= message.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != message.channel){
+  if(client.channels.get("677151384931663882")!= message.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= message.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= message.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != message.channel){
 
 			if(command === 'start'){
     
@@ -815,7 +815,7 @@ client.on('message', message => {
 }}}
 
 
-client.channels.get("677151384931663882") === message.channel){
+if(client.channels.get("677151384931663882") === message.channel){
 	 
 	if (message.author != client.user){
 		
