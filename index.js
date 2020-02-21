@@ -37,10 +37,10 @@ client.on('message', message => {
 ====================================================================================
 Message-Deleter
 ====================================================================================
-*/
+*/🎮exile_altis_online
 	if (command === 'delete')	  {
 	var log = client.channels.get('677587804158558236');
-	if(message.channel === client.channels.find("name", ":video_game:exile_altis_online")){
+	if(message.channel === client.channels.get("677151384931663882")){
 		if (message.member.roles.find("name", "Admin")){
 				message.channel.bulkDelete(10);
 					const embed = new Discord.RichEmbed()
@@ -796,7 +796,7 @@ client.on('message', message => {
   //logging var for online interval
   var onlinelog = client.channels.get('677587804158558236');
   const mychan = "<#647829408932954113>";
-  if(client.channels.find("name", ":video_game:exile_altis_online")!= message.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= message.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= message.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != message.channel){
+  client.channels.get("677151384931663882")!= message.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= message.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= message.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != message.channel){
 
 			if(command === 'start'){
     
@@ -815,7 +815,7 @@ client.on('message', message => {
 }}}
 
 
- if(client.channels.find("name", ":video_game:exile_altis_online") === message.channel){
+client.channels.get("677151384931663882") === message.channel){
 	 
 	if (message.author != client.user){
 		
@@ -833,7 +833,7 @@ client.on('message', message => {
 	 }
 	if(command === 'start'){
 		
-		if(message.channel === client.channels.find("name", ":video_game:exile_altis_online")){
+		if(message.channel === client.channels.get("677151384931663882")){
 			
 			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
 
