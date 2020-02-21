@@ -60,7 +60,7 @@ Message-Deleter
 		}
 	 }
 	 else {
-		 if (message.channel != client.channels.find("name", "exile_altis_online") || message.channel != client.channels.find("name", "exile_tanoa_online") || message.channel != client.channels.find("name", "epoch_altis_online") || message.channel != client.channels.find("name", "dayz_epoch_online")){
+		 if (message.channel != client.channels.get("677151384931663882") || message.channel != client.channels.get("677151721939795968") || message.channel != client.channels.get("676928770392850433") || message.channel != client.channels.get("676962521420136498")){
 		
 				const embed = new Discord.RichEmbed()
 				embed.setTitle("You can Only use that in Altis-Online!")
@@ -616,7 +616,8 @@ client.on("messageUpdate", (newmessage, oldmessage) => {
 	var str = newmessage.content;
 	var str2 = oldmessage.content;
 if (newmessage.author != client.user){
-	if(client.channels.find("name", "bot-logs")!= newmessage.channel && client.channels.find("name", ":video_game:exile_altis_online")!= newmessage.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= newmessage.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= newmessage.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != newmessage.channel){
+	
+	if(client.channels.get('677587804158558236')!= newmessage.channel && client.channels.get('677151384931663882')!= newmessage.channel && client.channels.get('677151721939795968')!= newmessage.channel && client.channels.get('676928770392850433')!= newmessage.channel && client.channels.get('676962521420136498')  != newmessage.channel){
 		if(Boolean(str) && Boolean(str2)){
   function oldmsg(){
   let UpdateEmbed = new Discord.RichEmbed()
@@ -681,7 +682,8 @@ client.on("messageDelete", (messageDelete) => {
 	var dellog = client.channels.get('677587804158558236'); //bot spam
 	var str = messageDelete.content;
 if (messageDelete.author != client.user){
-	if(client.channels.find("name", "exile_altis_online")!= messageDelete.channel && client.channels.find("name", "exile_tanoa_online")!= messageDelete.channel && client.channels.find("name", "epoch_altis_online")!= messageDelete.channel && client.channels.find("name", "dayz_epoch_online")  != messageDelete.channel){
+	if(client.channels.get('677587804158558236')!= newmessage.channel && client.channels.get('677151384931663882')!= newmessage.channel && client.channels.get('677151721939795968')!= newmessage.channel && client.channels.get('676928770392850433')!= newmessage.channel && client.channels.get('676962521420136498')  != newmessage.channel){
+		
 		if(Boolean(str)){
   
   let DeleteEmbed = new Discord.RichEmbed()
