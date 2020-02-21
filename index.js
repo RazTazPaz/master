@@ -1192,14 +1192,6 @@ async function activitycontent(){
 	  },
   async  function(err, data) {
       if (err) {
-        var logstart = client.channels.get('679866674052333616'); //bot spam
-			const embed = new Discord.RichEmbed()
-			embed.setTitle("WARNING, BOT COULDNT FETCH ONLINE STATUS!");
-			embed.addField(num2 + "and" + servername + "and" + servermap + "and" + players + "and" + maxplayers + "and" + sip + "and" + sport +"and" + rnon + "and" + maxon)
-			embed.addField("These Datas will be used in the following Update if the Error keeps appearing!" , "Thanks for using the Bot");
-			embed.setColor(0x086C34)
-			embed.setAuthor("GoG´s Exile Altis", myUser.displayAvatarURL)
-			logstart.send({embed});
 	  }
 	  else{
 		  if(data){
