@@ -1,0 +1,386 @@
+
+client.on('message', message => {
+	client.fetchUser("305734474308517898").then(myUser => {
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  var chan = client.channels.get("647829408932954113");
+  //logging var for online interval
+  var onlinelog = client.channels.get('677587804158558236');
+  const mychan = "<#647829408932954113>";
+  if(client.channels.get("677151384931663882")!= message.channel && client.channels.find("name", ":video_game:exile_tanoa_online")!= message.channel && client.channels.find("name", ":video_game:epoch_altis_online")!= message.channel && client.channels.find("name", ":video_game:dayz_epoch_online")  != message.channel){
+
+			if(command === 'start'){
+    
+					if (message.author !== client.user) {
+						
+						const embed = new Discord.RichEmbed();
+						embed.setTitle("ERROR!")
+						embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+						embed.setColor(0xb34141)
+						embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+						embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+						embed.setTimestamp()
+						embed.setURL("https://www.gogsworld.com/")
+						embed.setDescription("User: " + message.author.tag + " tried to use !start in " + message.channel )
+						onlinelog.send({embed});
+}}}
+
+
+if(client.channels.get("677151384931663882") === message.channel){
+	 
+	if (message.author != client.user){
+		
+							const embed = new Discord.RichEmbed()
+							embed.setTitle("Someone tried to Send a Message:")
+							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+							embed.setColor(0xb34141)
+							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+							embed.setTimestamp()
+							embed.setURL("https://www.gogsworld.com/")
+							embed.setDescription("User: " + message.author.tag + " sent a Message in: " + message.channel + "\n Message is: \n " +message )
+							onlinelog.send({embed})
+		 message.delete();
+	 }
+	if(command === 'start'){
+		
+		if(message.channel === client.channels.get("677151384931663882")){
+			
+			if (message.author == client.user || message.member.roles.find("name", "Admin")) {		
+
+				message.channel.bulkDelete(10);	
+							//else für client master bedingung 
+							const embed = new Discord.RichEmbed()
+							embed.setTitle("Bot Playerlist is about To Start:")
+							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+							embed.setColor(0x006B8B)
+							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+							embed.setTimestamp()
+							embed.setURL("https://www.gogsworld.com/")
+							embed.setDescription("The Bot is Loading the Scoreboard...\n" + "User: " + message.author.tag + "started the scoreboard in: " + message.channel +"\n Please wait a few Seconds! ")
+							onlinelog.send({embed})
+							
+							setTimeout(log1, 60000);
+							function log1(){ 
+							const embed = new Discord.RichEmbed()
+							embed.setTitle("First Online List of the Day Successfully Sent!")
+							embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+							embed.setColor(0x086C34)
+							embed.setFooter("Tanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+							embed.setTimestamp()
+							embed.setURL("https://www.gogsworld.com/")
+							embed.setDescription("User: " + message.author.tag + " posted the first onlinelist of the day in: " + message.channel)
+							onlinelog.send({embed})
+							}
+
+
+
+client.setInterval(messageupdate, 60000);
+/*
+=======================================================
+====================INTERVAL===========================
+=======================================================
+*/
+ async function messageupdate(){
+ try {
+	var datum = new Date();
+	var monat = datum.getMonth();
+	var tag = datum.getDate();
+	var monname = 0;
+	if(monat == 0){
+	monname = "Jauary";
+	}
+	else { if(monat == 1){
+	monname = "February";
+	}
+	else { if(monat == 2){
+		monname = "March";
+	}
+	else {if(monat == 3){
+		monname = "April";
+	}
+	else {if(monat == 4){
+		monname = "Mai";
+	}
+	else{ if(monat == 5){
+		monname = "June";
+	}
+	else{ if(monat == 6){
+		monname = "July";
+	}
+	else{if(monat == 7){
+		monname = "August";
+	}
+	else{if(monat == 8){
+		monname = "September";
+	}
+	else{if(monat == 9){
+		monname = "Oktober";
+	}
+	else{if(monat == 10){
+		monname = "November";
+	}
+	else{if(monat == 11){
+		monname = "December";
+	}}}}}}}}}}}}
+	/*
+	==================RESTART IN==============================
+	*/
+	var restart = new Date();
+		var restartuk = restart.getHours();
+		var restarth = restartuk + 1;
+		if(restarth ==  24){
+			restarth = 0;
+		}
+		var restartm = restart.getMinutes();
+		var xrestarth = 0;
+		var xrestartm = 0;
+		if(restarth < 3){
+			xrestarth = 3 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 6){
+			xrestarth = 6 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 9){
+			xrestarth = 9 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 12){
+			xrestarth = 12 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 15){
+			xrestarth = 15 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 18){
+			xrestarth = 18 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 21){
+			xrestarth = 21 - restarth;
+			xrestartm = (59 - restartm);
+		}else{if(restarth < 24){
+			xrestarth = 24 - restarth;
+			xrestartm = (59 - restartm);
+		}}}}}}}}
+		var a = "hey";
+		if(xrestarth == 1){
+		 a = "**Restart in: ** ";
+		}else{
+			if(xrestarth == 3){
+				a = "**Restart in:** 2 Hours ";
+			}else{if(xrestarth == 2){
+				a = "**Restart in:** 1 Hour ";
+			}
+		}}
+		
+	if(xrestarth === 3 && xrestartm > 54){
+		min = xrestartm - 54;
+			const embed = new Discord.RichEmbed()
+				embed.setTitle("**THE SERVER HAS JUST RESTARTED!**")
+				embed.setAuthor("Exile Altis Online List", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+				embed.setColor(0x800080)
+				embed.setDescription("__**You can see the Online List again in a few Minutes!**__")
+				embed.setFooter("Thanks for using our Bot to see the Online List of GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
+				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+				embed.setTimestamp()
+				embed.setURL("https://www.gogsworld.com/")
+				embed.addField("The Server has just Restarted! Please wait while the Online List is about to Load", "List will be available in: " + min + " Minutes! Thanks for your Patience!" )
+				message.channel.send({embed});
+	}
+	else{
+	if(xrestarth != 1){
+	if (num2 < 25){
+		const embed = new Discord.RichEmbed()
+		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
+		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+		embed.setColor(0x006B8B)
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap +  "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + sip + ':' + sport + "\n" + "<<<============================>>>")
+		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
+		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+		embed.setTimestamp()
+		embed.setURL("https://www.gogsworld.com/")
+		var n = 1;
+		for (let i = 0; i < num2;++n, ++i){
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
+		}//CLOSES FOR TO NUM2
+		message.channel.send({embed});
+		}		//clost IF ARRAY LENGTH
+/*
+==================================================
+=======For  more than 25Players===================
+==================================================
+*/	
+
+	else{
+
+		try {
+		//TOP CHART WITH NAME ICON AND HEADER
+		function msg1(){
+		const embed = new Discord.RichEmbed()
+		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
+		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+		embed.setColor(0x006B8B)
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap +  "\n" + a + xrestartm + " Minutes!" +  "\n" + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + sip + ':' + sport + "\n" + "<<<============================>>>")
+		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+		embed.setURL("https://www.gogsworld.com/")
+		var n = 1;
+		for (let i = 0; i < 24; ++n, ++i){ //set to 24!!!!!!!
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
+		}
+		message.channel.send({embed});
+		}
+/*
+	===============================
+	=========2. Nachricht==========
+	===============================
+*/	
+		//FUNCTION 2
+		//LOWER CHART
+		function msg2() {
+		const embed = new Discord.RichEmbed()
+		setTimeout(function(){
+		embed.setColor(0x006B8B)
+		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
+		embed.setTimestamp()
+		embed.setURL("https://www.gogsworld.com/")
+		var n = 25;
+		for (let i = 24; i < num2; ++n, ++i){ //set to 24!!!!!!!
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
+		}
+		message.channel.send({embed});
+		},1500); }
+		msg1();
+		msg2();
+			
+		}catch(error) { console.log('caught', error.message); };
+	}
+	//closes else for more than 25 players
+	}
+	// WAS WENN ZEIT BIS RESTART NICHT = X=?
+	else{
+			if(xrestartm > 5){
+	if (num2 < 25){
+		const embed = new Discord.RichEmbed()
+		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
+		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+		embed.setColor(0x006B8B)
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap + "\n" + a + xrestartm + " Minutes!" + '\n' + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + sip + ':' + sport + "\n" + "<<<============================>>>")
+		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
+		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+		embed.setTimestamp()
+		embed.setURL("https://www.gogsworld.com/")
+		var n = 1;
+		for (let i = 0; i < num2;++n, ++i){
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
+}
+		message.channel.send(embed);
+	}
+	else{
+		try {
+		//TOP CHART WITH NAME ICON AND HEADER
+		function msg1(){
+		const embed = new Discord.RichEmbed()
+		embed.setTitle("**LIST OF PLAYERS ONLINE:**")
+		embed.setAuthor("GoG´s Exile Altis", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+		embed.setColor(0x006B8B)
+		embed.setDescription("**Server Name: **"  + servername + "\n" + "**Map: **" + servermap +  "\n" + a + xrestartm + " Minutes!" +  "\n" + '**Players Online**: ' + players + '/' + maxplayers + '\n' + '**Server IP/Port: **' + sip + ':' + sport + "\n" + "<<<============================>>>")
+		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+		embed.setURL("https://www.gogsworld.com/")
+		var n = 1;
+		for (let i = 0; i < 24; ++n, ++i){ //set to 24!!!!!!!
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
+		}
+		message.channel.send({embed});
+		}
+/*
+	===============================
+	=========2. Nachricht==========
+	===============================
+*/	
+		//FUNCTION 2
+		//LOWER CHART
+		function msg2() {
+		const embed = new Discord.RichEmbed()
+		setTimeout(function(){
+		embed.setColor(0x006B8B)
+		embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+		embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
+		embed.setTimestamp()
+		embed.setURL("https://www.gogsworld.com/")
+		var n = 25;
+		for (let i = 24; i < num2; ++n, ++i){ //set to 24!!!!!!!
+		embed.addField("__**Player: **__" + n, "\n" + "**Player Name:** " + player[i].name + "\n" + '**Score **: ' + player[i].score + "\n" + '**Time In Game: **' + timeFormat(player[i].time))
+		}
+		message.channel.send({embed});
+		},1500); }
+		msg1();
+		msg2();
+			
+		}catch(error) { console.log('caught', error.message); };
+	}
+		}
+		else //if TIME == 0
+	{
+				const embed = new Discord.RichEmbed()
+				embed.setTitle("**THE SERVER IS ABOUT TO RESTART!**")
+				embed.setAuthor("Exile Altis Online List", "https://cdn.discordapp.com/attachments/572416781428326410/676899725135314965/discordexile.png")
+				embed.setColor(0x800080)
+				embed.setDescription("__**You can see the Online List again in a few Minutes!**__")
+				embed.setFooter("Thanks for using our Bot to see the Online List of GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+				embed.setImage("https://cdn.discordapp.com/attachments/572416781428326410/678991938690613261/try.gif")
+				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+				embed.setTimestamp()
+				embed.setURL("https://www.gogsworld.com/")
+				embed.addField("The Server is about to Restart in: " ,  xrestartm + " Minutes!")
+				message.channel.send({embed});
+	}
+	//closed else
+	}
+	}
+	
+
+   }catch(UnhandledPromiseRejectionWarning) { e = 'Uk'
+ }}}
+		else{
+			
+				const embed = new Discord.RichEmbed()
+				embed.setTitle("Missing Permission to Run the Bot Leaderboard!")
+				embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+				embed.setColor(0x006B8B)
+				embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+				embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+				embed.setTimestamp()
+				embed.setURL("https://www.gogsworld.com/")
+				embed.setDescription("User: " + message.author.tag + " tried to start the scoreboard in: " + message.channel +" without the needed Permissons!")
+				onlinelog.send({embed});
+			
+		}
+		
+		}//schliesst if Channel bedingung
+		else{
+			const embed = new Discord.RichEmbed()
+					embed.setTitle("ERROR!")
+					embed.setAuthor("GoG´s Exile Altis", "https://images-ext-2.discordapp.net/external/PPWckmifC9Rp0AR3JltvQJ_PCf8ufrL8-e0nNaDpyy8/https/cdn.discordapp.com/attachments/475855425275953153/647553970214273033/discordexile.png")
+					embed.setColor(0x006B8B)
+					embed.setFooter("Thanks for using our Bot to see a List of Online Players on GoG´s Exile Altis! Code by RazTazPaz", myUser.displayAvatarURL)
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/676898603503058954/gogsicon.png")
+					embed.setTimestamp()
+					embed.setURL("https://www.gogsworld.com/")
+					embed.setDescription("User: " + message.author.tag + " tried to start the Scoreboard in: " + message.channel +" !!")
+					onlinelog.send({embed});
+		}
+		//message.delete(35000); 
+		}//else für COMMAND START
+		else{
+			message.delete(60000);
+		}
+ }
+	else{
+	//WAS SOLL PASSIEREN WENN NACHRICHT NICHT IN Altis ONLINE?
+} 
+ });
+});
