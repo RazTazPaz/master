@@ -1,7 +1,7 @@
 {
-  "name": "armabot",
-  "version": "0.1.0",
-  "description": "Discord ArmA3 Stats Bot",
+  "name": "RazTazPaz_Master_BOT",
+  "version": "2.0.0",
+  "description": "Discord Jugend Café Bot",
   "main": "index.js",
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
