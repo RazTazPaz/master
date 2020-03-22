@@ -1,6 +1,1 @@
 https://discordapp.com/api/oauth2/authorize?client_id=686176361487794183&permissions=523328&scope=bot
-
-magicaldesigns@gmx.de
-magicaldesigns@gmx.de
-
-magicaldesigns@gmx.de
