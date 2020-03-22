@@ -102,8 +102,12 @@ Help
 					embed.addField("**Command 6: **", "- /say <Nachricht>" + "\n" + "Lässt den Bot etwas im aktuellem Channel sagen!")
 					embed.addField("**Command 7: **", "- /sayin <<#DISCORDCHANNELID>> <Nachricht>" + "\n" + "Lässt den Bot etwas im Getaggtem Channel sagen!")
 					embed.addField("**Command 8: **", "- /suggest <Inhalt> - /vorschlag <Inhalt>" + "\n" + "Der Befehlt muss in <#690627690012737566> benutzt werden! Der erstellte Vorschlag erscheint dann in <#640985747155058708>!")
+					embed.addField("**Command 9: **", "- /add @DISCORDUSER @ROLE" + "\n" + "Fügt die getaggte Person zu der Getaggten Rolle hinzu!")
+					embed.addField("**Command 10: **","- /addtemp @DISCORDUSER @ROLE <Dauer>" + "\n" + "Fügt die getaggte Person für <Dauer> zur getaggten Rolle hinzu!")
+					embed.addField("**Command 11: **","- /remove @DISCORDUSER @ROLE" + "\n" + "Entfernt die getaggte Person aus der Getaggten Rolle!")
 					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
 					embed.setColor(0x8B0000)
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
@@ -128,6 +132,10 @@ Help
 					embed.addField("**Command 5: **", "- /purge <anzahl>" + "\n" + "Löscht die <anzahl> letzen Nachrichten im Channel!")
 					embed.addField("**Command 6: **", "- /say <Nachricht>" + "\n" + "Lässt den Bot etwas im aktuellem Channel sagen!")
 					embed.addField("**Command 7: **", "- /suggest <Inhalt> - /vorschlag <Inhalt>" + "\n" + "Der Befehlt muss in <#690627690012737566> benutzt werden! Der erstellte Vorschlag erscheint dann in <#640985747155058708>!")
+					embed.addField("**Command 8: **", "- /add @DISCORDUSER @ROLE" + "\n" + "Fügt die getaggte Person zu der Getaggten Rolle hinzu!")
+					embed.addField("**Command 9: **","- /addtemp @DISCORDUSER @ROLE <Dauer>" + "\n" + "Fügt die getaggte Person für <Dauer> zur getaggten Rolle hinzu!")
+					embed.addField("**Command 10: **","- /remove @DISCORDUSER @ROLE" + "\n" + "Entfernt die getaggte Person aus der Getaggten Rolle!")
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
 					embed.setColor(0x8B0000)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
@@ -149,11 +157,15 @@ Help
 					embed.addField("**Command 3: **", "- /unmute <<@DISCORDUSERID>>" + "\n" + "Entmuted den Getaggten Nutzer!")
 					embed.addField("**Command 4: **", "- /delete <<@DISCORDUSERID>> <anzahl>" + "\n" + "Löscht die <Anzahl> der letzten Nachrichten des Getaggten Users!")
 					embed.addField("**Command 5: **", "- /suggest <Inhalt> - /vorschlag <Inhalt>" + "\n" + "Der Befehlt muss in <#690627690012737566> benutzt werden! Der erstellte Vorschlag erscheint dann in <#640985747155058708>!")
+					embed.addField("**Command 6: **", "- /add @DISCORDUSER @ROLE" + "\n" + "Fügt die getaggte Person zu der Getaggten Rolle hinzu!")
+					embed.addField("**Command 7: **","- /addtemp @DISCORDUSER @ROLE <Dauer>" + "\n" + "Fügt die getaggte Person für <Dauer> zur getaggten Rolle hinzu!")
+					embed.addField("**Command 8: **","- /remove @DISCORDUSER @ROLE" + "\n" + "Entfernt die getaggte Person aus der Getaggten Rolle!")	
 					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
 					embed.setColor(0x8B0000)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					message.channel.send({embed});
 					console.log(`Hilfe wird für die MODERATOREN Angezeigt! Angefragt von: ` + message.author.tag)
@@ -174,6 +186,7 @@ Help
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					message.channel.send({embed});
 					console.log(`Hilfe wird für die SUPPORTER Angezeigt! Angefragt von: ` + message.author.tag)
@@ -198,6 +211,7 @@ Help
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					message.channel.send({embed});
 					console.log(`Hilfe wird für  Normale User Angezeigt! Angefragt von: ` + message.author.tag)
@@ -481,7 +495,186 @@ Suggest
 				message.channel.send("Fehlende Berechtigung! " + message.author);
 			}}
 	}
+/*
+===================================
+===========   Role Adder   ========
+===================================
+*/	
+	if (command === 'addtemp')	  {
+		
+			if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
+				message.member.roles.find(leitung => role.name === 'Mario') ||
+				message.member.roles.find(leitung => role.name === 'Admin⚙️')){
+				message.delete();
+				let comm = "/addtemp "
+				var cut = message.content.slice(comm.length).split(" ");
+				//let newrole = cut[1]
+				let dauer = cut[2]
+				//let newrole = message.guild.roles.find(mute => mute.name === x)
+				let member = message.mentions.members.first();
+				let newrole = message.mentions.roles.first();
+				console.log(`NEW ROLE:` + newrole)
+				if(newrole != "<@&640858861661847572>" &&
+				  newrole != "<@&640858638159839253>" &&
+				  newrole != "<@&690682850353348638>" &&
+				  newrole != "<@&690602986170220595>" &&
+				  newrole != "<@&690565273283199076>") {
+				 // newrole != message.member.roles.find(leitung => role.name === 'Big Brother')){
+				member.addRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
+				console.log(`Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag + `für :` + dauer)
+				  setTimeout(() => {
+				  member.removeRole(newrole, `User aus der Temp-Role entfernt.`);
+                  }, dauer * 60000);
+					const embed = new Discord.RichEmbed()
+					embed.setTitle("TEMP-ROLLE HINZUGEFÜGT!");
+					embed.addField("Der Nutzer: " , member, true) 
+					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Zu der Rolle: " , newrole , true)
+					embed.addField("Für (dauer in Minuten): " , "         " + dauer, true)
+					embed.setColor(0x8B0000)
+					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
+					embed.setTimestamp()
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
+					embed.setURL("https://www.paypal.me/magicaldesignstv")
+					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
+					
+					message.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "glass")) })
+				}
+				else{
+					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag + `für :` + dauer)
+				}
+					}
+			else{
+				if(message.author != client.user){
+				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+			}}
+	}	
 	
+		if (command === 'add')	  {
+		
+			if (message.member.roles.find(leitung => leitung.name === 'Leitung👑') ||
+				message.member.roles.find(mario => mario.name === 'Mario') ||
+				message.member.roles.find(admin => admin.name === 'Admin⚙️')){
+				message.delete();
+				let comm = "/add "
+				var cut = message.content.slice(comm.length).split(" ");
+				let member = message.mentions.members.first();
+				let newrole = message.mentions.roles.first();
+				console.log(`NEW ROLE:` + newrole)
+				if(newrole != "<@&640858861661847572>" &&
+				  newrole != "<@&640858638159839253>" &&
+				  newrole != "<@&690682850353348638>" &&
+				  newrole != "<@&690602986170220595>" &&
+				  newrole != "<@&690565273283199076>") {
+				member.addRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
+				console.log(`Case 1: Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+					const embed = new Discord.RichEmbed()
+					embed.setTitle("PERM-ROLLE HINZUGEFÜGT!");
+					embed.addField("Der Nutzer: " , member, true) 
+					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Zu der Rolle: " , newrole , true)
+					embed.setColor(0x8B0000)
+					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
+					embed.setTimestamp()
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
+					embed.setURL("https://www.paypal.me/magicaldesignstv")
+					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
+					
+					message.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "glass")) })
+				}
+				else{
+					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+					
+				}
+					}
+			else{
+				if (message.member.roles.find(leitung => leitung.name === 'Moderator🛠')){
+				message.delete();
+				let comm = "/add "
+				var cut = message.content.slice(comm.length).split(" ");
+				let member = message.mentions.members.first();
+				let newrole = message.mentions.roles.first();
+				console.log(`NEW ROLE:` + newrole)
+				if(newrole != "<@&640858861661847572>" && 
+				  newrole != "<@&640858638159839253>" &&		
+				  newrole != "<@&690682850353348638>" &&
+				  newrole != "<@&690602986170220595>" &&
+				  newrole != message.member.roles.find(leitung => role.name === 'Moderator🛠') &&
+				  newrole != "<@&690682719096537099>" &&
+				  newrole != "<@&690682779956150334>" &&
+				  newrole != "<@&691060585487532104>" &&
+				  newrole != "<@&691055203318890497>" &&
+				  newrole != "<@&690565273283199076>") {
+				member.addRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
+				console.log(`Case 2: Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+					const embed = new Discord.RichEmbed()
+					embed.setTitle("PERM-ROLLE HINZUGEFÜGT!");
+					embed.addField("Der Nutzer: " , member, true) 
+					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Zu der Rolle: " , newrole , true)
+					embed.setColor(0x8B0000)
+					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
+					embed.setTimestamp()
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
+					embed.setURL("https://www.paypal.me/magicaldesignstv")
+					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
+					
+					message.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "glass"))
+				  })
+				  }
+				  console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+				}
+				else{
+				if(message.author != client.user){
+				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+				}}
+	}	}
+	
+	if (command === 'remove')	  {
+		
+			if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
+				message.member.roles.find(leitung => role.name === 'Mario') ||
+				message.member.roles.find(leitung => role.name === 'Admin⚙️')){
+				message.delete();
+				let comm = "/addtemp "
+				var cut = message.content.slice(comm.length).split(" ");
+				let member = message.mentions.members.first();
+				let newrole = message.mentions.roles.first();
+				console.log(`NEW ROLE:` + newrole)
+				if(newrole != "<@&640858861661847572>" &&
+				  newrole != "<@&640858638159839253>" &&
+				  newrole != "<@&690682850353348638>" &&
+				  newrole != "<@&690602986170220595>" &&
+				  newrole != "<@&690565273283199076>") {
+				member.removeRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
+				console.log(`Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+					const embed = new Discord.RichEmbed()
+					embed.setTitle("PERM-ROLLE ENTFERNT!");
+					embed.addField("Der Nutzer: " , member, true) 
+					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Aus der Rolle Entfernt: " , newrole , true)
+					embed.setColor(0x8B0000)
+					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
+					embed.setTimestamp()
+					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
+					embed.setURL("https://www.paypal.me/magicaldesignstv")
+					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
+					
+					message.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "sad")) })
+				}
+				else{
+					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+				}
+					}
+			else{
+				if(message.author != client.user){
+				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+			}}
+	}
 	
 	}); //closes my User
 }); //closes on Message
@@ -492,7 +685,7 @@ Suggest
 ===================================
 */
 
-client.setInterval(colourupdate,30000);
+client.setInterval(colourupdate,60000);
  async function colourupdate(){
 	 //"#420542"
 	const col = [ "#7e9126", "#43a836", "#40aa93", "#6dd8ce", "#941911", "#13588f", "#711377", "#c28316", "#2ea019", "#2ea019", "#8f0a0a", "#8bc082", "#ffd600", "#ccbe64", "#138d9c", "#43cdda", "#0d535a", "#141679", "#3136c7", "#c731c0", "#d45746"]
@@ -659,6 +852,7 @@ client.setInterval(statisticupdate,1000000);
 					sentEmbed.delete(1000000);})
  })
  }
+
 /*
 ====================================
 =====Status ======= Update==========
