@@ -1,10 +1,32 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+//const client = new Discord.Client();
 const clientID = 'NjkwNTY0MTk1MzQ2ODA4ODgy.XnTQZA.QBlc-an4D9F7Mh5jwKE0_mLFdxY';
 const prefix = '/';
+const prefix2 = '?';
+const Client = require('./client/Client');
+const fs = require('fs')
+const client = new Client();
+const play = require(`./commands/play`);
+const skip = require(`./commands/skip`);
+const stop = require(`./commands/stop`);
+const pause = require(`./commands/pause`);
+const resume = require(`./commands/resume`);
+const volume = require(`./commands/volume`);
+const cq = require(`./commands/clearqueue`);
+const np = require(`./commands/nowplaying`);
 var role = 0;
 var guild = ""
 var membercount = ""
+var looped = false
+var musicowner = ""
+var musicchannel = ""
+var playing = false
+var message = ""
+/*
+===================================
+===========BOT ON RDY EVENT========
+===================================
+*/
 client.on('ready', () => {
 	 guild = client.guilds.get("640851794288836611");
      //role = guild.roles.find("name", "Leitung👑");
@@ -36,21 +58,48 @@ client.on('ready', () => {
   console.log(`Jugend Café Master wurde gestartet, mit ${client.users.size} Nutzern und ${client.channels.size} Channeln.`)
 });
 
-function timeFormat(time) {   
-  var hrs = ~~(time / 3600);
-  var mins = ~~((time % 3600) / 60);
-  var secs = Math.round(time % 60);
-  var ret = "";
-  if (hrs > 1) {
-    ret += "" + hrs + " Hrs " + (mins < 10 ? "0" : "");
-  } else
-  if (hrs > 0) {
-    ret += "" + hrs + " Hr " + (mins < 10 ? "0" : "");
-  }
-  ret += "" + mins + " Mins " + (secs < 10 ? "0" : "");
-  ret += "" + secs + " Secs";
-  return ret;
-};
+/*
+===================================
+===========VOICE CHAN EVENT========
+===================================
+*/
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+  let newUserChannel = newMember.voiceChannel
+  let oldUserChannel = oldMember.voiceChannel
+  
+   if(playing === true){
+	   console.log(`PLAYING = TRUE`)
+	   if(message != ""){
+		   console.log(`MESSAGE != ""`)
+	   if(musicowner != "" && musicchannel != "") {
+  if(oldUserChannel === undefined && newUserChannel != undefined) {
+
+     // User Joins a voice channel
+
+  } else if(newUserChannel === undefined || newUserChannel != musicchannel ){
+		if (musicowner != newMember.id){
+			console.log(`LEFT MEMBER IS NOT MUSIC OWNER! Musicowner: ` + musicowner + `newMember: `+ newMember.id)
+		}
+		else{
+			if(musicowner === newMember.id && musicchannel === oldUserChannel){
+				console.log(`LEFT MEMBER IS MUSIC OWNER! Musicowner: ` + musicowner + `newMember: `+ newMember.id)
+				musicowner = "" 
+				musicchannel = ""
+				play.channelleave(message, client)
+				playing = false
+				looped = false
+				}
+			}
+   }
+   }}}
+    // User leaves a voice channel
+	
+
+  
+})
+   
+
 
 /*
 ===================================
@@ -58,23 +107,102 @@ function timeFormat(time) {
 ===================================
 */
 
-client.on('message', message => {
+client.on('message', msg => {
 	//unmute everyone
 	client.fetchUser("305734474308517898").then(myUser => {
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+	  const args = msg.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
+  const inhalt = msg.content	
+		
+		
+		try{
+
   
-  
+  if(inhalt.startsWith(prefix2)) {
+	console.log(`Befehlt Startete mit "? "!Ich versuche den Musik - Befehl "` + command + `" aus zu führen!`)
+	let client2 = client
+	 message = msg
+	if (command === 'play' || command === 'spiel')	  {
+		playing = true
+		looped = false
+		musicchannel = message.member.voiceChannel
+		musicowner = message.member.id
+		let fun = client.guilds.get("640851794288836611").guild
+		if(!args[0]){
+			return console.log(`1. Es muss ein Youtube-Link eingegeben werden!` + args[0])
+			return message.channel.send("Es muss ein Youtube-Link eingegeben werden!")
+		}
+			if(args[0].includes("www.youtube") || args[0].includes("https://www.youtube") || args[0].includes("https://www.youtu.be")) 
+			{
+				play.execute(message, client, fun, looped);
+			}else{
+				return console.log(`2. Es muss ein Youtube-Link eingegeben werden!` + args[0])
+				return message.channel.send("Es muss ein Youtube-Link eingegeben werden!")
+			 }
+		}
+	if (command === 'skip' || command === 'vor' || command === 'next')	  {
+		 looped = false
+			play.skip(message, client);
+			
+		}
+	if (command === 'stop')	  {
+		looped = false
+			play.stop(message, client);
+			
+		}
+	if (command === 'clear' || command === 'löschen')	  {
+			play.clearqueue(message, client);
+			
+		}
+	if (command === 'pause')	  {
+			play.pause(message, client, looped);
+			
+		}
+	if (command === 'weiter' || command === "resume")	  {
+			resume.execute(message, client);
+			
+		}
+	if (command === 'volume' || command === "lautstärke")	  {
+			volume.execute(message, client);
+			
+		}
+	if (command === 'loop' || command === "schleife")	  {
+		if(looped === false){
+			looped = true
+			play.loop(message, client, looped);
+			console.log(`Case: FALSE => Looped = `+ looped);
+		}
+		else{
+			looped = false
+			console.log(`Case: TRUE => Looped = `+ looped);
+			play.loop(message, client, looped);
+		}
+			
+		}
+	if (command === 'lied' || command === "nowplaying" || command === "np")	  {
+			np.execute(message, client);
+	
+		}
+
+  msg.delete();
+		}
+		}catch (error) {
+		console.log(error);}
+		
+			
    /*
 ====================================================================================
 Help
 ====================================================================================
 */ 
-  
+	if(msg.content.startsWith(prefix)) {
+	  
+	  console.log(`Befehlt Startete mit "/"!Ich versuche den Befehl "` + command + `" aus zu führen!`)
+	  
 	if (command === 'hilfe' || command === 'help' || command === 'h')	  {
 		var help1 = client.channels.get('641042957520338945');
 		var help2 = client.channels.get('641043925494398997');
-			let com = message.content.slice(prefix.length);
+			let com = msg.content.slice(prefix.length);
 			let word = command
 			let seite = com.slice(word.length);
 			console.log(`SEITE=` + seite)
@@ -82,13 +210,13 @@ Help
 				console.log(`Es muss eine Nummer eingegeben werden!`)
 			}
 			else{
-		if(message.member.roles.get("640858861661847572") ||
-		   message.member.roles.find(leitung => role.name === 'Mario')){
+		if(msg.member.roles.get("640858861661847572") ||
+		   msg.member.roles.find(leitung => role.name === 'Mario')){
 			//if Leitung
 			//embed
 			if(seite == 0 || seite == 1 || seite === ""){
 				seite = 1
-				console.log(`Hilfe Seite: `+ seite + ` wird für die LEITUNG Angezeigt! Angefragt von: ` + message.author.tag)
+				console.log(`Hilfe Seite: `+ seite + ` wird für die LEITUNG Angezeigt! Angefragt von: ` + msg.author.tag)
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("Hier ist eine Liste mit verfügbaren Befehlen für die Leitung!");
 					embed.addField("Wir haben Hilfe-Channel wo dir Nutzer oder Admins helfen können!", "Besuche: " + help1)
@@ -105,14 +233,14 @@ Help
 					embed.addField("**Command 9: **", "- /add @DISCORDUSER @ROLE" + "\n" + "Fügt die getaggte Person zu der Getaggten Rolle hinzu!")
 					embed.addField("**Command 10: **","- /addtemp @DISCORDUSER @ROLE <Dauer>" + "\n" + "Fügt die getaggte Person für <Dauer> zur getaggten Rolle hinzu!")
 					embed.addField("**Command 11: **","- /remove @DISCORDUSER @ROLE" + "\n" + "Entfernt die getaggte Person aus der Getaggten Rolle!")
-					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
+					embed.addField("Nachrichten gepostet in: " , msg.channel, true) 
 					embed.setColor(0x8B0000)
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
-					message.channel.send({embed});
+					msg.channel.send({embed});
 			} //closes if seite
 			else{
 				console.log(`Seite 2`)
@@ -120,7 +248,7 @@ Help
 		}//closes if Leitung
 			else
 			{
-				if(message.member.roles.get("690682850353348638")){
+				if(msg.member.roles.get("690682850353348638")){
 					//if Admin
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("Hier ist eine Liste mit verfügbaren Befehlen für die Admins!");
@@ -136,18 +264,18 @@ Help
 					embed.addField("**Command 9: **","- /addtemp @DISCORDUSER @ROLE <Dauer>" + "\n" + "Fügt die getaggte Person für <Dauer> zur getaggten Rolle hinzu!")
 					embed.addField("**Command 10: **","- /remove @DISCORDUSER @ROLE" + "\n" + "Entfernt die getaggte Person aus der Getaggten Rolle!")
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
-					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
+					embed.addField("Nachrichten gepostet in: " , msg.channel, true) 
 					embed.setColor(0x8B0000)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
-					message.channel.send({embed});
-					console.log(`Hilfe wird für die ADMIS Angezeigt! Angefragt von: ` + message.author.tag)
+					msg.channel.send({embed});
+					console.log(`Hilfe wird für die ADMIS Angezeigt! Angefragt von: ` + msg.author.tag)
 			}//closes if admin
 			else
 			{
-				if(message.member.roles.get("690682719096537099")){
+				if(msg.member.roles.get("690682719096537099")){
 					//if Mod
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("Hier ist eine Liste mit verfügbaren Befehlen für die Mods!");
@@ -160,19 +288,19 @@ Help
 					embed.addField("**Command 6: **", "- /add @DISCORDUSER @ROLE" + "\n" + "Fügt die getaggte Person zu der Getaggten Rolle hinzu!")
 					embed.addField("**Command 7: **","- /addtemp @DISCORDUSER @ROLE <Dauer>" + "\n" + "Fügt die getaggte Person für <Dauer> zur getaggten Rolle hinzu!")
 					embed.addField("**Command 8: **","- /remove @DISCORDUSER @ROLE" + "\n" + "Entfernt die getaggte Person aus der Getaggten Rolle!")	
-					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
+					embed.addField("Nachrichten gepostet in: " , msg.channel, true) 
 					embed.setColor(0x8B0000)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
-					message.channel.send({embed});
-					console.log(`Hilfe wird für die MODERATOREN Angezeigt! Angefragt von: ` + message.author.tag)
+					msg.channel.send({embed});
+					console.log(`Hilfe wird für die MODERATOREN Angezeigt! Angefragt von: ` + msg.author.tag)
 			}//closes if mod
 			else
 			{
-				if(message.member.roles.get("690682779956150334")){
+				if(msg.member.roles.get("690682779956150334")){
 					//if sup
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("Hier ist eine Liste mit verfügbaren Befehlen für die Supporter!");
@@ -181,21 +309,21 @@ Help
 					embed.addField("**Command 2: **", "- /mute <<@DISCORDUSERID>> <dauer>" + "\n" +  "Muted  einen Nutzer, Nutzer muss Getaggt sein, Dauer muss eine Zahl sein!")
 					embed.addField("**Command 3: **", "- /unmute <<@DISCORDUSERID>>" + "\n" + "Entmuted den Getaggten Nutzer!")
 					embed.addField("**Command 4: **", "- /suggest <Inhalt> - /vorschlag <Inhalt>" + "\n" + "Der Befehlt muss in <#690627690012737566> benutzt werden! Der erstellte Vorschlag erscheint dann in <#640985747155058708>!")
-					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
+					embed.addField("Nachrichten gepostet in: " , msg.channel, true) 
 					embed.setColor(0x8B0000)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
-					message.channel.send({embed});
-					console.log(`Hilfe wird für die SUPPORTER Angezeigt! Angefragt von: ` + message.author.tag)
+					msg.channel.send({embed});
+					console.log(`Hilfe wird für die SUPPORTER Angezeigt! Angefragt von: ` + msg.author.tag)
 			}//closes if sup
 			else
 			{
-				if(message.member.roles.get("690879606508748841")){
+				if(msg.member.roles.get("690879606508748841")){
 					//PREMIUM
-					console.log(`Hilfe wird für die PREMUIM USER Angezeigt! Angefragt von: ` + message.author.tag)
+					console.log(`Hilfe wird für die PREMUIM USER Angezeigt! Angefragt von: ` + msg.author.tag)
 				}
 					else{
 					//@everyone
@@ -206,15 +334,15 @@ Help
 					//add Commands Below here
 					embed.addField("**Command 1: **", "- /hilfe <seite> - /help <seite> - /h <seite>" + "\n" + "Zeigt die Hilfe an, die Seite muss eine Zahl sein!")
 					embed.addField("**Command 2: **", "- /suggest <Inhalt> - /vorschlag <Inhalt>" + "\n" + "Der Befehlt muss in <#690627690012737566> benutzt werden! Der erstellte Vorschlag erscheint dann in <#640985747155058708>!")
-					embed.addField("Nachrichten gepostet in: " , message.channel, true) 
+					embed.addField("Nachrichten gepostet in: " , msg.channel, true) 
 					embed.setColor(0x8B0000)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
-					message.channel.send({embed});
-					console.log(`Hilfe wird für  Normale User Angezeigt! Angefragt von: ` + message.author.tag)
+					msg.channel.send({embed});
+					console.log(`Hilfe wird für  Normale User Angezeigt! Angefragt von: ` + msg.author.tag)
 					}
 			}
 	}
@@ -231,19 +359,19 @@ Message-Deleter
 
 	if (command === 'purge')	  {
 	var log = client.channels.get('690565752960581672');
-	if(message.channel != client.channels.get("640941207064674363") && //intro
-	   message.channel != client.channels.get("640941306771931156") && //info
-	   message.channel != client.channels.get("640941402066518017") && //ankündigungen
-	   message.channel != client.channels.get("640941631276711958") && //regeln
-	   message.channel != client.channels.get("640967138798075914") && //rollen
-	   message.channel != client.channels.get("640985747155058708") && //suggestions
-	   message.channel != client.channels.get("690627287690772661"))   //bewerbungen
+	if(msg.channel != client.channels.get("640941207064674363") && //intro
+	   msg.channel != client.channels.get("640941306771931156") && //info
+	   msg.channel != client.channels.get("640941402066518017") && //ankündigungen
+	   msg.channel != client.channels.get("640941631276711958") && //regeln
+	   msg.channel != client.channels.get("640967138798075914") && //rollen
+	   msg.channel != client.channels.get("640985747155058708") && //suggestions
+	   msg.channel != client.channels.get("690627287690772661"))   //bewerbungen
 	{
-		if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
-			message.member.roles.find(leitung => role.name === 'Mario') ||
-			message.member.roles.find(leitung => role.name === 'Admin⚙️')){ 
-		message.delete();
-			let com = message.content.slice(prefix.length);
+		if (msg.member.roles.find(leitung => role.name === 'Leitung👑') ||
+			msg.member.roles.find(leitung => role.name === 'Mario') ||
+			msg.member.roles.find(leitung => role.name === 'Admin⚙️')){ 
+		msg.delete();
+			let com = msg.content.slice(prefix.length);
 			let word = "purge"
 			let anzahl = com.slice(word.length);
 			console.log(`ARGS=` + anzahl)
@@ -253,34 +381,34 @@ Message-Deleter
 			}
 			else {
 				if(anzahl == "" || anzahl == 0 || anzahl == "0"){
-					console.log(`Der Nutzer: ` + message.author.tag + ` hat versucht` + anzahl + ` Nachrichten im Channel: ` + message.channel.name + `zu löschen!`)
+					console.log(`Der Nutzer: ` + msg.author.tag + ` hat versucht` + anzahl + ` Nachrichten im Channel: ` + msg.channel.name + `zu löschen!`)
 				}
 				else{
 					if(anzahl > 20){
-						console.log(`Der Nutzer: ` + message.author.tag + ` hat versucht` + anzahl + ` Nachrichten im Channel: ` + message.channel.name + `zu löschen! Erlaubtes Maximum = 20!`)
+						console.log(`Der Nutzer: ` + msg.author.tag + ` hat versucht` + anzahl + ` Nachrichten im Channel: ` + msg.channel.name + `zu löschen! Erlaubtes Maximum = 20!`)
 					}
 					else{
-					console.log(`Der Nutzer: ` + message.author.tag + ` hat ` + anzahl + ` Nachrichten im Channel: ` + message.channel.name + `gelöscht!`)
-				    message.channel.bulkDelete(anzahl);
+					console.log(`Der Nutzer: ` + msg.author.tag + ` hat ` + anzahl + ` Nachrichten im Channel: ` + msg.channel.name + `gelöscht!`)
+				    msg.channel.bulkDelete(anzahl);
 				
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("Message Purge wurde genutzt!");
-					embed.addField("Nachrichten in: " , message.channel, true) 
-					embed.addField("Gelöscht von: " , "<@"+message.author.id+">", true)
+					embed.addField("Nachrichten in: " , msg.channel, true) 
+					embed.addField("Gelöscht von: " , "<@"+msg.author.id+">", true)
 					embed.setColor(0xb34141)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					log.send({embed});
 		}}}}
 		else 
 		{
-			console.log(`Der User: ` + message.author.tag + ` hat versucht /purge im Channel: ` + message.channel.name + ` zu benutzen!`)
+			console.log(`Der User: ` + msg.author.tag + ` hat versucht /purge im Channel: ` + msg.channel.name + ` zu benutzen!`)
 		
 		}
 	 }
 	 else {
-		 if (message.channel != client.channels.get("677151384931663882") || message.channel != client.channels.get("677151721939795968") || message.channel != client.channels.get("676928770392850433") || message.channel != client.channels.get("676962521420136498")){
+		 if (msg.channel != client.channels.get("677151384931663882") || msg.channel != client.channels.get("677151721939795968") || msg.channel != client.channels.get("676928770392850433") || msg.channel != client.channels.get("676962521420136498")){
 		
-				console.log(`Der User: ` + message.author.tag + ` hat versucht /purge im Channel: ` + message.channel.name + ` zu benutzen!`)
+				console.log(`Der User: ` + msg.author.tag + ` hat versucht /purge im Channel: ` + msg.channel.name + ` zu benutzen!`)
 		
 		 }
 	 }
@@ -292,41 +420,41 @@ Message-Deleter
 */
   
   if(command === "delete"){
-	 if(message.channel != client.channels.get("640941207064674363") && //intro
-	   message.channel != client.channels.get("640941306771931156") && //info
-	   message.channel != client.channels.get("640941402066518017") && //ankündigungen
-	   message.channel != client.channels.get("640941631276711958") && //regeln
-	   message.channel != client.channels.get("640967138798075914") && //rollen
-	   message.channel != client.channels.get("640985747155058708") && //suggestions
-	   message.channel != client.channels.get("690627287690772661"))   //bewerbungen
+	 if(msg.channel != client.channels.get("640941207064674363") && //intro
+	   msg.channel != client.channels.get("640941306771931156") && //info
+	   msg.channel != client.channels.get("640941402066518017") && //ankündigungen
+	   msg.channel != client.channels.get("640941631276711958") && //regeln
+	   msg.channel != client.channels.get("640967138798075914") && //rollen
+	   msg.channel != client.channels.get("640985747155058708") && //suggestions
+	   msg.channel != client.channels.get("690627287690772661"))   //bewerbungen
 	{
-		if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
-			message.member.roles.find(leitung => role.name === 'Mario') ||
-			message.member.roles.find(leitung => role.name === 'Admin⚙️')   ||
-			message.member.roles.find(leitung => role.name === 'Moderator🛠')){ 
-			const user = message.mentions.users.first();
+		if (msg.member.roles.find(leitung => role.name === 'Leitung👑') ||
+			msg.member.roles.find(leitung => role.name === 'Mario') ||
+			msg.member.roles.find(leitung => role.name === 'Admin⚙️')   ||
+			msg.member.roles.find(leitung => role.name === 'Moderator🛠')){ 
+			const user = msg.mentions.users.first();
 // Parse Amount
-const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
-if (!amount) return message.reply('Must specify an amount to delete!');
-if (!amount && !user) return message.reply('Must specify a user and amount, or just an amount, of messages to purge!');
+const amount = !!parseInt(msg.content.split(' ')[1]) ? parseInt(msg.content.split(' ')[1]) : parseInt(msg.content.split(' ')[2])
+if (!amount) return msg.reply('Must specify an amount to delete!');
+if (!amount && !user) return msg.reply('Must specify a user and amount, or just an amount, of messages to purge!');
 // Fetch 10 messages (will be filtered and lowered up to max amount requested)
-message.channel.fetchMessages({
+msg.channel.fetchMessages({
  limit: 10,
 }).then((messages) => {
  if (user) {
  const filterBy = user ? user.id : Client.user.id;
  messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
  }
- message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
- console.log(`Der Nutzer` + message.author.tag + `hat im Channel: ` + message.channel.name + `,` + amount + `Nachrichten von: ` + user + `gelöscht!`)
+ msg.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+ console.log(`Der Nutzer` + msg.author.tag + `hat im Channel: ` + msg.channel.name + `,` + amount + `Nachrichten von: ` + user + `gelöscht!`)
 });
   }
   else{
-	 console.log(`Der User: ` + message.author.tag + ` hat versucht /delete im Channel: ` + message.channel.name + ` zu benutzen!`) 
+	 console.log(`Der User: ` + msg.author.tag + ` hat versucht /delete im Channel: ` + msg.channel.name + ` zu benutzen!`) 
   }
   }
-  console.log(`Der User: ` + message.author.tag + ` hat versucht /delete im Channel: ` + message.channel.name + ` zu benutzen!`) 
-  message.delete();
+  console.log(`Der User: ` + msg.author.tag + ` hat versucht /delete im Channel: ` + msg.channel.name + ` zu benutzen!`) 
+  msg.delete();
   }
   
 /*
@@ -335,17 +463,17 @@ Say
 ====================================================================================
 */	
 		if (command === 'say')	  {
-			if (message.member.roles.find(leitung => role.name === 'Leitung👑') || 
-				message.member.roles.find(leitung => role.name === 'Mario') ||
-				message.member.roles.find(leitung => role.name === 'Admin⚙️')){ 
-				let inhalt = message.content; 
+			if (msg.member.roles.find(leitung => role.name === 'Leitung👑') || 
+				msg.member.roles.find(leitung => role.name === 'Mario') ||
+				msg.member.roles.find(leitung => role.name === 'Admin⚙️')){ 
+				let inhalt = msg.content; 
 				let comm = "/say "
-				const nachricht = message.content.slice(comm.length);
-				message.delete();
-				message.channel.send(nachricht);
+				const nachricht = msg.content.slice(comm.length);
+				msg.delete();
+				msg.channel.send(nachricht);
 			}
 			else{
-				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+				msg.channel.send("Fehlende Berechtigung! " + msg.author.tag);
 			}
 	}
 	/*
@@ -355,25 +483,25 @@ Say-In
 */
 	if (command === 'sayin')	  {
 		
-			if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
-				message.member.roles.find(leitung => role.name === 'Mario')){
-				message.delete();
-				let inhalt = message.content; 
+			if (msg.member.roles.find(leitung => role.name === 'Leitung👑') ||
+				msg.member.roles.find(leitung => role.name === 'Mario')){
+				msg.delete();
+				let inhalt = msg.content; 
 				let comm = "/say "
-				var cut = message.content.slice(comm.length).split(" ");
+				var cut = msg.content.slice(comm.length).split(" ");
 				let chan = cut[1]
 				const prex = "<#" 
 				let chann = cut[1].slice(prex.length, -1);
 				//let chann2 = chann.slice(sufx.length);
 				let chenne = client.channels.get(chann);
-				let pre = message.content.slice(comm.length);
+				let pre = msg.content.slice(comm.length);
 				let nachricht = pre.slice(chan.length + 2);
 				console.log(`Der Bot hat eine Custom Message in den Channel:` + chenne + `gesendet. Inhalt:` + nachricht + ` ,ID des Channels: ` + chann)
 				chenne.send(nachricht);
 			}
 			else{
-				if(message.author != client.user){
-				message.chenne.send("Fehlende Berechtigung! " + message.author.tag);
+				if(msg.author != client.user){
+				msg.chenne.send("Fehlende Berechtigung! " + msg.author.tag);
 			}}
 	}
 	
@@ -387,21 +515,21 @@ Suggest
 		if (command === 'suggest' || command === "vorschlag")	  {
 			let msgchannel = guild.channels.find(msgchannel => msgchannel.name === "suggestion-erstellen")
 			let postchannel = guild.channels.find(postchannel => postchannel.name ==="🙏suggestions")
-			if(message.channel === msgchannel){
-				let inhalt = message.content; 
+			if(msg.channel === msgchannel){
+				let inhalt = msg.content; 
 				if(command === "suggest"){
 					comm = "/suggest"
 				}
 				else{
 					comm = "/vorschlag"
 				}
-				const nachricht = message.content.slice(comm.length);
-				console.log(`Der Nutzer:` + message.author.tag + `hat: ` + nachricht + ` ,Vorgeschlagen!`)
-				message.delete();
+				const nachricht = msg.content.slice(comm.length);
+				console.log(`Der Nutzer:` + msg.author.tag + `hat: ` + nachricht + ` ,Vorgeschlagen!`)
+				msg.delete();
 				const embed = new Discord.RichEmbed()
 					embed.setTitle("Hier ist ein Vorschlag!");
 					//add Commands Below here
-					embed.addField("**Der Nutzer: **", message.author + ", hat folgendes vorgeschlagen!")
+					embed.addField("**Der Nutzer: **", msg.author + ", hat folgendes vorgeschlagen!")
 					embed.addField("**Vorschlag: **", nachricht)
 					embed.addField("Danke für deinen Vorschlag!", "Nun darf die Community Voten, ob der Vorschlag gut oder schlecht ist!")
 					embed.setColor(0x8B0000)
@@ -411,11 +539,11 @@ Suggest
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					postchannel.send(embed).then(sentEmbed =>  {
-					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "upvote"))
-					sentEmbed.react(message.guild.emojis.find(reactdown => reactdown.name === "downvote"))})
+					sentEmbed.react(msg.guild.emojis.find(reactup => reactup.name === "upvote"))
+					sentEmbed.react(msg.guild.emojis.find(reactdown => reactdown.name === "downvote"))})
 			}
 			else{
-				message.channel.send("Falscher Channel für eine Suggestion! " + message.author.tag +`Channel: ` + message.channel);
+				msg.channel.send("Falscher Channel für eine Suggestion! " + msg.author.tag +`Channel: ` + msg.channel);
 			}
 	}
 /*
@@ -425,20 +553,20 @@ Suggest
 */	
 	if (command === 'mute')	  {
 		
-			if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
-				message.member.roles.find(leitung => role.name === 'Mario') ||
-				message.member.roles.find(leitung => role.name === 'Admin⚙️')   ||
-				message.member.roles.find(leitung => role.name === 'Moderator🛠')||
-				message.member.roles.find(leitung => role.name === 'Support')){
-				message.delete();
+			if (msg.member.roles.find(leitung => role.name === 'Leitung👑') ||
+				msg.member.roles.find(leitung => role.name === 'Mario') ||
+				msg.member.roles.find(leitung => role.name === 'Admin⚙️')   ||
+				msg.member.roles.find(leitung => role.name === 'Moderator🛠')||
+				msg.member.roles.find(leitung => role.name === 'Support')){
+				msg.delete();
 				let comm = "/mute "
-				var cut = message.content.slice(comm.length).split(" ");
+				var cut = msg.content.slice(comm.length).split(" ");
 				let dauer = cut[1]
-				//let muterole = message.guild.roles.find(`name`, "Muted");
-				let muterole = message.guild.roles.find(mute => mute.name === "Muted")
-				let member = message.mentions.members.first();
+				//let muterole = msg.guild.roles.find(`name`, "Muted");
+				let muterole = msg.guild.roles.find(mute => mute.name === "Muted")
+				let member = msg.mentions.members.first();
 				
-				member.addRole(muterole, `Muted by ${message.author.tag} for ${dauer} minutes.`);
+				member.addRole(muterole, `Muted by ${msg.author.tag} for ${dauer} minutes.`);
 				console.log(`USER: ` + member + `Dauer: ` + dauer)
 				  setTimeout(() => {
 				  member.removeRole(muterole, `User Entmuted.`);
@@ -447,7 +575,7 @@ Suggest
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("MUTED!");
 					embed.addField("Der Nutzer: " , member, true) 
-					embed.addField("Gemuted von: " , "<@"+message.author.id+">", true)
+					embed.addField("Gemuted von: " , "<@"+msg.author.id+">", true)
 					embed.addField("Für (dauer in Minuten): " , "         " + dauer, true)
 					embed.setColor(0x8B0000)
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
@@ -456,43 +584,43 @@ Suggest
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					
-					message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "mute")) })
+					msg.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(msg.guild.emojis.find(reactup => reactup.name === "mute")) })
 			}
 			else{
-				if(message.author != client.user){
-				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+				if(msg.author != client.user){
+				msg.channel.send("Fehlende Berechtigung! " + msg.author.tag);
 			}}
 	}
 		if (command === 'unmute')	  {
 		
-			if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
-				message.member.roles.find(leitung => role.name === 'Mario') ||
-				message.member.roles.find(leitung => role.name === 'Admin⚙️')   ||
-				message.member.roles.find(leitung => role.name === 'Moderator🛠')||
-				message.member.roles.find(leitung => role.name === 'Support')){
-				message.delete();
-				let muterole = message.guild.roles.find(mute => mute.name === "Muted")
-				let member = message.mentions.members.first();
+			if (msg.member.roles.find(leitung => role.name === 'Leitung👑') ||
+				msg.member.roles.find(leitung => role.name === 'Mario') ||
+				msg.member.roles.find(leitung => role.name === 'Admin⚙️')   ||
+				msg.member.roles.find(leitung => role.name === 'Moderator🛠')||
+				msg.member.roles.find(leitung => role.name === 'Support')){
+				msg.delete();
+				let muterole = msg.guild.roles.find(mute => mute.name === "Muted")
+				let member = msg.mentions.members.first();
 				
 				member.removeRole(muterole, `User Entmuted.`);
 				console.log(`Der Nutzer:` + member + `wurde entmutet!`)
 				const embed = new Discord.RichEmbed()
 					embed.setTitle("ENTMUTED!");
 					embed.addField("Der Nutzer: " , member, true) 
-					embed.addField("Wurde entmuted von: " , "<@"+message.author.id+">", true)
+					embed.addField("Wurde entmuted von: " , "<@"+msg.author.id+">", true)
 					embed.setColor(0x1e6129)
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
 					embed.setTimestamp()
 					embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
-					message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "unmute")) })
+					msg.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(msg.guild.emojis.find(reactup => reactup.name === "unmute")) })
 			}
 			else{
-				if(message.author != client.user){
-				message.channel.send("Fehlende Berechtigung! " + message.author);
+				if(msg.author != client.user){
+				msg.channel.send("Fehlende Berechtigung! " + msg.author);
 			}}
 	}
 /*
@@ -502,33 +630,33 @@ Suggest
 */	
 	if (command === 'addtemp')	  {
 		
-			if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
-				message.member.roles.find(leitung => role.name === 'Mario') ||
-				message.member.roles.find(leitung => role.name === 'Admin⚙️')){
-				message.delete();
+			if (msg.member.roles.find(leitung => role.name === 'Leitung👑') ||
+				msg.member.roles.find(leitung => role.name === 'Mario') ||
+				msg.member.roles.find(leitung => role.name === 'Admin⚙️')){
+				msg.delete();
 				let comm = "/addtemp "
-				var cut = message.content.slice(comm.length).split(" ");
+				var cut = msg.content.slice(comm.length).split(" ");
 				//let newrole = cut[1]
 				let dauer = cut[2]
-				//let newrole = message.guild.roles.find(mute => mute.name === x)
-				let member = message.mentions.members.first();
-				let newrole = message.mentions.roles.first();
+				//let newrole = msg.guild.roles.find(mute => mute.name === x)
+				let member = msg.mentions.members.first();
+				let newrole = msg.mentions.roles.first();
 				console.log(`NEW ROLE:` + newrole)
 				if(newrole != "<@&640858861661847572>" &&
 				  newrole != "<@&640858638159839253>" &&
 				  newrole != "<@&690682850353348638>" &&
 				  newrole != "<@&690602986170220595>" &&
 				  newrole != "<@&690565273283199076>") {
-				 // newrole != message.member.roles.find(leitung => role.name === 'Big Brother')){
-				member.addRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
-				console.log(`Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag + `für :` + dauer)
+				 // newrole != msg.member.roles.find(leitung => role.name === 'Big Brother')){
+				member.addRole(newrole, `Added the Role ${newrole} by ${msg.author.tag} for ${member} .`);
+				console.log(`Added the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag + `für :` + dauer)
 				  setTimeout(() => {
 				  member.removeRole(newrole, `User aus der Temp-Role entfernt.`);
                   }, dauer * 60000);
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("TEMP-ROLLE HINZUGEFÜGT!");
 					embed.addField("Der Nutzer: " , member, true) 
-					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Wurde von: " , "<@"+msg.author.id+">", true)
 					embed.addField("Zu der Rolle: " , newrole , true)
 					embed.addField("Für (dauer in Minuten): " , "         " + dauer, true)
 					embed.setColor(0x8B0000)
@@ -538,41 +666,41 @@ Suggest
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					
-					message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "glass")) })
+					msg.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(msg.guild.emojis.find(reactup => reactup.name === "glass")) })
 				}
 				else{
-					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag + `für :` + dauer)
+					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag + `für :` + dauer)
 				}
 					}
 			else{
-				if(message.author != client.user){
-				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+				if(msg.author != client.user){
+				msg.channel.send("Fehlende Berechtigung! " + msg.author.tag);
 			}}
 	}	
 	
 		if (command === 'add')	  {
 		
-			if (message.member.roles.find(leitung => leitung.name === 'Leitung👑') ||
-				message.member.roles.find(mario => mario.name === 'Mario') ||
-				message.member.roles.find(admin => admin.name === 'Admin⚙️')){
-				message.delete();
+			if (msg.member.roles.find(leitung => leitung.name === 'Leitung👑') ||
+				msg.member.roles.find(mario => mario.name === 'Mario') ||
+				msg.member.roles.find(admin => admin.name === 'Admin⚙️')){
+				msg.delete();
 				let comm = "/add "
-				var cut = message.content.slice(comm.length).split(" ");
-				let member = message.mentions.members.first();
-				let newrole = message.mentions.roles.first();
+				var cut = msg.content.slice(comm.length).split(" ");
+				let member = msg.mentions.members.first();
+				let newrole = msg.mentions.roles.first();
 				console.log(`NEW ROLE:` + newrole)
 				if(newrole != "<@&640858861661847572>" &&
 				  newrole != "<@&640858638159839253>" &&
 				  newrole != "<@&690682850353348638>" &&
 				  newrole != "<@&690602986170220595>" &&
 				  newrole != "<@&690565273283199076>") {
-				member.addRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
-				console.log(`Case 1: Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+				member.addRole(newrole, `Added the Role ${newrole} by ${msg.author.tag} for ${member} .`);
+				console.log(`Case 1: Added the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag)
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("PERM-ROLLE HINZUGEFÜGT!");
 					embed.addField("Der Nutzer: " , member, true) 
-					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Wurde von: " , "<@"+msg.author.id+">", true)
 					embed.addField("Zu der Rolle: " , newrole , true)
 					embed.setColor(0x8B0000)
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
@@ -581,38 +709,38 @@ Suggest
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					
-					message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "glass")) })
+					msg.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(msg.guild.emojis.find(reactup => reactup.name === "glass")) })
 				}
 				else{
-					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag)
 					
 				}
 					}
 			else{
-				if (message.member.roles.find(leitung => leitung.name === 'Moderator🛠')){
-				message.delete();
+				if (msg.member.roles.find(leitung => leitung.name === 'Moderator🛠')){
+				msg.delete();
 				let comm = "/add "
-				var cut = message.content.slice(comm.length).split(" ");
-				let member = message.mentions.members.first();
-				let newrole = message.mentions.roles.first();
+				var cut = msg.content.slice(comm.length).split(" ");
+				let member = msg.mentions.members.first();
+				let newrole = msg.mentions.roles.first();
 				console.log(`NEW ROLE:` + newrole)
 				if(newrole != "<@&640858861661847572>" && 
 				  newrole != "<@&640858638159839253>" &&		
 				  newrole != "<@&690682850353348638>" &&
 				  newrole != "<@&690602986170220595>" &&
-				  newrole != message.member.roles.find(leitung => role.name === 'Moderator🛠') &&
+				  newrole != msg.member.roles.find(leitung => role.name === 'Moderator🛠') &&
 				  newrole != "<@&690682719096537099>" &&
 				  newrole != "<@&690682779956150334>" &&
 				  newrole != "<@&691060585487532104>" &&
 				  newrole != "<@&691055203318890497>" &&
 				  newrole != "<@&690565273283199076>") {
-				member.addRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
-				console.log(`Case 2: Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+				member.addRole(newrole, `Added the Role ${newrole} by ${msg.author.tag} for ${member} .`);
+				console.log(`Case 2: Added the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag)
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("PERM-ROLLE HINZUGEFÜGT!");
 					embed.addField("Der Nutzer: " , member, true) 
-					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Wurde von: " , "<@"+msg.author.id+">", true)
 					embed.addField("Zu der Rolle: " , newrole , true)
 					embed.setColor(0x8B0000)
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
@@ -621,40 +749,40 @@ Suggest
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					
-					message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "glass"))
+					msg.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(msg.guild.emojis.find(reactup => reactup.name === "glass"))
 				  })
 				  }
-				  console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+				  console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag)
 				}
 				else{
-				if(message.author != client.user){
-				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+				if(msg.author != client.user){
+				msg.channel.send("Fehlende Berechtigung! " + msg.author.tag);
 				}}
 	}	}
 	
 	if (command === 'remove')	  {
 		
-			if (message.member.roles.find(leitung => role.name === 'Leitung👑') ||
-				message.member.roles.find(leitung => role.name === 'Mario') ||
-				message.member.roles.find(leitung => role.name === 'Admin⚙️')){
-				message.delete();
+			if (msg.member.roles.find(leitung => role.name === 'Leitung👑') ||
+				msg.member.roles.find(leitung => role.name === 'Mario') ||
+				msg.member.roles.find(leitung => role.name === 'Admin⚙️')){
+				msg.delete();
 				let comm = "/addtemp "
-				var cut = message.content.slice(comm.length).split(" ");
-				let member = message.mentions.members.first();
-				let newrole = message.mentions.roles.first();
+				var cut = msg.content.slice(comm.length).split(" ");
+				let member = msg.mentions.members.first();
+				let newrole = msg.mentions.roles.first();
 				console.log(`NEW ROLE:` + newrole)
 				if(newrole != "<@&640858861661847572>" &&
 				  newrole != "<@&640858638159839253>" &&
 				  newrole != "<@&690682850353348638>" &&
 				  newrole != "<@&690602986170220595>" &&
 				  newrole != "<@&690565273283199076>") {
-				member.removeRole(newrole, `Added the Role ${newrole} by ${message.author.tag} for ${member} .`);
-				console.log(`Added the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+				member.removeRole(newrole, `Added the Role ${newrole} by ${msg.author.tag} for ${member} .`);
+				console.log(`Added the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag)
 					const embed = new Discord.RichEmbed()
 					embed.setTitle("PERM-ROLLE ENTFERNT!");
 					embed.addField("Der Nutzer: " , member, true) 
-					embed.addField("Wurde von: " , "<@"+message.author.id+">", true)
+					embed.addField("Wurde von: " , "<@"+msg.author.id+">", true)
 					embed.addField("Aus der Rolle Entfernt: " , newrole , true)
 					embed.setColor(0x8B0000)
 					embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", myUser.displayAvatarURL)
@@ -663,21 +791,22 @@ Suggest
 					embed.setURL("https://www.paypal.me/magicaldesignstv")
 					embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
 					
-					message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react(message.guild.emojis.find(reactup => reactup.name === "sad")) })
+					msg.channel.send({embed}).then(sentEmbed =>  {
+					sentEmbed.react(msg.guild.emojis.find(reactup => reactup.name === "sad")) })
 				}
 				else{
-					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ message.author.tag)
+					console.log(`Tried to Add the Role: ` + newrole + `to: ` + member + `by: `+ msg.author.tag)
 				}
 					}
 			else{
-				if(message.author != client.user){
-				message.channel.send("Fehlende Berechtigung! " + message.author.tag);
+				if(msg.author != client.user){
+				msg.channel.send("Fehlende Berechtigung! " + msg.author.tag);
 			}}
 	}
-	
+	}
 	}); //closes my User
 }); //closes on Message
+
 
 /*
 ===================================
@@ -767,7 +896,7 @@ client.on("messageUpdate", (newmessage, oldmessage) => {
 	var editlog = client.channels.get('690565752960581672'); //bot spam
 	var str = newmessage.content;
 	var str2 = oldmessage.content;
-if (newmessage.author == client.user || oldmessage.author == client.user || message.author == client.user){
+if (newmessage.author == client.user || oldmessage.author == client.user){
 }
 else{
 	
