@@ -1,8 +1,9 @@
-const Discord = require('discord.js');
+const functions = require(`./functions`);
+
 module.exports = {
 	name: 'stop',
 	description: 'Stop all songs in the queue!',
-	execute(message, client) {
+	execute(message, client, owner) {
 		const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == message.guild.id);
 		const serverQueue = message.client.queue.get(message.guild.id);
 		const queue = message.client.queue;
@@ -19,60 +20,36 @@ module.exports = {
 		}
 		else{
 		if(!message.guild.voiceConnection){
-							const embed = new Discord.RichEmbed()
-							embed.setTitle("Fehler!");
-							embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
-							embed.addField("Ich bin in keinem Voice Channel!",`=> Starte Musik`)
-							embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
-							embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", message.author.displayAvatarURL)
-							embed.setTimestamp()
-							embed.setURL("https://www.paypal.me/magicaldesignstv")
-							return message.channel.send({embed}).then(sentEmbed =>  {
-							sentEmbed.react("🚫") 
-		})  
+			functions.stopnovoice(message, client)			 
 		}
 		else{
 		if (message.guild.voiceConnection.channel != message.member.voiceChannel){
-				const embed = new Discord.RichEmbed()
-		embed.setTitle("Fehler!");
-		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
-		embed.addField("Du Musst im selben Voice Channel sein, wie ich!",`=> Wechsle bitte den Channel`)
-		embed.addField("**DEIN CHANNEL: **", message.member.voiceChannel , true)
-		embed.addField("**CHANNEL DES BOTS: **", message.guild.voiceConnection.channel , true)
-		embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
-		embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", message.author.displayAvatarURL)
-		embed.setTimestamp()
-		embed.setURL("https://www.paypal.me/magicaldesignstv")
-		return message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react("🚫") 
-		})  
+			functions.stopnotsamevoice(message, client)	
 		}
 		else{
-		//const dispatcher = voiceConnection.player.dispatcher;
+		if(owner != message.member){
+			functions.pausenotowner(message, owner)
+			}
+		else{
 		if (!message.member.voiceChannel) return message.channel.send('Du musst in einem Voice Channel sein, um die Musik zu Stoppen!');
 		if (voiceConnection !== null) {
 			if(serverQueue){
 			if (serverQueue.connection.dispatcher){
-			const embed = new Discord.RichEmbed()
-			embed.setTitle("Musik Gestoppt!");
-			embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
-			embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
-			embed.addField("Deine Playlist wurde gelöscht!", " **Auf wiedersehen!** ")
-			embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
-			embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", message.author.displayAvatarURL)
-			embed.setTimestamp()
-			embed.setColor(0x8B0000)
-			embed.setURL("https://www.paypal.me/magicaldesignstv")
-			message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react("🛑") 
-		})
-		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end();
-		queue.delete(guild.id);
-		console.log(`Song Stopped!`)
-		
+					functions.stopped(message, client)
+					queue.delete(guild.id);
+					serverQueue.songs = [];
+					setTimeout(() => {
+						try{
+						if(serverQueue.connection.dispatcher){
+						serverQueue.connection.dispatcher.end();
+						}
+						}catch(error){
+						console.log(error)
+						}
+					},1500)
+					console.log(`Song Stopped!`)
 			}
 		}}}}
-	}}
+		}}}
 	},
 };

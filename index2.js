@@ -22,7 +22,17 @@ var musicowner = ""
 var musicchannel = ""
 var playing = false
 var message = ""
-var musicbotchannel = ""
+
+const { Util } = require("discord.js");
+const ytdl = require("ytdl-core");
+const pausejs = require(`./commands/pause`);
+const skipjs = require(`./commands/skip`);
+const stopjs = require(`./commands/stop`);
+const functions = require(`./commands/functions`);
+const clearqueuejs = require(`./commands/clearqueue`);
+var titles =  ""
+var owner = ""
+var song = ""
 /*
 ===================================
 ===========BOT ON RDY EVENT========
@@ -61,43 +71,55 @@ client.on('ready', () => {
 
 /*
 ===================================
-=======VOICE CHANNEL EVENT=========
+===========VOICE CHAN EVENT========
 ===================================
 */
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
   let newUserChannel = newMember.voiceChannel
   let oldUserChannel = oldMember.voiceChannel
-  
+  	function channelleave(message, client){
+		if(playing === true){
+		const queue = message.client.queue;
+		const guild = message.guild;
+		const serverQueue = queue.get(message.guild.id);
+		if(message.member.voiceChannel !=  message.guild.voiceConnection.channel){
+		looped = false
+		const voiceChannel = message.member.voiceChannel;
+		console.log(`Verlasse CHannel! : ` + message.guild.voiceConnection.channel)
+		serverQueue.voiceChannel.leave();
+		queue.delete(guild.id);
+		return;
+		}}
+	}
    if(playing === true){
 	   if(message != ""){
 	   if(musicowner != "" && musicchannel != "") {
   if(oldUserChannel === undefined && newUserChannel != undefined) {
+
      // User Joins a voice channel
 
   } else if(newUserChannel === undefined || newUserChannel != musicchannel ){
 		if (musicowner != newMember.id){
-			if(oldMember.id === "690564195346808882"){
-			play.botleft(message, client)
-			playing = false
-			looped = false
-			musicowner = ""
-			musicchannel = ""
-			console.log("Playing = False")
-			}
 		}
 		else{
 			if(musicowner === newMember.id && musicchannel === oldUserChannel){
 				musicowner = "" 
 				musicchannel = ""
-				play.channelleave(message, client)
+				channelleave(message, client)
 				playing = false
 				looped = false
 				}
 			}
    }
    }}}
+    // User leaves a voice channel
+	
+
+  
 })
+   
+
 
 /*
 ===================================
@@ -121,66 +143,199 @@ client.on('message', msg => {
 	let client2 = client
 	 message = msg
 	if (command === 'play' || command === 'spiel')	  {
-	
-		
+		playing = true
+		looped = false
+		musicchannel = message.member.voiceChannel
+		musicowner = message.member.id
 		let fun = client.guilds.get("640851794288836611").guild
 		if(!args[0]){
 			return message.channel.send("Es muss ein Youtube-Link eingegeben werden!")
 		}
 			if(args[0].includes("www.youtube") || args[0].includes("https://www.youtube") || args[0].includes("https://www.youtu.be")) 
 			{
-				if(playing === false)
-				{
-				musicchannel = message.member.voiceChannel
-				musicowner = message.member.id
-				}
-				playing = true
-				looped = false
-				play.execute(message, client, fun, looped);
-				musicbotchannel = msg
+				execute(message, client, fun, looped);
 			}else{
 				return message.channel.send("Es muss ein Youtube-Link eingegeben werden!")
 			 }
+	}	 
+	async function execute(message, client, fun, looped) {
+    try {
+      const args = message.content.split(" ");
+      const queue = message.client.queue;
+      const serverQueue = message.client.queue.get(message.guild.id);
+      const voiceChannel = message.member.voiceChannel;
+      if (!voiceChannel)  return functions.playnotvoice(message)
+
+      const permissions = voiceChannel.permissionsFor(message.client.user);
+      if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+		functions.playnotalkpermission(message)
+      }
+	  
+      const songInfo = await ytdl.getInfo(args[1]);
+       song = {
+        title: songInfo.title,
+        url: songInfo.video_url
+      };
+	titles = song.title
+	
+      if (!serverQueue) {
+        const queueContruct = {
+          textChannel: message.channel,
+          voiceChannel: voiceChannel,
+          connection: null,
+          songs: [],
+          volume: 5,
+          playing: true
+        };
+
+        queue.set(message.guild.id, queueContruct);
+
+        queueContruct.songs.push(song);
+
+        try {
+          var connection = await voiceChannel.join();
+          queueContruct.connection = connection;
+          play(message, queueContruct.songs[0], client, looped);
+		  owner = message.member
+        } catch (err) {
+          console.log(err);
+          queue.delete(message.guild.id);
+          return message.channel.send(err);
+        }
+      } else {
+		
+		if (message.guild.voiceConnection.channel != message.member.voiceChannel){
+		functions.playnotsamevoice(message)
+		}else{
+        serverQueue.songs.push(song);
+		let vid = "https://www.youtube.com/watch?v="
+		let vidid = args[1].slice(vid.length)
+		let urll = "https://img.youtube.com/vi/"+vidid+"/hqdefault.jpg"
+		functions.playsongaddedtoqueue(message, urll, song)
+      }} 
+    } catch (error) {
+      console.log(error);
+      message.channel.send(error.message);
+    }
+  }
+
+ function play(message, song, client, looped){
+    const queue = message.client.queue;
+    const guild = message.guild;
+    const serverQueue = queue.get(message.guild.id);
+	
+    if (!song && !serverQueue.connection.dispatcher) {
+	  playing = false
+      queue.delete(guild.id);
+		 setTimeout(() => {   
+      serverQueue.voiceChannel.leave();
+	  },60000);
+      return;
+    }
+	
+	if(message.member.voiceChannel !=  message.guild.voiceConnection.channel){
+		serverQueue.voiceChannel.leave();
+		queue.delete(guild.id);
+		playing = false
+		return;
+	}
+	
+		const args = message.content.split(" ");
+		let vid = "https://www.youtube.com/watch?v="
+		let vidid = args[1].slice(vid.length)
+		let urll = "https://img.youtube.com/vi/"+vidid+"/hqdefault.jpg"
+		playing = true
+		functions.playsong(message, urll, song)
+		
+	const dispatcher = serverQueue.connection
+      .playStream(ytdl(song.url))
+      .on("end", () => {
+		  console.log(`finished`)
+		  if(looped === false){
+        serverQueue.songs.shift();
+		  }
+        play(message, serverQueue.songs[0], client, looped);
+		owner = message.member
+      })
+	 
+      .on("error", error => console.error(error));		
+  } 
+  
+  function loop(message, client, looped){
+	   	if (!message.member.voiceChannel){
+		functions.playloopnotinvoice(message)
+			}else{
+		const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == message.guild.id);
+		const queue = message.client.queue;
+		const guild = message.guild;
+		const serverQueue = queue.get(message.guild.id);
+		if (!serverQueue){
+		functions.playloopnosong(message)
 		}
+		else{
+	   if (message.guild.voiceConnection.channel != message.member.voiceChannel){
+		functions.playloopnotsamechannel(message)
+	   }
+	   else{
+      const queue = message.client.queue;
+      const serverQueue = message.client.queue.get(message.guild.id);
+		if (!message.member.voiceChannel) return message.channel.send('Du musst in einem Voice Channel sein, um Musik zu Loopen!');
+		if (!serverQueue) return message.channel.send('Es läuft kein Song!');
+		if (serverQueue.connection.dispatcher){
+			
+	if(looped === true){
+	functions.playloopstart(message, titles) 
+		
+	}
+	
+	else{
+	functions.playloopstop(message, titles)
+	}
+			}}}}
+  }
+  
+		
 	if (command === 'skip' || command === 'vor' || command === 'next')	  {
-		 looped = false
-			play.skip(message, client);
+			playing = false
+			looped = false
+			skipjs.execute(message, client, owner, looped);
 			
 		}
 	if (command === 'stop')	  {
-		if(musicowner === message.member.id){
-		playing = false
 		looped = false
-		}
-			play.stop(message, client);
+		playing = false
+	  stopjs.execute(message, client, owner, looped);
+			
 		}
 	if (command === 'clear' || command === 'löschen')	  {
-			play.clearqueue(message, client);
+				looped = false
+				playing = false
+				clearqueuejs.execute(message, client, owner, looped);
 			
 		}
 	if (command === 'pause')	  {
-		
-			play.pause(message, client);
+	  pausejs.execute(message, client, owner);
+	  functions.pausepaused(message);
 			
 		}
 	if (command === 'weiter' || command === "resume")	  {
-			play.resume(message, client);
+			resume.execute(message, client, owner, looped);
 			
 		}
 	if (command === 'volume' || command === "lautstärke")	  {
-			play.volume(message, client);
+			volume.execute(message, client, owner, looped);
 			
 		}
 	if (command === 'loop' || command === "schleife")	  {
 		if(looped === false){
 			looped = true
-			play.loop(message, client, looped);
+			play.loop(message, client, owner, looped);
 			console.log(`Case: FALSE => Looped = `+ looped);
 		}
 		else{
 			looped = false
 			console.log(`Case: TRUE => Looped = `+ looped);
-			play.loop(message, client, looped);
+			play.loop(message, client, owner, looped);
 		}
 			
 		}

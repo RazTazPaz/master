@@ -1,8 +1,9 @@
-const Discord = require('discord.js');
+const functions = require(`./functions`);
+
 module.exports = {
 	name: 'weiter',
-	description: 'Stop all songs in the queue!',
-	execute(message, client) {
+	description: 'setzt den song fort!',
+	execute(message, client, owner) {
 		const voiceConnection = client.voiceConnections.find(val => val.channel.guild.id == message.guild.id);
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!serverQueue){
@@ -17,62 +18,33 @@ module.exports = {
 		}
 		else{
 		if (message.guild.voiceConnection.channel != message.member.voiceChannel){
-				const embed = new Discord.RichEmbed()
-		embed.setTitle("Fehler!");
-		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
-		embed.addField("Du Musst im selben Voice Channel sein, wie ich!",`=> Wechsle bitte den Channel`)
-		embed.addField("**DEIN CHANNEL: **", message.member.voiceChannel , true)
-		embed.addField("**CHANNEL DES BOTS: **", message.guild.voiceConnection.channel , true)
-		embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
-		embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", message.author.displayAvatarURL)
-		embed.setTimestamp()
-		embed.setColor(0x8B0000)
-		embed.setURL("https://www.paypal.me/magicaldesignstv")
-		return message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react("🚫") 
-		})  
+			functions.resumenotsamevoice(message, client)
 		}
 		else{
-		//const dispatcher = voiceConnection.member.dispatcher;
-		//const dispatcher = voiceConnection.player.dispatcher;
+		if(owner != message.member){
+			functions.pausenotowner(message, owner)
+			}
+		else{
 		if (!message.member.voiceChannel) return message.channel.send('Du musst in einem Voice Channel sein, um die Musik fort zu setzen!').then(sentEmbed =>  {
 					sentEmbed.react("🚫") 
 		}) 
-		//serverQueue.songs = [];
 			if (voiceConnection === null) {
 			message.channel.send('Es läuft keine Musik!').then(sentEmbed =>  {
 					sentEmbed.react("🚫") 
 		}) 
-			/*if(dispatcher.paused){
-				message.channel.send('Musik ist bereits pausiert!');
-			}*/
-		}else {
-		
+
+		}else{
 		if (!serverQueue.connection.dispatcher.paused) {
 			message.channel.send('Musik ist nicht Pausiert!').then(sentEmbed =>  {
 					sentEmbed.react("🚫") 
 		}) 
-			/*if(dispatcher.paused){
-				message.channel.send('Musik ist bereits pausiert!');
-			}*/
+		
 		}
 		else{
 		if (serverQueue.connection.dispatcher.paused){
-		serverQueue.connection.dispatcher.resume();
-		const embed = new Discord.RichEmbed()
-		embed.setTitle("Musik Fortgesetzt!");
-		embed.setThumbnail("https://cdn.discordapp.com/attachments/572416781428326410/691010390921838742/coffee2.png")
-		embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
-		embed.addField("Deine Playlist wird Fortgesetzt!", " **Viel Spaß!** ")
-		embed.setAuthor("Jugend Café", "https://cdn.discordapp.com/attachments/578932721531748392/691018002673434634/servericon.png")
-		embed.setFooter("Danke, dass ihr unsern Bot nutzt! Code by RazTazPaz", message.author.displayAvatarURL)
-		embed.setTimestamp()
-		embed.setColor(0x2f71e9)
-		embed.setURL("https://www.paypal.me/magicaldesignstv")
-		message.channel.send({embed}).then(sentEmbed =>  {
-					sentEmbed.react("⏯️") 
-		}) 
+			serverQueue.connection.dispatcher.resume();
+			functions.resume(message, client)
 		}}}
-	}}}
+		}}}}
 	},
 };
